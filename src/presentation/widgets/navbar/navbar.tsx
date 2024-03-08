@@ -6,14 +6,16 @@ const Navbar = () => {
             <ul>
                 <li>
                     <a id={styles.title} href="/">
-                        FINDY ALTERNANCE
+                        FINDY
+                        <br />
+                        ALTERNANCE
                     </a>
                 </li>
-                <li>
-                    <a href="/job-offers">Job-offers</a>
+                <li className={styles.normalUnderline}>
+                    <a href="/job-offers">Trouvez votre alternance</a>
                 </li>
-                <li>
-                    <a href="/more">More</a>
+                <li className={styles.normalUnderline}>
+                    <a href="/more">Media</a>
                 </li>
             </ul>
         </nav>

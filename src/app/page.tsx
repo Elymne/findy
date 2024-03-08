@@ -1,10 +1,9 @@
-import Navbar from "@src/widgets/navbar/navbar"
-import styles from "./page.module.css"
+import HookSection from "./widgets/hook/hookSection"
 
 export default function Home() {
     return (
-        <main className={styles.main}>
-            <Navbar />
+        <main>
+            <HookSection />
         </main>
     )
 }

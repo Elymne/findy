@@ -2,6 +2,8 @@ import styles from "./hookSection.module.css"
 import Image from "next/image"
 
 const HookSection = () => {
+    const iconSize = 40
+
     return (
         <section id={styles.main}>
             <div id={styles.content}>
@@ -18,8 +20,8 @@ const HookSection = () => {
                     <article className={styles.describe_bloc}>
                         <Image
                             src="/svg/toolbox.svg"
-                            height={30}
-                            width={30}
+                            height={iconSize}
+                            width={iconSize}
                             alt="Toolbox icon"
                             style={{
                                 filter: "invert(100%)",
@@ -31,9 +33,9 @@ const HookSection = () => {
                     <div className={styles.vertical_divider} />
                     <article className={styles.describe_bloc}>
                         <Image
-                            src="/svg/toolbox.svg"
-                            height={30}
-                            width={30}
+                            src="/svg/clock.svg"
+                            height={iconSize}
+                            width={iconSize}
                             alt="Toolbox icon"
                             style={{
                                 filter: "invert(100%)",
@@ -45,9 +47,9 @@ const HookSection = () => {
                     <div className={styles.vertical_divider} />
                     <article className={styles.describe_bloc}>
                         <Image
-                            src="/svg/toolbox.svg"
-                            height={30}
-                            width={30}
+                            src="/svg/chat.svg"
+                            height={iconSize}
+                            width={iconSize}
                             alt="Toolbox icon"
                             style={{
                                 filter: "invert(100%)",
@@ -60,7 +62,9 @@ const HookSection = () => {
                 {/* SECTION 2 */}
                 <section id={styles.search_section}>
                     <input type="text" placeholder="Recherche par mots-clés" />
-                    <button>Lancer la recherche</button>
+                    <button>
+                        <span>Lancer la recherche</span>
+                    </button>
                 </section>
             </div>
         </section>

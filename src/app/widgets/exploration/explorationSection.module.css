@@ -44,12 +44,19 @@
     padding: 0px 20px;
     font-size: 28px;
     font-weight: lighter;
+
+    /* Animation */
+    transition: transform 0.2s ease-out;
+}
+
+#content > ol > li.selected {
+    transform: scale(1.1, 1.1);
+    color: rgb(60, 60, 150);
 }
 
 #content > ol > li:hover {
-    padding: 0px 20px;
-    font-size: 28px;
-    color: rgb(93, 93, 197);
+    transform: scale(1.1, 1.1);
+    color: rgb(60, 60, 150);
     cursor: pointer;
 }
 

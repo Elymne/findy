@@ -3,7 +3,7 @@
     margin: 0;
 }
 
-*:focus {
+*:focus-visible {
     outline-width: 1px;
     outline-color: rgb(93, 56, 255);
     background-color: rgba(137, 47, 255, 0.103);
@@ -12,6 +12,6 @@
     border-radius: 6px;
 }
 
-button:focus {
+button:focus-visible {
     background-color: rgb(137, 47, 255);
 }

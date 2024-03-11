@@ -1,19 +1,45 @@
 "use client"
 import Card from "@src/presentation/widgets/card/card"
 import styles from "./explorationSection.module.css"
-import { useState } from "react"
+import { Category, useSelectCategory } from "./hooks/useSelectCategory.hook"
+import { useGetJobOffers } from "./hooks/useGetJobOffers.hook"
 
 const ExplorationSection = () => {
-    const [selectedCateg, setSelectedCateg] = useState<Category>(Category.Marketing)
+    const { selectedCategory, setSelectedCategory } = useSelectCategory(Category.Marketing)
+    const { jobOffers, setJobOffers } = useGetJobOffers()
 
     function onCategClick(categ: Category): void {
-        setSelectedCateg(categ)
+        setSelectedCategory(categ)
+        setJobOffers(categ)
     }
 
     function onKeyDown(keyBoardEvent: React.KeyboardEvent<HTMLLIElement>, categ: Category): void {
         if (keyBoardEvent.code === "Enter") {
-            setSelectedCateg(categ)
+            setSelectedCategory(categ)
+            setJobOffers(categ)
         }
+    }
+
+    function displayJobOffers(): JSX.Element {
+        if (jobOffers === undefined || jobOffers === null) {
+            return <h1>Loading</h1>
+        }
+
+        if (jobOffers!.length == 0) {
+            return <h1>Nothing to display here</h1>
+        }
+
+        return (
+            <ul>
+                {jobOffers!.map((jobOffer) => {
+                    return (
+                        <li key={jobOffer.id}>
+                            <Card jobOffer={jobOffer} />
+                        </li>
+                    )
+                })}
+            </ul>
+        )
     }
 
     return (
@@ -21,12 +47,11 @@ const ExplorationSection = () => {
             <div id={styles.content}>
                 <h1>Explorez nos offres d'alternance pour votre futur formation</h1>
                 <h2>Filtrez selon votre domaine</h2>
-
                 <ol>
                     <li
                         onClick={() => onCategClick(Category.Marketing)}
                         onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.Marketing)}
-                        className={selectedCateg === Category.Marketing ? styles.selected : undefined}
+                        className={selectedCategory === Category.Marketing ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         Marketing
@@ -34,7 +59,7 @@ const ExplorationSection = () => {
                     <li
                         onClick={() => onCategClick(Category.Communication)}
                         onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.Communication)}
-                        className={selectedCateg === Category.Communication ? styles.selected : undefined}
+                        className={selectedCategory === Category.Communication ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         Communication
@@ -42,7 +67,7 @@ const ExplorationSection = () => {
                     <li
                         onClick={() => onCategClick(Category.Comptability)}
                         onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.Comptability)}
-                        className={selectedCateg === Category.Comptability ? styles.selected : undefined}
+                        className={selectedCategory === Category.Comptability ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         Comptabilité
@@ -50,7 +75,7 @@ const ExplorationSection = () => {
                     <li
                         onClick={() => onCategClick(Category.WebDevelop)}
                         onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.WebDevelop)}
-                        className={selectedCateg === Category.WebDevelop ? styles.selected : undefined}
+                        className={selectedCategory === Category.WebDevelop ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         Dévelopement Web
@@ -58,7 +83,7 @@ const ExplorationSection = () => {
                     <li
                         onClick={() => onCategClick(Category.HumanResources)}
                         onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.HumanResources)}
-                        className={selectedCateg === Category.HumanResources ? styles.selected : undefined}
+                        className={selectedCategory === Category.HumanResources ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         RH
@@ -66,39 +91,17 @@ const ExplorationSection = () => {
                     <li
                         onClick={() => onCategClick(Category.Commercial)}
                         onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.Commercial)}
-                        className={selectedCateg === Category.Commercial ? styles.selected : undefined}
+                        className={selectedCategory === Category.Commercial ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         Commercial
                     </li>
                 </ol>
 
-                <ul>
-                    <li>
-                        <Card />
-                    </li>
-                    <li>
-                        <Card />
-                    </li>
-                    <li>
-                        <Card />
-                    </li>
-                    <li>
-                        <Card />
-                    </li>
-                </ul>
+                {displayJobOffers()}
             </div>
         </section>
     )
-}
-
-enum Category {
-    Marketing,
-    Communication,
-    Comptability,
-    WebDevelop,
-    HumanResources,
-    Commercial,
 }
 
 export default ExplorationSection

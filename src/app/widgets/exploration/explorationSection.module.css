@@ -64,7 +64,7 @@
 #content > ul {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     list-style-type: none;
     padding-bottom: 40px;
 }

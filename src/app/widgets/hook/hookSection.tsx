@@ -27,8 +27,8 @@ const HookSection = () => {
                                 filter: "invert(100%)",
                             }}
                         />
-                        <h2>Recherche simple et rapide</h2>
-                        <p>Accédez en quelques cliques aux informations importantes du poste</p>
+                        <h2>Toutes les offres d'alternances</h2>
+                        <p>Soyez le premier à recevoir les annonces d'alternance de tous les site d'emplois</p>
                     </article>
                     <div className={styles.vertical_divider} />
                     <article className={styles.describe_bloc}>
@@ -41,8 +41,8 @@ const HookSection = () => {
                                 filter: "invert(100%)",
                             }}
                         />
-                        <h2>Aucune annonce d'écoles</h2>
-                        <p>Vous retrouverez uniquement les offres d'alternance issues des entreprises</p>
+                        <h2>Recherche simple et rapide</h2>
+                        <p>Accédez en quelques cliques aux informations importantes du poste</p>
                     </article>
                     <div className={styles.vertical_divider} />
                     <article className={styles.describe_bloc}>
@@ -55,8 +55,8 @@ const HookSection = () => {
                                 filter: "invert(100%)",
                             }}
                         />
-                        <h2>Toutes les offres d'alternances</h2>
-                        <p>Soyez le premier à recevoir les annonces d'alternance de tous les site d'emplois</p>
+                        <h2>Aucune annonce d'écoles</h2>
+                        <p>Vous retrouverez uniquement les offres d'alternance issues des entreprises</p>
                     </article>
                 </section>
                 {/* SECTION 2 */}

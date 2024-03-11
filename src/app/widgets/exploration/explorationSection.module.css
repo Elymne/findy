@@ -41,6 +41,7 @@
 }
 
 #content > ol > li {
+    text-decoration: none;
     padding: 0px 20px;
     font-size: 28px;
     font-weight: lighter;
@@ -49,15 +50,15 @@
     transition: transform 0.2s ease-out;
 }
 
-#content > ol > li.selected {
-    transform: scale(1.1, 1.1);
-    color: rgb(60, 60, 150);
+#content > ol > li:hover {
+    transform: scale(1.2, 1.2);
+    color: #6363b9;
+    cursor: pointer;
 }
 
-#content > ol > li:hover {
-    transform: scale(1.1, 1.1);
-    color: rgb(60, 60, 150);
-    cursor: pointer;
+#content > ol > li.selected {
+    transform: scale(1.2, 1.2);
+    color: #4646be;
 }
 
 #content > ul {

@@ -2,3 +2,16 @@
     padding: 0;
     margin: 0;
 }
+
+*:focus {
+    outline-width: 1px;
+    outline-color: rgb(93, 56, 255);
+    background-color: rgba(137, 47, 255, 0.103);
+    backdrop-filter: blur(1px);
+    outline-style: solid;
+    border-radius: 6px;
+}
+
+button:focus {
+    background-color: rgb(137, 47, 255);
+}

@@ -1,7 +1,7 @@
-import styles from "./explorationCard.module.css"
+import styles from "./card.module.css"
 import Image from "next/image"
 
-const ExplorationCard = () => {
+const Card = () => {
     return (
         <article id={styles.card}>
             <Image src="/images/placeholder.jpg" height={120} width={300} alt="Toolbox icon" style={{}} className={styles.top_image} />
@@ -29,4 +29,4 @@ const ExplorationCard = () => {
     )
 }
 
-export default ExplorationCard
+export default Card

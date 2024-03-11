@@ -1,6 +1,6 @@
 #title {
     text-align: center;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 800;
     margin-right: 60px;
 }
@@ -10,6 +10,7 @@
     flex-direction: row;
     justify-content: center;
     border-bottom: 1px solid #aaaaaa;
+    padding: 10px;
 }
 
 .navbar ul {
@@ -33,7 +34,7 @@
     font-weight: 600;
 }
 
-.normalUnderline::after {
+.navbar ul li a.normalUnderline::after {
     content: "";
     display: block;
     width: 100%;
@@ -41,9 +42,14 @@
     background-color: #000000;
     transform: scaleX(0);
     transform-origin: top left;
-    transition: transform 200ms ease-in;
+    transition: transform 0.2s ease-in;
 }
 
-.normalUnderline:hover::after {
+.navbar ul li a.normalUnderline:hover::after {
     transform: scaleX(1);
+    cursor: pointer;
+}
+
+.navbar ul li a.normalUnderline:focus::after {
+    transform: scaleX(0);
 }

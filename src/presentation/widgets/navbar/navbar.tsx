@@ -11,11 +11,15 @@ const Navbar = () => {
                         ALTERNANCE
                     </a>
                 </li>
-                <li className={styles.normalUnderline}>
-                    <a href="/job-offers">Trouvez votre alternance</a>
+                <li>
+                    <a className={styles.normalUnderline} href="/job-offers">
+                        Trouvez votre alternance
+                    </a>
                 </li>
-                <li className={styles.normalUnderline}>
-                    <a href="/more">Media</a>
+                <li>
+                    <a className={styles.normalUnderline} href="/more">
+                        Media
+                    </a>
                 </li>
             </ul>
         </nav>

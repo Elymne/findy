@@ -11,15 +11,19 @@ const Footer = (): JSX.Element => {
 
             <section>
                 <h1>Informations</h1>
-                <a>Politique de confidentialité</a>
-                <a>Mentions légales</a>
-                <a>CGU</a>
+                <a href="#">Politique de confidentialité</a>
+                <span>
+                    <a href="#">Mentions légales</a>
+                    <a href="#">CGU</a>
+                </span>
             </section>
             <section>
                 <h1>A propos</h1>
-                <a>Qui sommes-nous ?</a>
-                <a>Le concept</a>
-                <a>Offres d'alternance</a>
+                <a href="#">Qui sommes-nous ?</a>
+                <span>
+                    <a href="#">Le concept</a>
+                    <a href="#">Offres d'alternance</a>
+                </span>
             </section>
         </footer>
     )

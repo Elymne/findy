@@ -1,11 +1,4 @@
-#title {
-    text-align: center;
-    font-size: 26px;
-    font-weight: 800;
-    margin-right: 60px;
-}
-
-.navbar {
+#navbar {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -13,28 +6,35 @@
     padding: 10px;
 }
 
-.navbar ul {
+#title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 800;
+    margin-right: 60px;
+}
+
+#navbar > ul {
     display: flex;
     flex-direction: row;
     list-style-type: none;
     width: 1280px;
 }
 
-.navbar ul li {
+#navbar > ul > li {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-right: 40px;
 }
 
-.navbar ul li a {
+#navbar > ul > li > a {
     text-decoration: none;
     color: #222222;
     font-size: 24px;
     font-weight: 600;
 }
 
-.navbar ul li a.normalUnderline::after {
+#navbar > ul > li > a.normalUnderline::after {
     content: "";
     display: block;
     width: 100%;
@@ -45,11 +45,11 @@
     transition: transform 0.2s ease-in;
 }
 
-.navbar ul li a.normalUnderline:hover::after {
+#navbar > ul > li > a.normalUnderline:hover::after {
     transform: scaleX(1);
     cursor: pointer;
 }
 
-.navbar ul li a.normalUnderline:focus::after {
+#navbar > ul > li > a.normalUnderline:focus::after {
     transform: scaleX(0);
 }

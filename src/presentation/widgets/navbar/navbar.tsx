@@ -3,7 +3,7 @@ import styles from "./navbar.module.css"
 const Navbar = () => {
     return (
         <header>
-            <nav className={styles.navbar} aria-label="Navbar">
+            <nav id={styles.navbar} aria-label="Navbar">
                 <ul>
                     <li>
                         <a id={styles.title} href="/">

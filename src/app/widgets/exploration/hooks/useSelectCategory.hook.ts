@@ -1,7 +1,7 @@
 import { useState } from "react"
 
-export const useSelectCategory = (defaultCategory: Category) => {
-    const [selectedCategory, setSelectedCategory] = useState<Category>(defaultCategory)
+export const useSelectCategory = () => {
+    const [selectedCategory, setSelectedCategory] = useState<Category>()
 
     return {
         selectedCategory,

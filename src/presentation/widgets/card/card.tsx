@@ -2,7 +2,7 @@ import { JobOffer } from "@src/domain/entities/jobOffer"
 import styles from "./card.module.css"
 import Image from "next/image"
 
-const Card = (p: { jobOffer: JobOffer }) => {
+const Card = (p: { jobOffer: JobOffer }): JSX.Element => {
     return (
         <article id={styles.card}>
             <Image src="/images/placeholder.jpg" height={120} width={300} alt="Toolbox icon" style={{}} className={styles.top_image} />

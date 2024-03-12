@@ -1,7 +1,7 @@
 import ExplorationSection from "./widgets/exploration/explorationSection"
 import HookSection from "./widgets/hook/hookSection"
 
-export default function Home() {
+const Home = (): JSX.Element => {
     return (
         <main>
             <HookSection />
@@ -9,3 +9,5 @@ export default function Home() {
         </main>
     )
 }
+
+export default Home

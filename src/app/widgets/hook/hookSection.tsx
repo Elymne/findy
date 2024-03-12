@@ -1,7 +1,7 @@
 import styles from "./hookSection.module.css"
 import Image from "next/image"
 
-const HookSection = () => {
+const HookSection = (): JSX.Element => {
     const iconSize = 40
 
     return (
@@ -62,9 +62,7 @@ const HookSection = () => {
                 {/* SECTION 2 */}
                 <section id={styles.search_section}>
                     <input type="text" placeholder="Recherche par mots-clés" />
-                    <button>
-                        <span>Lancer la recherche</span>
-                    </button>
+                    <button>Lancer la recherche</button>
                 </section>
             </div>
         </section>

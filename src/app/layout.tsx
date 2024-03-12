@@ -1,7 +1,10 @@
+import "./globals.css"
+
 import type { Metadata } from "next"
 import { Akshar } from "next/font/google"
-import "./globals.css"
+
 import Navbar from "@src/presentation/widgets/navbar/navbar"
+import Footer from "@src/presentation/widgets/footer/footer"
 
 const akshar = Akshar({
     subsets: ["latin"],
@@ -16,11 +19,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={akshar.className}>
-                <header>
-                    <Navbar />
-                </header>
+                <Navbar />
                 {children}
-                <footer></footer>
+                <Footer />
             </body>
         </html>
     )

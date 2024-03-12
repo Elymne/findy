@@ -1,0 +1,34 @@
+#main {
+    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #15074f;
+}
+
+#main > h1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    font-size: 40px;
+    font-weight: 800;
+    color: white;
+    padding-right: 100px;
+}
+
+#main > section {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#main > section > h1 {
+    font-size: 22px;
+    color: white;
+}
+
+#main > section > a {
+    font-size: 20px;
+    color: white;
+}

@@ -3,10 +3,11 @@ import Card from "@src/presentation/widgets/card/card"
 import styles from "./explorationSection.module.css"
 import { Category, useSelectCategory } from "./hooks/useSelectCategory.hook"
 import { useGetJobOffers } from "./hooks/useGetJobOffers.hook"
+import { useEffect } from "react"
 
-const ExplorationSection = () => {
-    const { selectedCategory, setSelectedCategory } = useSelectCategory(Category.Marketing)
-    const { jobOffers, setJobOffers } = useGetJobOffers()
+const ExplorationSection = (): JSX.Element => {
+    const { selectedCategory, setSelectedCategory } = useSelectCategory()
+    const { getJobOffers, setJobOffers } = useGetJobOffers()
 
     function onCategClick(categ: Category): void {
         setSelectedCategory(categ)
@@ -20,27 +21,10 @@ const ExplorationSection = () => {
         }
     }
 
-    function displayJobOffers(): JSX.Element {
-        if (jobOffers === undefined || jobOffers === null) {
-            return <h1>Loading</h1>
-        }
-
-        if (jobOffers!.length == 0) {
-            return <h1>Nothing to display here</h1>
-        }
-
-        return (
-            <ul>
-                {jobOffers!.map((jobOffer) => {
-                    return (
-                        <li key={jobOffer.id}>
-                            <Card jobOffer={jobOffer} />
-                        </li>
-                    )
-                })}
-            </ul>
-        )
-    }
+    useEffect(() => {
+        setSelectedCategory(Category.Marketing)
+        setJobOffers(Category.Marketing)
+    }, [])
 
     return (
         <section id={styles.main}>
@@ -98,7 +82,30 @@ const ExplorationSection = () => {
                     </li>
                 </ol>
 
-                {displayJobOffers()}
+                {getJobOffers({
+                    onLoading: () => {
+                        return <h1>Loading</h1>
+                    },
+                    onSuccess: (jobOffers) => {
+                        if (jobOffers.length === 0) {
+                            return <h1>Nothing to display here</h1>
+                        }
+                        return (
+                            <ul>
+                                {jobOffers!.map((jobOffer) => {
+                                    return (
+                                        <li key={jobOffer.id}>
+                                            <Card jobOffer={jobOffer} />
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        )
+                    },
+                    onFailure: (err) => {
+                        return <h1>An error occured</h1>
+                    },
+                })}
             </div>
         </section>
     )

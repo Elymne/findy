@@ -1,4 +1,5 @@
 import styles from "./searchSection.module.css"
+import Image from "next/image"
 
 const SearchSection = (): JSX.Element => {
     return (
@@ -10,7 +11,9 @@ const SearchSection = (): JSX.Element => {
                 <div id={styles.search_bar}>
                     <input id={styles.search_bar_domain_input} type="text" placeholder="Recherche par mots-clés" />
                     <input id={styles.search_bar_city_input} type="text" placeholder="Paris, Lion, Nantes..." />
-                    <button>GA</button>
+                    <button>
+                        <Image src="svg/magnifying_glass.svg" height={30} width={30} alt="Icone de loupe" />
+                    </button>
                 </div>
             </div>
         </section>

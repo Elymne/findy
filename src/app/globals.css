@@ -20,3 +20,11 @@ body {
     min-height: 100vh;
     background-color: #f1f5fc;
 }
+
+input {
+    background-color: #f1f5fc;
+}
+
+button {
+    background-color: #f1f5fc;
+}

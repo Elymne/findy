@@ -18,7 +18,7 @@
         background-color: rgba(0, 0, 0, 0);
     }
     to {
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.6);
     }
 }
 
@@ -28,7 +28,7 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    padding-top: 180px;
+    padding-top: 300px;
     padding-bottom: 100px;
     width: 1280px;
 }
@@ -64,37 +64,68 @@
 
     border-width: 1px;
     border-color: #d8d8d8;
+
+    transition: border-color 0.2s ease-in;
+}
+
+#search_bar > input:hover {
+    background-color: white;
+    cursor: pointer;
+}
+
+#search_bar > input:focus {
+    outline: none;
+    background-color: white;
+    cursor: text;
 }
 
 #search_bar input:nth-child(1) {
     border-radius: 10px 0px 0px 10px;
-    border-style: none solid none none;
+    border-style: none;
 }
 
 #search_bar input:nth-child(2) {
     border-style: none none none solid;
 }
 
-#search_bar > input:focus {
-    outline: none;
-    background-color: white;
-}
-
 #search_bar > button {
-    width: 100px;
-    background-color: white;
-
+    position: relative;
+    overflow: hidden;
+    padding: 20px 40px;
     border-color: #d8d8d8;
-    border-style: none none none solid;
+    border-width: 1px;
+    border-style: none;
     border-radius: 0px 10px 10px 0px;
+
+    background-color: rgb(84, 102, 202);
+    transition: background-color 0.2s;
 }
 
 #search_bar > button:hover {
-    background-color: rgb(82, 112, 189);
     cursor: pointer;
 }
 
-#search_bar > button:focus {
-    background-color: rgb(105, 82, 189);
-    outline-color: rgb(93, 56, 255);
+#search_bar > button:active {
+    background-color: rgb(53, 68, 156);
+}
+
+#search_bar > button::after {
+    content: "";
+    position: absolute;
+    background: rgba(255, 255, 255, 0.2);
+    top: -50px;
+    height: 160px;
+    left: -80%;
+    transform: rotate(30deg);
+    width: 40px;
+    transition: left 0.2s ease-in;
+}
+
+#search_bar > button:hover::after {
+    left: 140%;
+    transition: left 0.2s ease-in;
+}
+
+#search_bar > button > img {
+    filter: invert(100%);
 }

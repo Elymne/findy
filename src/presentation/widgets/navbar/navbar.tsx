@@ -2,15 +2,11 @@ import styles from "./navbar.module.css"
 
 const Navbar = () => {
     return (
-        <header>
+        <header id={styles.header}>
             <nav id={styles.navbar} aria-label="Navbar">
                 <ul>
                     <li>
-                        <a id={styles.title} href="/">
-                            FINDY
-                            <br />
-                            ALTERNANCE
-                        </a>
+                        <a href="/">FINDY</a>
                     </li>
                     <li>
                         <a className={styles.normalUnderline} href="/job-offers">

@@ -1,22 +1,20 @@
 #navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border-bottom: 1px solid #000000;
-    padding: 10px;
-}
-
-#title {
-    text-align: center;
-    font-size: 26px;
-    font-weight: 800;
-    margin-right: 60px;
+    /* RaF du css. */
+    z-index: 1000000000000000;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 12px 0;
 }
 
 #navbar > ul {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
     list-style-type: none;
+    margin: 0 auto;
     width: 1280px;
 }
 
@@ -27,18 +25,35 @@
     margin-right: 40px;
 }
 
+#navbar > ul > li:nth-child(1) {
+    margin-right: 80px;
+}
+
 #navbar > ul > li > a {
     text-decoration: none;
     color: #222222;
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+#navbar > ul > li:nth-child(1) > a {
+    color: #222222;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 24px;
+    transform: scale(1);
+    transition: transform ease-out 0.2s;
+}
+
+#navbar > ul > li:nth-child(1) > a:hover {
+    transform: scale(1.1);
 }
 
 #navbar > ul > li > a.normalUnderline::after {
     content: "";
     display: block;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background-color: #000000;
     transform: scaleX(0);
     transform-origin: top left;

@@ -1,10 +1,10 @@
 import ExplorationSection from "./widgets/exploration/explorationSection"
-import HookSection from "./widgets/hook/hookSection"
+import SearchSection from "./widgets/search/searchSection"
 
 const Home = (): JSX.Element => {
     return (
         <main>
-            <HookSection />
+            <SearchSection />
             <ExplorationSection />
         </main>
     )

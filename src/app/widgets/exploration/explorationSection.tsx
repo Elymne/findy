@@ -1,29 +1,32 @@
 "use client"
 import Card from "@src/presentation/widgets/card/card"
 import styles from "./explorationSection.module.css"
-import { Category, useSelectCategory } from "./hooks/useSelectCategory.hook"
-import { useGetJobOffers } from "./hooks/useGetJobOffers.hook"
 import { useEffect } from "react"
+import { useFutureGetJobOffersFromSample } from "@src/domain/hooks/useFutureFetchSample"
+import { useSelectCategory } from "@src/domain/hooks/useSelectCategory"
+import { JobOfferCategory } from "@src/domain/hooks/enums/jobOfferCategory.enum"
 
 const ExplorationSection = (): JSX.Element => {
     const { selectedCategory, setSelectedCategory } = useSelectCategory()
-    const { getJobOffers, setJobOffers } = useGetJobOffers()
+    const { fetchSample, selectJobOffersFromCategory, getJobOffers } = useFutureGetJobOffersFromSample()
 
-    function onCategClick(categ: Category): void {
-        setSelectedCategory(categ)
-        setJobOffers(categ)
+    function onCategClick(category: JobOfferCategory): void {
+        setSelectedCategory(category)
+        selectJobOffersFromCategory(category)
     }
 
-    function onKeyDown(keyBoardEvent: React.KeyboardEvent<HTMLLIElement>, categ: Category): void {
+    function onKeyDown(keyBoardEvent: React.KeyboardEvent<HTMLLIElement>, category: JobOfferCategory): void {
         if (keyBoardEvent.code === "Enter") {
-            setSelectedCategory(categ)
-            setJobOffers(categ)
+            setSelectedCategory(category)
+            selectJobOffersFromCategory(category)
         }
     }
 
     useEffect(() => {
-        setSelectedCategory(Category.Marketing)
-        setJobOffers(Category.Marketing)
+        fetchSample().then(() => {
+            setSelectedCategory(JobOfferCategory.Marketing)
+            selectJobOffersFromCategory(JobOfferCategory.Marketing)
+        })
     }, [])
 
     return (
@@ -33,49 +36,49 @@ const ExplorationSection = (): JSX.Element => {
                 <h2>Filtrez selon votre domaine</h2>
                 <ol>
                     <li
-                        onClick={() => onCategClick(Category.Marketing)}
-                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.Marketing)}
-                        className={selectedCategory === Category.Marketing ? styles.selected : undefined}
+                        onClick={() => onCategClick(JobOfferCategory.Marketing)}
+                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, JobOfferCategory.Marketing)}
+                        className={selectedCategory === JobOfferCategory.Marketing ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         Marketing
                     </li>
                     <li
-                        onClick={() => onCategClick(Category.Communication)}
-                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.Communication)}
-                        className={selectedCategory === Category.Communication ? styles.selected : undefined}
+                        onClick={() => onCategClick(JobOfferCategory.Communication)}
+                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, JobOfferCategory.Communication)}
+                        className={selectedCategory === JobOfferCategory.Communication ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         Communication
                     </li>
                     <li
-                        onClick={() => onCategClick(Category.Comptability)}
-                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.Comptability)}
-                        className={selectedCategory === Category.Comptability ? styles.selected : undefined}
+                        onClick={() => onCategClick(JobOfferCategory.Comptability)}
+                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, JobOfferCategory.Comptability)}
+                        className={selectedCategory === JobOfferCategory.Comptability ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         Comptabilité
                     </li>
                     <li
-                        onClick={() => onCategClick(Category.WebDevelop)}
-                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.WebDevelop)}
-                        className={selectedCategory === Category.WebDevelop ? styles.selected : undefined}
+                        onClick={() => onCategClick(JobOfferCategory.WebDevelop)}
+                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, JobOfferCategory.WebDevelop)}
+                        className={selectedCategory === JobOfferCategory.WebDevelop ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         Dévelopement Web
                     </li>
                     <li
-                        onClick={() => onCategClick(Category.HumanResources)}
-                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.HumanResources)}
-                        className={selectedCategory === Category.HumanResources ? styles.selected : undefined}
+                        onClick={() => onCategClick(JobOfferCategory.HumanResources)}
+                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, JobOfferCategory.HumanResources)}
+                        className={selectedCategory === JobOfferCategory.HumanResources ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         RH
                     </li>
                     <li
-                        onClick={() => onCategClick(Category.Commercial)}
-                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, Category.Commercial)}
-                        className={selectedCategory === Category.Commercial ? styles.selected : undefined}
+                        onClick={() => onCategClick(JobOfferCategory.Commercial)}
+                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, JobOfferCategory.Commercial)}
+                        className={selectedCategory === JobOfferCategory.Commercial ? styles.selected : undefined}
                         tabIndex={0}
                     >
                         Commercial

@@ -50,13 +50,13 @@
 }
 
 #content > ol > li:hover {
-    transform: scale(1.2, 1.2);
+    transform: scale(1.04, 1.04);
     color: #6363b9;
     cursor: pointer;
 }
 
 #content > ol > li.selected {
-    transform: scale(1.2, 1.2);
+    transform: scale(1.04, 1.04);
     color: #4646be;
 }
 

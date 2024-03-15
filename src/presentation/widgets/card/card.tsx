@@ -3,17 +3,10 @@ import styles from "./card.module.css"
 import Image from "next/image"
 
 const Card = (p: { jobOffer: JobOffer }): JSX.Element => {
-    console.log(p.jobOffer.company_logo_url)
     return (
         <article id={styles.card}>
-            <Image
-                src={p.jobOffer.image_url ?? "/images/placeholder.jpg"}
-                height={120}
-                width={300}
-                alt="Toolbox icon"
-                style={{}}
-                className={styles.top_image}
-            />
+            <Image src={p.jobOffer.image_url} height={120} width={300} alt="Toolbox icon" style={{}} className={styles.top_image} />
+
             <Image
                 src={p.jobOffer.company_logo_url ?? "/images/logo_placeholder.png"}
                 height={100}

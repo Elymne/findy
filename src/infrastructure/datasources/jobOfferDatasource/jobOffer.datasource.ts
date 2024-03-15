@@ -11,7 +11,7 @@ export interface JobOfferDatasource {
 export const JobOfferDatasourceImpl: JobOfferDatasource = {
     getSampleJobOffers: async function (): Promise<SamplejobOffers> {
         const baseurl = process.env.NEXT_PUBLIC_API_URL
-        const result = await axios.get<SamplejobOffersResponse>(`${baseurl}/jobs/sample`, {
+        const result = await axios.get<SamplejobOffersResponse>(`${baseurl}/jobs/wttj/sample`, {
             timeout: 5000,
         })
         return result.data.data

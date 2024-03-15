@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import { useFutureGetJobOffersFromSample } from "@src/domain/hooks/useFutureFetchSample"
 import { useSelectCategory } from "@src/domain/hooks/useSelectCategory"
 import { JobOfferCategory } from "@src/domain/hooks/enums/jobOfferCategory.enum"
+import { v4 as uuidv4 } from "uuid"
 
 const ExplorationSection = (): JSX.Element => {
     const { selectedCategory, setSelectedCategory } = useSelectCategory()
@@ -97,7 +98,7 @@ const ExplorationSection = (): JSX.Element => {
                             <ul>
                                 {jobOffers!.map((jobOffer) => {
                                     return (
-                                        <li key={jobOffer.id}>
+                                        <li key={jobOffer.id ?? uuidv4()}>
                                             <Card jobOffer={jobOffer} />
                                         </li>
                                     )

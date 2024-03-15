@@ -15,11 +15,11 @@ export const useFutureGetJobOffersFromSample = () => {
     const [_jobOffers, _setJobOffers] = useState<JobOffer[]>([])
 
     function getJobOffers(future: { onLoading: OnLoading; onSuccess: OnSucess<JobOffer[]>; onFailure: OnFailure }): JSX.Element {
-        if (!_sample) {
-            return future.onLoading()
-        }
         if (_error) {
             return future.onFailure(_error)
+        }
+        if (!_sample) {
+            return future.onLoading()
         }
         return future.onSuccess(_jobOffers)
     }

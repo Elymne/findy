@@ -67,10 +67,7 @@
 }
 
 #search_bar {
-    display: flex;
-    flex-direction: row;
     padding: 0 100px;
-
     opacity: 0%;
     animation: fade_in 2s cubic-bezier(0, 0, 0.2, 1) 0.8s 1 forwards;
 }
@@ -82,84 +79,4 @@
     to {
         opacity: 100%;
     }
-}
-
-#search_bar input {
-    flex-grow: 1;
-    padding: 24px 40px;
-    font-size: 20px;
-    font-weight: 100;
-    color: rgb(79, 84, 117);
-
-    border-width: 1px;
-    border-color: #d8d8d8;
-
-    transition: border-color 0.2s ease-in;
-}
-
-#search_bar > input:hover {
-    background-color: white;
-    cursor: pointer;
-}
-
-#search_bar > input:focus {
-    outline: none;
-    background-color: white;
-    cursor: text;
-}
-
-#search_bar input:nth-child(1) {
-    border-radius: 10px 0px 0px 10px;
-    border-style: none;
-}
-
-#search_bar input:nth-child(2) {
-    border-style: none none none solid;
-}
-
-#search_bar > button {
-    position: relative;
-    overflow: hidden;
-    padding: 20px 40px;
-    border-color: #d8d8d8;
-    border-width: 1px;
-    border-style: none;
-    border-radius: 0px 10px 10px 0px;
-
-    background-color: rgb(84, 102, 202);
-    transition: background-color 0.2s;
-}
-
-#search_bar > button:hover {
-    cursor: pointer;
-}
-
-#search_bar > button:active {
-    background-color: rgb(53, 68, 156);
-}
-
-#search_bar > button::after {
-    content: "";
-    position: absolute;
-    background: rgba(255, 255, 255, 0.2);
-    top: -50px;
-    height: 160px;
-    left: -80%;
-    transform: rotate(30deg);
-    width: 40px;
-    transition: left 0.2s ease-in;
-}
-
-#search_bar > button:hover::after {
-    left: 140%;
-    transition: left 0.2s ease-in;
-}
-
-#search_bar > button:focus-visible::after {
-    left: 140%;
-    transition: left 0.2s ease-in;
-}
-
-#search_bar > button > img {
-    filter: invert(100%);
 }

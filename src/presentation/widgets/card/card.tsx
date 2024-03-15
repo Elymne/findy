@@ -4,7 +4,7 @@ import Image from "next/image"
 
 const Card = (p: { jobOffer: JobOffer }): JSX.Element => {
     return (
-        <article id={styles.card}>
+        <article id={styles.card} tabIndex={0}>
             <Image src={p.jobOffer.image_url} height={120} width={300} alt="Toolbox icon" style={{}} className={styles.top_image} />
 
             <Image

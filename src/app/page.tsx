@@ -1,5 +1,5 @@
-import ExplorationSection from "./widgets/exploration/explorationSection"
-import SearchSection from "./widgets/search/searchSection"
+import ExplorationSection from "../presentation/widgets/exploration/explorationSection"
+import SearchSection from "../presentation/widgets/search/searchSection"
 
 const Home = (): JSX.Element => {
     return (

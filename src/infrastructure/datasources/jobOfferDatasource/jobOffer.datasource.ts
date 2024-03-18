@@ -1,5 +1,5 @@
-import { PageJobOffers } from "@src/domain/entities/pageJobOffers.entity"
-import { SamplejobOffers } from "@src/domain/entities/sampleJobOffers.entity"
+import { PageJobOffers } from "@src/domain/entities/responses/pageJobOffers.entity"
+import { SamplejobOffers } from "@src/domain/entities/responses/sampleJobOffers.entity"
 import { SamplejobOffersResponse } from "@src/infrastructure/datasources/jobOfferDatasource/models/SamplejobOffersResponse"
 import axios from "axios"
 
@@ -14,9 +14,9 @@ export const JobOfferDatasourceImpl: JobOfferDatasource = {
         const result = await axios.get<SamplejobOffersResponse>(`${baseurl}/jobs/wttj/sample`, {
             timeout: 5000,
         })
-        console.log(result)
         return result.data.data
     },
+
     getJobOffersFromQuery: function (keywords: string, cityCode: string, radius: number): Promise<PageJobOffers> {
         throw new Error("Function not implemented.")
     },

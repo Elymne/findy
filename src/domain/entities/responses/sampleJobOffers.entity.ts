@@ -1,4 +1,4 @@
-import { JobOffer } from "./jobOffer/jobOffer.entity"
+import { JobOffer } from "../jobOffer/jobOffer.entity"
 
 export interface SamplejobOffers {
     marketing: JobOffer[]

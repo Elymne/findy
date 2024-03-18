@@ -1,11 +1,13 @@
 "use client"
 import SearchBar from "@src/presentation/components/searchBar/searchBar"
 import styles from "./searchSection.module.css"
+import { useRouter } from "next/navigation"
 
-const SearchSection = (): JSX.Element => {
+export default function SearchSection(): JSX.Element {
+    const router = useRouter()
+
     function search(keywords: string, city: string): void {
-        console.log(`keywords : ${keywords}`)
-        console.log(`city : ${city}`)
+        router.push(`/job-offers?keywords=${keywords}&city=${city}`, { scroll: false })
     }
 
     return (
@@ -24,5 +26,3 @@ const SearchSection = (): JSX.Element => {
         </section>
     )
 }
-
-export default SearchSection

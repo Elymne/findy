@@ -1,6 +1,6 @@
 import styles from "./footer.module.css"
 
-const Footer = (): JSX.Element => {
+export default function Footer(): JSX.Element {
     return (
         <footer id={styles.main}>
             <h1>
@@ -28,5 +28,3 @@ const Footer = (): JSX.Element => {
         </footer>
     )
 }
-
-export default Footer

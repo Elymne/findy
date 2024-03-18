@@ -1,6 +1,3 @@
-import ExplorationSection from "@src/presentation/widgets/exploration/explorationSection"
-import SearchSection from "@src/presentation/widgets/search/searchSection"
-
-export default () => {
+export default function Page(): JSX.Element {
     return <main>Média</main>
 }

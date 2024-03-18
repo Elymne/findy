@@ -7,7 +7,7 @@ import { categories, getCategoryName } from "./explorationSectionConst"
 import Card from "@src/presentation/components/card/card"
 import { JobOfferCategory } from "@src/domain/entities/enums/jobOfferCategory"
 
-const ExplorationSection = (): JSX.Element => {
+export default function ExplorationSection(): JSX.Element {
     const { init, getState, changeCategory } = useExplorationState()
 
     useEffect(() => {
@@ -84,5 +84,3 @@ const ExplorationSection = (): JSX.Element => {
         },
     })
 }
-
-export default ExplorationSection

@@ -1,6 +1,6 @@
 import styles from "./navbar.module.css"
 
-const Navbar = () => {
+export default function Navbar() {
     return (
         <header id={styles.header}>
             <nav id={styles.navbar} aria-label="Navbar">
@@ -23,5 +23,3 @@ const Navbar = () => {
         </header>
     )
 }
-
-export default Navbar

@@ -4,7 +4,7 @@ import Image from "next/image"
 
 type OnSearch = (keyWords: string, city: string) => void
 
-const SearchBar = ({ onSearch }: { onSearch: OnSearch }): JSX.Element => {
+export default function SearchBar({ onSearch }: { onSearch: OnSearch }): JSX.Element {
     const keywordsInput = useRef<string>("")
     const cityInput = useRef<string>("")
 
@@ -48,5 +48,3 @@ const SearchBar = ({ onSearch }: { onSearch: OnSearch }): JSX.Element => {
         </div>
     )
 }
-
-export default SearchBar

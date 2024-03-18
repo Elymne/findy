@@ -1,7 +1,8 @@
+"use client"
 import ExplorationSection from "./components/explorationSection/explorationSection"
 import SearchSection from "./components/searchSection/searchSection"
 
-const Home = (): JSX.Element => {
+export default function Page(): JSX.Element {
     return (
         <main>
             <SearchSection />
@@ -9,5 +10,3 @@ const Home = (): JSX.Element => {
         </main>
     )
 }
-
-export default Home

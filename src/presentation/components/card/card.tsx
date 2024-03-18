@@ -2,7 +2,7 @@ import { JobOffer } from "@src/domain/entities/jobOffer/jobOffer.entity"
 import styles from "./card.module.css"
 import Image from "next/image"
 
-const Card = ({ jobOffer }: { jobOffer: JobOffer }): JSX.Element => {
+export default function Card({ jobOffer }: { jobOffer: JobOffer }): JSX.Element {
     return (
         <article id={styles.card} tabIndex={0}>
             <Image
@@ -48,5 +48,3 @@ const Card = ({ jobOffer }: { jobOffer: JobOffer }): JSX.Element => {
         </article>
     )
 }
-
-export default Card

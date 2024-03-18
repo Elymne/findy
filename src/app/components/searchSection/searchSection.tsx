@@ -1,4 +1,4 @@
-import SearchBar from "../searchBar/searchBar"
+import SearchBar from "@src/presentation/components/searchBar/searchBar"
 import styles from "./searchSection.module.css"
 
 const SearchSection = (): JSX.Element => {

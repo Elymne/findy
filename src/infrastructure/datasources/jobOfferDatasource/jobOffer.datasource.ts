@@ -14,6 +14,7 @@ export const JobOfferDatasourceImpl: JobOfferDatasource = {
         const result = await axios.get<SamplejobOffersResponse>(`${baseurl}/jobs/wttj/sample`, {
             timeout: 5000,
         })
+        console.log(result)
         return result.data.data
     },
     getJobOffersFromQuery: function (keywords: string, cityCode: string, radius: number): Promise<PageJobOffers> {

@@ -15,7 +15,7 @@ const Navbar = () => {
                     </li>
                     <li>
                         <a className={styles.normalUnderline} href="/more">
-                            Media
+                            Média
                         </a>
                     </li>
                 </ul>

@@ -1,10 +1,8 @@
 import "./globals.css"
-
 import type { Metadata } from "next"
 import { Akshar } from "next/font/google"
-
-import Navbar from "@src/presentation/widgets/navbar/navbar"
-import Footer from "@src/presentation/widgets/footer/footer"
+import Footer from "@src/presentation/components/footer/footer"
+import Navbar from "@src/presentation/components/navbar/navbar"
 
 const akshar = Akshar({
     subsets: ["latin"],

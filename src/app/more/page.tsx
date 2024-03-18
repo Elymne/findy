@@ -1,3 +1,6 @@
+import ExplorationSection from "@src/presentation/widgets/exploration/explorationSection"
+import SearchSection from "@src/presentation/widgets/search/searchSection"
+
 export default () => {
-    return <p>More</p>
+    return <main>Média</main>
 }

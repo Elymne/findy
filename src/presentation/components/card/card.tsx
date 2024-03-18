@@ -5,12 +5,12 @@ import Image from "next/image"
 const Card = (p: { jobOffer: JobOffer }): JSX.Element => {
     return (
         <article id={styles.card} tabIndex={0}>
-            <Image src={p.jobOffer.image_url} height={120} width={300} alt="Toolbox icon" style={{}} className={styles.top_image} />
+            <Image src={p.jobOffer.image_url} height={100} width={260} alt="Toolbox icon" style={{}} className={styles.top_image} />
 
             <Image
                 src={p.jobOffer.company_logo_url ?? "/images/logo_placeholder.png"}
-                height={100}
-                width={100}
+                height={60}
+                width={60}
                 alt="Toolbox icon"
                 style={{}}
                 className={styles.logo}

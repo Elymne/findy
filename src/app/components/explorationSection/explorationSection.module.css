@@ -63,7 +63,7 @@
 #content > ul {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     list-style-type: none;
     padding-bottom: 40px;
 }

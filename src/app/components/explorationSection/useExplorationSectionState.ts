@@ -39,7 +39,7 @@ export default function useExplorationState() {
         if (_state.error) {
             return onFailure(_state.error)
         }
-        if (_sample === null) {
+        if (!_state.jobOffers) {
             return onLoading()
         }
         return onSuccess(_state)

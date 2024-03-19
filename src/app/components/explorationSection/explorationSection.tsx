@@ -2,10 +2,11 @@
 import styles from "./explorationSection.module.css"
 import { useEffect } from "react"
 import { v4 as uuidv4 } from "uuid"
-import { categories, getCategoryName } from "./explorationSectionConst"
 import Card from "@src/presentation/components/card/card"
 import { JobOfferCategory } from "@src/domain/entities/enums/jobOfferCategory"
 import useExplorationState from "./useExplorationSectionState"
+import LoadingBloc from "@src/presentation/components/loadingBloc/loadingBloc"
+import ErrorBloc from "@src/presentation/components/errorBloc/errorBloc"
 
 export default function ExplorationSection(): JSX.Element {
     const { init, getState, changeCategory } = useExplorationState()
@@ -31,13 +32,10 @@ export default function ExplorationSection(): JSX.Element {
 
     return getState({
         onLoading: () => {
-            return (
-                <section id={styles.main}>
-                    <div id={styles.content_bloc}>
-                        <h1>Chargement du contenu</h1>
-                    </div>
-                </section>
-            )
+            return <LoadingBloc value="Chargement du contenu" />
+        },
+        onFailure: () => {
+            return <ErrorBloc value="Oups, une erreur s'est produite :(" />
         },
         onSuccess: (state) => {
             return (
@@ -62,25 +60,38 @@ export default function ExplorationSection(): JSX.Element {
                         </ol>
                         <ul>
                             {state.jobOffers?.map((jobOffer) => {
-                                return (
-                                    <li key={jobOffer.id ?? uuidv4()}>
-                                        <Card jobOffer={jobOffer} />
-                                    </li>
-                                )
+                                return <li key={jobOffer.id ?? uuidv4()}>{<Card jobOffer={jobOffer} />}</li>
                             })}
                         </ul>
                     </div>
                 </section>
             )
         },
-        onFailure: () => {
-            return (
-                <section id={styles.main}>
-                    <div id={styles.content_bloc}>
-                        <h1>Oups, une erreur s'est produite :(</h1>
-                    </div>
-                </section>
-            )
-        },
     })
+}
+
+const categories = [
+    JobOfferCategory.Marketing,
+    JobOfferCategory.Communication,
+    JobOfferCategory.Comptability,
+    JobOfferCategory.HumanResources,
+    JobOfferCategory.WebDevelop,
+    JobOfferCategory.Commercial,
+]
+
+function getCategoryName(category: JobOfferCategory): string {
+    switch (category) {
+        case JobOfferCategory.Marketing:
+            return "Marketing"
+        case JobOfferCategory.Communication:
+            return "Communication"
+        case JobOfferCategory.Comptability:
+            return "Comptabilité"
+        case JobOfferCategory.HumanResources:
+            return "Ressources Humaines"
+        case JobOfferCategory.WebDevelop:
+            return "Développement Web"
+        case JobOfferCategory.Commercial:
+            return "Commercial"
+    }
 }

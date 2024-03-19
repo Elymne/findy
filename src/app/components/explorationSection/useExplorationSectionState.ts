@@ -5,7 +5,7 @@ import { JobOfferDatasource, JobOfferDatasourceImpl } from "@src/infrastructure/
 import { OnFailure, OnLoading, OnSucess } from "../../../domain/hooks/useFutureState"
 import { JobOfferCategory } from "@src/domain/entities/enums/jobOfferCategory"
 
-export const useExplorationState = () => {
+export default function useExplorationState() {
     const _jobOfferDatasource: JobOfferDatasource = JobOfferDatasourceImpl
 
     const _sample = useRef<SamplejobOffers | null>(null)

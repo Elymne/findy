@@ -1,0 +1,38 @@
+#main {
+    padding: 40px 0px;
+}
+
+#content_bloc {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+#content_bloc ol {
+    background-color: blue;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0px;
+    grid-auto-rows: minmax(100px, auto);
+    list-style-type: none;
+}
+
+#content_bloc > h1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 10px;
+    color: rgb(34, 34, 34);
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#content_bloc > h2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 40px;
+    color: rgb(34, 34, 34);
+    font-size: 30px;
+    font-weight: lighter;
+}

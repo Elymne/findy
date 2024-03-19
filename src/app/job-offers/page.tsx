@@ -1,6 +1,7 @@
 "use client"
 import { useSearchParams } from "next/navigation"
-import SearchSection from "../components/searchSection/searchSection"
+import ReducedSearchSection from "./components/searchSection/reducedSearchSection"
+import JobOffersGridview from "./components/jobOffersGridview/jobOffersGridview"
 
 export default function Page(): JSX.Element {
     const searchParams = useSearchParams()
@@ -8,7 +9,8 @@ export default function Page(): JSX.Element {
     const city = searchParams.get("city")
     return (
         <main>
-            <SearchSection />
+            <ReducedSearchSection />
+            <JobOffersGridview />
             <h1>{keywords}</h1>
             <h1>{city} </h1>
         </main>

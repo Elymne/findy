@@ -1,11 +1,12 @@
 import { PageJobOffers } from "@src/domain/entities/responses/pageJobOffers.entity"
 import { SamplejobOffers } from "@src/domain/entities/responses/sampleJobOffers.entity"
-import { SamplejobOffersResponse } from "@src/infrastructure/datasources/jobOfferDatasource/models/SamplejobOffersResponse"
+import jobOffersResponse from "@src/infrastructure/types/jobOffersResponse"
+import SamplejobOffersResponse from "@src/infrastructure/types/sampleJobOffersResponse"
 import axios from "axios"
 
 export interface JobOfferDatasource {
     getSampleJobOffers(): Promise<SamplejobOffers>
-    getJobOffersFromQuery(keywords: string, cityCode: string, radius: number): Promise<PageJobOffers>
+    getJobOffersFromQuery(keywords: string, cityCode: string, radius: number, page: number): Promise<PageJobOffers>
 }
 
 export const JobOfferDatasourceImpl: JobOfferDatasource = {
@@ -17,7 +18,17 @@ export const JobOfferDatasourceImpl: JobOfferDatasource = {
         return result.data.data
     },
 
-    getJobOffersFromQuery: function (keywords: string, cityCode: string, radius: number): Promise<PageJobOffers> {
-        throw new Error("Function not implemented.")
+    getJobOffersFromQuery: async function (keywords: string, cityCode: string, radius: number, page: number): Promise<PageJobOffers> {
+        const baseurl = process.env.NEXT_PUBLIC_API_URL
+        const result = await axios.get<jobOffersResponse>(
+            `${baseurl}/jobs/wttj?keywords=${keywords}&cityCode=${cityCode}&radius=${radius}&page=${page}`,
+            {
+                timeout: 5000,
+            }
+        )
+        return {
+            jobOffers: result.data.data,
+            maxPage: 1,
+        }
     },
 }

@@ -1,6 +1,6 @@
 import { JobOffer } from "../jobOffer/jobOffer.entity"
 
 export interface PageJobOffers {
-    page: number
+    maxPage: number
     jobOffers: JobOffer[]
 }

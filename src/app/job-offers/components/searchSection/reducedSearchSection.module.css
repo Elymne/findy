@@ -1,0 +1,25 @@
+#main {
+    position: relative;
+    border-bottom: 1px solid #000000;
+    background-image: url("/images/background_top.jpg");
+    background-size: cover;
+}
+
+#main::before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#content_bloc {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding-top: 200px;
+    padding-bottom: 100px;
+    width: 1280px;
+}

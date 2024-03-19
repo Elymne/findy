@@ -2,10 +2,10 @@
 import styles from "./explorationSection.module.css"
 import { useEffect } from "react"
 import { v4 as uuidv4 } from "uuid"
-import { useExplorationState } from "@src/app/components/explorationSection/useExplorationSectionState"
 import { categories, getCategoryName } from "./explorationSectionConst"
 import Card from "@src/presentation/components/card/card"
 import { JobOfferCategory } from "@src/domain/entities/enums/jobOfferCategory"
+import useExplorationState from "./useExplorationSectionState"
 
 export default function ExplorationSection(): JSX.Element {
     const { init, getState, changeCategory } = useExplorationState()
@@ -33,7 +33,7 @@ export default function ExplorationSection(): JSX.Element {
         onLoading: () => {
             return (
                 <section id={styles.main}>
-                    <div id={styles.content}>
+                    <div id={styles.content_bloc}>
                         <h1>Chargement du contenu</h1>
                     </div>
                 </section>
@@ -42,7 +42,7 @@ export default function ExplorationSection(): JSX.Element {
         onSuccess: (state) => {
             return (
                 <section id={styles.main}>
-                    <div id={styles.content}>
+                    <div id={styles.content_bloc}>
                         <h1>Explorez nos offres d'alternance pour votre futur formation</h1>
                         <h2>Filtrez selon votre domaine</h2>
                         <ol>
@@ -76,7 +76,7 @@ export default function ExplorationSection(): JSX.Element {
         onFailure: () => {
             return (
                 <section id={styles.main}>
-                    <div id={styles.content}>
+                    <div id={styles.content_bloc}>
                         <h1>Oups, une erreur s'est produite :(</h1>
                     </div>
                 </section>

@@ -5,12 +5,17 @@ import Card from "@src/presentation/components/card/card"
 import LoadingBloc from "@src/presentation/components/loadingBloc/loadingBloc"
 import ErrorBloc from "@src/presentation/components/errorBloc/errorBloc"
 import { v4 as uuidv4 } from "uuid"
+import { useSearchParams } from "next/navigation"
 
 export default function JobOffersGridview(): JSX.Element {
     const { init, getState } = useJobOffersGridviewState()
 
+    const searchParams = useSearchParams()
+    const keywords = searchParams.get("keywords")
+    const citycode = searchParams.get("citycode")
+
     useEffect(() => {
-        init()
+        init(keywords ?? "")
     }, [])
 
     return getState({

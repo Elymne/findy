@@ -8,6 +8,12 @@ export default function LoadingBloc({ value }: loadingContent) {
     return (
         <section id={styles.main}>
             <h1>{value}</h1>
+            <div className={styles.lds_ring}>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </section>
     )
 }

@@ -11,11 +11,11 @@ export default function useJobOffersGridviewState() {
         error: null,
     })
 
-    async function init(): Promise<void> {
+    async function init(keywords: string): Promise<void> {
         try {
             _setState({
                 ..._state,
-                pageJobOffers: await _jobOfferDatasource.getJobOffersFromQuery("Marketing", "75107", 30, 1),
+                pageJobOffers: await _jobOfferDatasource.getJobOffersFromQuery(keywords, "75107", 30, 1),
             })
         } catch (error) {
             _setState({
@@ -35,6 +35,7 @@ export default function useJobOffersGridviewState() {
         onFailure: OnFailure
     }): JSX.Element {
         if (_state.error) {
+            console.log(_state.error)
             return onFailure(_state.error)
         }
 

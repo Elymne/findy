@@ -13,7 +13,7 @@ export const JobOfferDatasourceImpl: JobOfferDatasource = {
     getSampleJobOffers: async function (): Promise<SamplejobOffers> {
         const baseurl = process.env.NEXT_PUBLIC_API_URL
         const result = await axios.get<SamplejobOffersResponse>(`${baseurl}/jobs/wttj/sample`, {
-            timeout: 5000,
+            timeout: 10000,
         })
         return result.data.data
     },
@@ -23,7 +23,7 @@ export const JobOfferDatasourceImpl: JobOfferDatasource = {
         const result = await axios.get<jobOffersResponse>(
             `${baseurl}/jobs/wttj?keywords=${keywords}&cityCode=${cityCode}&radius=${radius}&page=${page}`,
             {
-                timeout: 5000,
+                timeout: 10000,
             }
         )
         return {

@@ -17,7 +17,7 @@ export default function SearchBar({ keywords, citycode, onSearch }: SearchParams
     const keywordsInput = useRef<string>("")
     const citycodeInput = useRef<string>("")
 
-    const { init, getState, getCodeFromName } = useSearchBarState()
+    const { init, getState } = useSearchBarState()
 
     function onClick(): void {
         onSearch(keywordsInput.current, citycodeInput.current)
@@ -34,7 +34,7 @@ export default function SearchBar({ keywords, citycode, onSearch }: SearchParams
     }
 
     function onCityInputChange(event: ChangeEvent<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>) {
-        citycodeInput.current = getCodeFromName(event.target.value)
+        citycodeInput.current = event.target.value
     }
 
     useEffect(() => {

@@ -12,8 +12,8 @@ export default function useJobOffersGridviewState() {
         error: null,
     })
 
-    async function init(keywords: string | null, cityCode: string | null): Promise<void> {
-        if (!keywords || !cityCode) {
+    async function init(keywords: string | null, city: string | null): Promise<void> {
+        if (!keywords || !city) {
             return
         }
 

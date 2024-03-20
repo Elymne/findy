@@ -7,10 +7,10 @@ export default function ReducedSearchSection(): JSX.Element {
 
     const searchParams = useSearchParams()
     const keywords = searchParams.get("keywords")
-    const citycode = searchParams.get("citycode")
+    const city = searchParams.get("city")
 
-    function search(keywords: string, citycode: string): void {
-        router.push(`/job-offers?keywords=${keywords}&citycode=${citycode}`, { scroll: false })
+    function search(keywords: string, city: string): void {
+        router.push(`/job-offers?keywords=${keywords}&city=${city}`, { scroll: false })
     }
 
     return (
@@ -18,9 +18,9 @@ export default function ReducedSearchSection(): JSX.Element {
             <div id={styles.content_bloc}>
                 <SearchBar
                     keywords={keywords}
-                    citycode={citycode}
-                    onSearch={(keywords, citycode) => {
-                        search(keywords, citycode)
+                    city={city}
+                    onSearch={(keywords, city) => {
+                        search(keywords, city)
                     }}
                 />
             </div>

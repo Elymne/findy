@@ -6,26 +6,26 @@ import LoadingBloc, { LoadingContentStyleMode } from "../loadingBloc/loadingBloc
 import ErrorBloc, { ErrorContentStyleMode } from "../errorBloc/errorBloc"
 import { v4 } from "uuid"
 
-type OnSearch = (keywords: string, citycode: string) => void
+type OnSearch = (keywords: string, city: string) => void
 type SearchParams = {
     keywords: string | null
-    citycode: string | null
+    city: string | null
     onSearch: OnSearch
 }
 
-export default function SearchBar({ keywords, citycode, onSearch }: SearchParams): JSX.Element {
+export default function SearchBar({ keywords, city: city, onSearch }: SearchParams): JSX.Element {
     const keywordsInput = useRef<string>("")
-    const citycodeInput = useRef<string>("")
+    const cityInput = useRef<string>("")
 
     const { init, getState } = useSearchBarState()
 
     function onClick(): void {
-        onSearch(keywordsInput.current, citycodeInput.current)
+        onSearch(keywordsInput.current, cityInput.current)
     }
 
     function onKeyDown(keyBoardEvent: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>): void {
         if (keyBoardEvent.code === "Enter") {
-            onSearch(keywordsInput.current, citycodeInput.current)
+            onSearch(keywordsInput.current, cityInput.current)
         }
     }
 
@@ -34,7 +34,7 @@ export default function SearchBar({ keywords, citycode, onSearch }: SearchParams
     }
 
     function onCityInputChange(event: ChangeEvent<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>) {
-        citycodeInput.current = event.target.value
+        cityInput.current = event.target.value
     }
 
     useEffect(() => {
@@ -64,7 +64,7 @@ export default function SearchBar({ keywords, citycode, onSearch }: SearchParams
                         placeholder="Paris, Lion, Nantes..."
                         onKeyDown={onKeyDown}
                         onChange={onCityInputChange}
-                        value={citycode ?? undefined}
+                        value={city ?? undefined}
                     />
                     <datalist id="city_options">
                         {_state.cities?.map((city) => {

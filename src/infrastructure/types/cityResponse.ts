@@ -1,8 +1,8 @@
-import { City } from "../../domain/entities/city/city.entity"
+import City from "@src/domain/entities/city/city.entity"
 
 type CityResponse = {
     message: string
-    cities: City[]
+    data: City[]
 }
 
 export default CityResponse

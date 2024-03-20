@@ -9,9 +9,12 @@ export interface CityDatasource {
 export const CityDatasourceImpl: CityDatasource = {
     fetchAll: async function (): Promise<City[]> {
         const baseurl = process.env.NEXT_PUBLIC_API_URL
+
+        console.log(`${baseurl}/cities`)
+
         const result = await axios.get<CityResponse>(`${baseurl}/cities`, {
             timeout: 10000,
         })
-        return result.data.cities
+        return result.data.data
     },
 }

@@ -1,4 +1,4 @@
-import { JobOffer } from "@src/domain/entities/jobOffer/jobOffer.entity"
+import JobOffer from "@src/domain/entities/jobOffer/jobOffer.entity"
 
 type SamplejobOffersResponse = {
     message: string

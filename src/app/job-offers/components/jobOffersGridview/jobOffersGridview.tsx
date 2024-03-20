@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react"
 import styles from "./jobOfferGridview.module.css"
 import useJobOffersGridviewState from "./useJobOffersGridviewState"
 import Card from "@src/presentation/components/card/card"
-import LoadingBloc from "@src/presentation/components/loadingBloc/loadingBloc"
-import ErrorBloc from "@src/presentation/components/errorBloc/errorBloc"
+import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/components/loadingBloc/loadingBloc"
+import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/errorBloc/errorBloc"
 import { v4 as uuidv4 } from "uuid"
 import { useSearchParams } from "next/navigation"
 
@@ -30,10 +30,10 @@ export default function JobOffersGridview(): JSX.Element {
         },
 
         onLoading: () => {
-            return <LoadingBloc value="Chargement du contenu" />
+            return <LoadingBloc value="Chargement du contenu" styleMode={LoadingContentStyleMode.ligth} />
         },
         onFailure: () => {
-            return <ErrorBloc value="Oups, une erreur s'est produite :(" />
+            return <ErrorBloc value="Oups, une erreur s'est produite :(" styleMode={ErrorContentStyleMode.ligth} />
         },
         onSuccess: (_state) => (
             <section id={styles.main}>

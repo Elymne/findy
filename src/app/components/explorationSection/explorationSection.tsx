@@ -4,8 +4,8 @@ import { v4 as uuidv4 } from "uuid"
 import Card from "@src/presentation/components/card/card"
 import { JobOfferCategory } from "@src/domain/entities/enums/jobOfferCategory"
 import useExplorationState from "./useExplorationSectionState"
-import LoadingBloc from "@src/presentation/components/loadingBloc/loadingBloc"
-import ErrorBloc from "@src/presentation/components/errorBloc/errorBloc"
+import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/components/loadingBloc/loadingBloc"
+import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/errorBloc/errorBloc"
 
 export default function ExplorationSection(): JSX.Element {
     const { init, getState, changeCategory } = useExplorationState()
@@ -31,10 +31,10 @@ export default function ExplorationSection(): JSX.Element {
 
     return getState({
         onLoading: () => {
-            return <LoadingBloc value="Chargement du contenu" />
+            return <LoadingBloc value="Chargement du contenu" styleMode={LoadingContentStyleMode.ligth} />
         },
         onFailure: () => {
-            return <ErrorBloc value="Oups, une erreur s'est produite :(" />
+            return <ErrorBloc value="Oups, une erreur s'est produite :(" styleMode={ErrorContentStyleMode.ligth} />
         },
         onSuccess: (state) => {
             return (

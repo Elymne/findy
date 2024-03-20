@@ -1,16 +1,16 @@
 import { useRef, useState } from "react"
-import { SamplejobOffers } from "../../../domain/entities/jobOffer/sampleJobOffers.entity"
-import { JobOffer } from "../../../domain/entities/jobOffer/jobOffer.entity"
 import { JobOfferDatasource, JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import { OnFailure, OnLoading, OnSucess } from "../../../domain/hooks/useFutureState"
 import { JobOfferCategory } from "@src/domain/entities/enums/jobOfferCategory"
+import JobOffer from "@src/domain/entities/jobOffer/jobOffer.entity"
+import SamplejobOffers from "@src/domain/entities/jobOffer/sampleJobOffers.entity"
 
 export default function useExplorationState() {
     const _jobOfferDatasource: JobOfferDatasource = JobOfferDatasourceImpl
 
     const _sample = useRef<SamplejobOffers | null>(null)
 
-    const [_state, _setState] = useState<ExplorationSectionState>({
+    const [_state, _setState] = useState<State>({
         selectedCategory: null,
         jobOffers: null,
         error: null,
@@ -27,15 +27,7 @@ export default function useExplorationState() {
         }
     }
 
-    function getState({
-        onLoading,
-        onSuccess,
-        onFailure,
-    }: {
-        onLoading: OnLoading
-        onSuccess: OnSucess<ExplorationSectionState>
-        onFailure: OnFailure
-    }): JSX.Element {
+    function getState({ onLoading, onSuccess, onFailure }: GetState): JSX.Element {
         if (_state.error) {
             return onFailure(_state.error)
         }
@@ -114,7 +106,13 @@ export default function useExplorationState() {
     return { init, getState, changeCategory }
 }
 
-interface ExplorationSectionState {
+type GetState = {
+    onLoading: OnLoading
+    onSuccess: OnSucess<State>
+    onFailure: OnFailure
+}
+
+type State = {
     selectedCategory: JobOfferCategory | null
     jobOffers: JobOffer[] | null
     error: unknown | null

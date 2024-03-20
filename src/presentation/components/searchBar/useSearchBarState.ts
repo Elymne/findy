@@ -35,7 +35,11 @@ export default function useSearchBarState() {
         return onSuccess(_state)
     }
 
-    return { init, getState }
+    function getCodeFromName(name: string): string {
+        return "55221"
+    }
+
+    return { init, getState, getCodeFromName }
 }
 
 type GetState = {

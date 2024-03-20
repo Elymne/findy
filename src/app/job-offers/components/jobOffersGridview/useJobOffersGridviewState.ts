@@ -1,4 +1,4 @@
-import { PageJobOffers } from "@src/domain/entities/responses/pageJobOffers.entity"
+import { PageJobOffers } from "@src/domain/entities/responses/pageJobOffersResponse.entity"
 import { OnFailure, OnInit, OnLoading, OnSucess } from "@src/domain/hooks/useFutureState"
 import { JobOfferDatasource, JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import { useState } from "react"

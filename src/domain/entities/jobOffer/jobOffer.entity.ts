@@ -1,6 +1,6 @@
 import { SourceSite } from "../enums/sourceSite"
 
-export interface JobOffer {
+interface JobOffer {
     id?: string
     title: string
     image_url: string
@@ -14,3 +14,5 @@ export interface JobOffer {
     updated_at?: number
     created_while?: string
 }
+
+export default JobOffer

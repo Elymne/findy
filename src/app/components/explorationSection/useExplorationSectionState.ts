@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { SamplejobOffers } from "../../../domain/entities/responses/sampleJobOffers.entity"
+import { SamplejobOffers } from "../../../domain/entities/jobOffer/sampleJobOffers.entity"
 import { JobOffer } from "../../../domain/entities/jobOffer/jobOffer.entity"
 import { JobOfferDatasource, JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import { OnFailure, OnLoading, OnSucess } from "../../../domain/hooks/useFutureState"

@@ -1,5 +1,5 @@
-import { PageJobOffers } from "@src/domain/entities/responses/pageJobOffers.entity"
-import { SamplejobOffers } from "@src/domain/entities/responses/sampleJobOffers.entity"
+import PageJobOffers from "@src/domain/entities/jobOffer/pageJobOffers.entity"
+import SamplejobOffers from "@src/domain/entities/jobOffer/sampleJobOffers.entity"
 import jobOffersResponse from "@src/infrastructure/types/jobOffersResponse"
 import SamplejobOffersResponse from "@src/infrastructure/types/sampleJobOffersResponse"
 import axios from "axios"

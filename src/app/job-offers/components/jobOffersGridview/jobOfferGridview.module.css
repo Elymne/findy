@@ -17,3 +17,9 @@
 #content_bloc > ol > li {
     min-width: 0;
 }
+
+#content_bloc > h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: lighter;
+}

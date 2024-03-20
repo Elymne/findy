@@ -1,4 +1,3 @@
-"use client"
 import SearchBar from "@src/presentation/components/searchBar/searchBar"
 import styles from "./searchSection.module.css"
 import { useRouter } from "next/navigation"

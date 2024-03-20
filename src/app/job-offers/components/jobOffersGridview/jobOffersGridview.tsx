@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import styles from "./jobOfferGridview.module.css"
 import useJobOffersGridviewState from "./useJobOffersGridviewState"
 import Card from "@src/presentation/components/card/card"
@@ -15,10 +15,20 @@ export default function JobOffersGridview(): JSX.Element {
     const citycode = searchParams.get("citycode")
 
     useEffect(() => {
-        init(keywords ?? "")
+        init(keywords, citycode)
     }, [])
 
     return getState({
+        onInit: () => {
+            return (
+                <section id={styles.main}>
+                    <div id={styles.content_bloc}>
+                        <h1>Commencez votre recherche</h1>
+                    </div>
+                </section>
+            )
+        },
+
         onLoading: () => {
             return <LoadingBloc value="Chargement du contenu" />
         },

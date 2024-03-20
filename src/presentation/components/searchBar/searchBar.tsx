@@ -2,9 +2,14 @@ import { ChangeEvent, useRef } from "react"
 import styles from "./searchBar.module.css"
 import Image from "next/image"
 
-type OnSearch = (keyWords: string, city: string) => void
+type OnSearch = (keywords: string, citycode: string) => void
+type SearchParams = {
+    keywords: string | null
+    citycode: string | null
+    onSearch: OnSearch
+}
 
-export default function SearchBar({ onSearch }: { onSearch: OnSearch }): JSX.Element {
+export default function SearchBar({ keywords, citycode, onSearch }: SearchParams): JSX.Element {
     const keywordsInput = useRef<string>("")
     const cityInput = useRef<string>("")
 
@@ -34,6 +39,7 @@ export default function SearchBar({ onSearch }: { onSearch: OnSearch }): JSX.Ele
                 placeholder="Recherche par mots-clés"
                 onKeyDown={onKeyDown}
                 onChange={onKeywordInputChange}
+                value={keywords ?? undefined}
             />
             <input
                 id={styles.search_bar_city_input}
@@ -41,6 +47,7 @@ export default function SearchBar({ onSearch }: { onSearch: OnSearch }): JSX.Ele
                 placeholder="Paris, Lion, Nantes..."
                 onKeyDown={onKeyDown}
                 onChange={onCityInputChange}
+                value={citycode ?? undefined}
             />
             <button onClick={onClick} onKeyDown={onKeyDown}>
                 <Image src="svg/magnifying_glass.svg" height={30} width={30} alt="Icone de loupe" />

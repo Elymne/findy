@@ -1,5 +1,4 @@
 "use client"
-
 import ReducedSearchSection from "./components/searchSection/reducedSearchSection"
 import JobOffersGridview from "./components/jobOffersGridview/jobOffersGridview"
 

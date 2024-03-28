@@ -1,7 +1,7 @@
+import JobOffer from "@src/domain/entities/jobOffer/jobOffer.entity"
 import PageJobOffers from "@src/domain/entities/jobOffer/pageJobOffers.entity"
 import SamplejobOffers from "@src/domain/entities/jobOffer/sampleJobOffers.entity"
-import jobOffersResponse from "@src/infrastructure/types/jobOffersResponse"
-import SamplejobOffersResponse from "@src/infrastructure/types/sampleJobOffersResponse"
+import DatasourceResponse from "@src/infrastructure/models/datasourceResponse"
 import axios from "axios"
 
 export interface JobOfferDatasource {
@@ -12,7 +12,7 @@ export interface JobOfferDatasource {
 export const JobOfferDatasourceImpl: JobOfferDatasource = {
     getSampleJobOffers: async function (): Promise<SamplejobOffers> {
         const baseurl = process.env.NEXT_PUBLIC_API_URL
-        const result = await axios.get<SamplejobOffersResponse>(`${baseurl}/jobs/sample`, {
+        const result = await axios.get<DatasourceResponse<SamplejobOffers>>(`${baseurl}/jobs/sample`, {
             timeout: 10000,
         })
         return result.data.data
@@ -20,7 +20,7 @@ export const JobOfferDatasourceImpl: JobOfferDatasource = {
 
     getJobOffersFromQuery: async function (keywords: string, cityCode: string, radius: number, page: number): Promise<PageJobOffers> {
         const baseurl = process.env.NEXT_PUBLIC_API_URL
-        const result = await axios.get<jobOffersResponse>(
+        const result = await axios.get<DatasourceResponse<JobOffer[]>>(
             `${baseurl}/jobs?keywords=${keywords}&cityCode=${cityCode}&radius=${radius}&page=${page}`,
             {
                 timeout: 10000,

@@ -1,6 +1,7 @@
 "use client"
-import ReducedSearchSection from "./components/searchSection/reducedSearchSection"
-import JobOffersGridview from "./components/jobOffersGridview/jobOffersGridview"
+
+import JobOffersGridview from "@src/presentation/components-pages/job-offers/jobOffersGridview/jobOffersGridview"
+import ReducedSearchSection from "@src/presentation/components-pages/job-offers/searchSection/reducedSearchSection"
 
 export default function Page(): JSX.Element {
     return (

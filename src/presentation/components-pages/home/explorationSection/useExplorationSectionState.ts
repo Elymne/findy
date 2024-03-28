@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import { JobOfferDatasource, JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
-import { OnFailure, OnLoading, OnSucess } from "../../../domain/hooks/useFutureState"
-import { JobOfferCategory } from "@src/domain/entities/enums/jobOfferCategory"
+import { OnFailure, OnLoading, OnSucess } from "../../../../domain/hooks/useFutureState"
+import { JobOfferCategory } from "@src/domain/enums/jobOfferCategory"
 import JobOffer from "@src/domain/entities/jobOffer/jobOffer.entity"
 import SamplejobOffers from "@src/domain/entities/jobOffer/sampleJobOffers.entity"
 

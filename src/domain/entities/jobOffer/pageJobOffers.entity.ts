@@ -1,8 +1,6 @@
 import JobOffer from "./jobOffer.entity"
 
-interface PageJobOffers {
+export default interface PageJobOffers {
     maxPage: number
     jobOffers: JobOffer[]
 }
-
-export default PageJobOffers

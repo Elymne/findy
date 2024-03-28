@@ -1,6 +1,6 @@
-import { SourceSite } from "../enums/sourceSite"
+import { SourceSite } from "../../enums/sourceSite"
 
-interface JobOffer {
+export default interface JobOffer {
     id?: string
     title: string
     imageUrl: string
@@ -14,5 +14,3 @@ interface JobOffer {
     updatedAt?: number
     createdWhile?: string
 }
-
-export default JobOffer

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 import styles from "./jobOfferGridview.module.css"
 import useJobOffersGridviewState from "./useJobOffersGridviewState"
 import Card from "@src/presentation/components/card/card"
@@ -16,7 +16,7 @@ export default function JobOffersGridview(): JSX.Element {
     }, [])
 
     return getState({
-        onNoLoading: () => {
+        onWaiting: () => {
             return (
                 <section id={styles.main}>
                     <div id={styles.content_bloc}>

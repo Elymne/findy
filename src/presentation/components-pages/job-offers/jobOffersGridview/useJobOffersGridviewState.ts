@@ -1,5 +1,5 @@
 import PageJobOffers from "@src/domain/entities/jobOffer/pageJobOffers.entity"
-import { OnFailure, OnLoading, OnNoLoading, OnSucess } from "@src/domain/hooks/useFutureState"
+import { OnFailure, OnLoading, OnWaiting, OnSucess } from "@src/domain/hooks/useFutureState"
 import { CityDatasource, CityDatasourceImpl } from "@src/infrastructure/datasources/cityDatasource/city.datasource"
 import { JobOfferDatasource, JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import { useState } from "react"
@@ -39,12 +39,12 @@ export default function useJobOffersGridviewState() {
     }
 
     function getState({
-        onNoLoading,
+        onWaiting,
         onLoading,
         onSuccess,
         onFailure,
     }: {
-        onNoLoading: OnNoLoading
+        onWaiting: OnWaiting
         onLoading: OnLoading
         onSuccess: OnSucess<JobOffersGridviewState>
         onFailure: OnFailure
@@ -54,7 +54,7 @@ export default function useJobOffersGridviewState() {
         }
 
         if (_state.canStart === false) {
-            return onNoLoading()
+            return onWaiting()
         }
 
         if (_state.pageJobOffers === null) {

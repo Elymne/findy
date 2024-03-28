@@ -5,17 +5,9 @@ import useSearchBarState from "./useSearchBarState"
 import LoadingBloc, { LoadingContentStyleMode } from "../loadingBloc/loadingBloc"
 import ErrorBloc, { ErrorContentStyleMode } from "../errorBloc/errorBloc"
 
-type OnSearch = (keywords: string, city: string) => void
-type SearchParams = {
-    keywords: string | null
-    city: string | null
-    onSearch: OnSearch
-}
-
 export default function SearchBar({ keywords, city, onSearch }: SearchParams): JSX.Element {
     const keywordsInput = useRef<string>("")
     const cityInput = useRef<string>("")
-    const cityCode = useRef<string>("")
 
     const { init, getState } = useSearchBarState()
 
@@ -23,7 +15,7 @@ export default function SearchBar({ keywords, city, onSearch }: SearchParams): J
         onSearch(keywordsInput.current, cityInput.current)
     }
 
-    function onKeyDown(keyBoardEvent: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>): void {
+    function onKeyDownPressed(keyBoardEvent: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>): void {
         if (keyBoardEvent.code === "Enter") {
             onSearch(keywordsInput.current, cityInput.current)
         }
@@ -42,8 +34,8 @@ export default function SearchBar({ keywords, city, onSearch }: SearchParams): J
     }, [])
 
     return getState({
-        onLoading: () => <LoadingBloc value="Loading là ?" styleMode={LoadingContentStyleMode.dark} />,
-        onFailure: () => <ErrorBloc value="Oooooops" styleMode={ErrorContentStyleMode.dark} />,
+        onLoading: () => <LoadingBloc value="Chargement des communes" styleMode={LoadingContentStyleMode.dark} />,
+        onFailure: () => <ErrorBloc value="Une erreur s'est produite :'(" styleMode={ErrorContentStyleMode.dark} />,
         onSuccess: (_state) => {
             return (
                 <div id={styles.main}>
@@ -52,31 +44,40 @@ export default function SearchBar({ keywords, city, onSearch }: SearchParams): J
                         name="keywords_choice"
                         id="keywords_choice"
                         placeholder="Recherche par mots-clés"
-                        onKeyDown={onKeyDown}
+                        onKeyDown={onKeyDownPressed}
                         onChange={onKeywordInputChange}
                         value={keywords ?? undefined}
                     />
+
                     <input
                         type="text"
                         name="city_choice"
                         id="city_choice"
                         list="city_options"
                         placeholder="Paris, Lion, Nantes..."
-                        onKeyDown={onKeyDown}
+                        onKeyDown={onKeyDownPressed}
                         onChange={onCityInputChange}
                         value={city ?? undefined}
                     />
+
                     <datalist id="city_options">
                         {_state.cities?.map((city) => {
                             return <option key={city.code} value={city.name}></option>
                         })}
                     </datalist>
 
-                    <button onClick={onClick} onKeyDown={onKeyDown}>
+                    <button onClick={onClick} onKeyDown={onKeyDownPressed}>
                         <Image src="svg/magnifying_glass.svg" height={30} width={30} alt="Icone de loupe" />
                     </button>
                 </div>
             )
         },
     })
+}
+
+type OnSearch = (keywords: string, city: string) => void
+type SearchParams = {
+    onSearch: OnSearch
+    keywords?: string
+    city?: string
 }

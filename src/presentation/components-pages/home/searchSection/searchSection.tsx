@@ -5,10 +5,6 @@ import { useRouter } from "next/navigation"
 export default function SearchSection(): JSX.Element {
     const router = useRouter()
 
-    function search(keywords: string, cityName: string): void {
-        router.push(`/job-offers?keywords=${keywords}&city=${cityName}`, { scroll: false })
-    }
-
     return (
         <section id={styles.search_section}>
             <div id={styles.content_bloc}>
@@ -16,11 +12,9 @@ export default function SearchSection(): JSX.Element {
                 <h2>Pas d’écoles de commerce, uniquement des entreprises qui recherchent leurs futurs alternants !</h2>
                 <div id={styles.search_bar}>
                     <SearchBar
-                        onSearch={(keywords, cityName) => {
-                            search(keywords, cityName)
+                        onSearch={(keywords: string, cityName: string) => {
+                            router.push(`/job-offers?keywords=${keywords}&city=${cityName}`, { scroll: false })
                         }}
-                        city={null}
-                        keywords={null}
                     />
                 </div>
             </div>

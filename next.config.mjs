@@ -4,8 +4,11 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "cdn-images.welcometothejungle.com",
-                port: "",
+                hostname: "**",
+            },
+            {
+                protocol: "http",
+                hostname: "**",
             },
         ],
     },

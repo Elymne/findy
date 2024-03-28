@@ -1,4 +1,4 @@
-import { JobOffer } from "@src/domain/entities/jobOffer/jobOffer.entity"
+import JobOffer from "@src/domain/entities/jobOffer/jobOffer.entity"
 import styles from "./card.module.css"
 import Image from "next/image"
 
@@ -6,7 +6,9 @@ export default function Card({ jobOffer }: { jobOffer: JobOffer }): JSX.Element 
     return (
         <article id={styles.card} tabIndex={0}>
             <Image
-                src={jobOffer.image_url ?? "/images/placeholder.png"}
+                src={jobOffer.imageUrl}
+                placeholder="blur"
+                blurDataURL="/images/placeholder.jpg"
                 width="0"
                 height="0"
                 sizes="100vw"
@@ -15,7 +17,9 @@ export default function Card({ jobOffer }: { jobOffer: JobOffer }): JSX.Element 
             />
 
             <Image
-                src={jobOffer.company_logo_url ?? "/images/logo_placeholder.png"}
+                src={jobOffer.companyLogoUrl}
+                placeholder="blur"
+                blurDataURL="/images/logo_placeholder.png"
                 height={60}
                 width={60}
                 alt="Toolbox icon"
@@ -23,7 +27,7 @@ export default function Card({ jobOffer }: { jobOffer: JobOffer }): JSX.Element 
             />
 
             <div>
-                <h1>{jobOffer.company_name}</h1>
+                <h1>{jobOffer.companyName}</h1>
 
                 <h2>
                     <span>
@@ -36,14 +40,14 @@ export default function Card({ jobOffer }: { jobOffer: JobOffer }): JSX.Element 
                     <span>
                         <Image className={styles.icon} src="/svg/localisation.svg" height={20} width={20} alt="Toolbox icon" />
                     </span>
-                    {jobOffer.city_name}
+                    {jobOffer.cityName}
                 </h2>
 
                 <h2>
                     <span>
                         <Image className={styles.icon} src="/svg/date.svg" height={20} width={20} alt="Toolbox icon" />
                     </span>
-                    {jobOffer.created_while}
+                    {jobOffer.createdWhile}
                 </h2>
             </div>
         </article>

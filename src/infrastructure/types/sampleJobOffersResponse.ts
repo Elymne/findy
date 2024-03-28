@@ -1,6 +1,6 @@
 import JobOffer from "@src/domain/entities/jobOffer/jobOffer.entity"
 
-type SamplejobOffersResponse = {
+export default interface SamplejobOffersResponse {
     message: string
     data: {
         marketing: JobOffer[]
@@ -11,5 +11,3 @@ type SamplejobOffersResponse = {
         commercial: JobOffer[]
     }
 }
-
-export default SamplejobOffersResponse

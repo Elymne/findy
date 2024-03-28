@@ -1,31 +1,34 @@
 import PageJobOffers from "@src/domain/entities/jobOffer/pageJobOffers.entity"
-import { OnFailure, OnInit, OnLoading, OnSucess } from "@src/domain/hooks/useFutureState"
+import { OnFailure, OnLoading, OnNoLoading, OnSucess } from "@src/domain/hooks/useFutureState"
+import { CityDatasource, CityDatasourceImpl } from "@src/infrastructure/datasources/cityDatasource/city.datasource"
 import { JobOfferDatasource, JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import { useState } from "react"
 
 export default function useJobOffersGridviewState() {
     const _jobOfferDatasource: JobOfferDatasource = JobOfferDatasourceImpl
+    const _cityDatasource: CityDatasource = CityDatasourceImpl
 
     const [_state, _setState] = useState<JobOffersGridviewState>({
-        hasStarted: false,
+        canStart: true,
         pageJobOffers: null,
         error: null,
     })
 
-    async function init(keywords: string | null, city: string | null): Promise<void> {
-        if (!keywords || !city) {
+    async function init(keywords: string | null, cityName: string | null): Promise<void> {
+        if (!keywords || !cityName || cityName?.length === 0 || keywords.length === 0) {
+            _setState({
+                ..._state,
+                canStart: false,
+            })
             return
         }
 
-        _setState({
-            ..._state,
-            hasStarted: true,
-        })
-
         try {
+            const city = await _cityDatasource.fetchOneByName(cityName)
+            const result = await _jobOfferDatasource.getJobOffersFromQuery(keywords, city.code, 30, 1)
             _setState({
                 ..._state,
-                pageJobOffers: await _jobOfferDatasource.getJobOffersFromQuery(keywords, "75107", 30, 1),
+                pageJobOffers: result,
             })
         } catch (error) {
             _setState({
@@ -36,22 +39,22 @@ export default function useJobOffersGridviewState() {
     }
 
     function getState({
-        onInit,
+        onNoLoading,
         onLoading,
         onSuccess,
         onFailure,
     }: {
-        onInit: OnInit
+        onNoLoading: OnNoLoading
         onLoading: OnLoading
         onSuccess: OnSucess<JobOffersGridviewState>
         onFailure: OnFailure
     }): JSX.Element {
-        if (_state.error) {
+        if (_state.error !== null) {
             return onFailure(_state.error)
         }
 
-        if (!_state.hasStarted) {
-            return onInit()
+        if (_state.canStart === false) {
+            return onNoLoading()
         }
 
         if (_state.pageJobOffers === null) {
@@ -65,7 +68,7 @@ export default function useJobOffersGridviewState() {
 }
 
 type JobOffersGridviewState = {
-    hasStarted: boolean
+    canStart: boolean
     pageJobOffers: PageJobOffers | null
     error: unknown | null
 }

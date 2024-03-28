@@ -4,10 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 
 export default function ReducedSearchSection(): JSX.Element {
     const router = useRouter()
-
     const searchParams = useSearchParams()
-    const keywords = searchParams.get("keywords")
-    const city = searchParams.get("city")
 
     function search(keywords: string, city: string): void {
         router.push(`/job-offers?keywords=${keywords}&city=${city}`, { scroll: false })
@@ -17,8 +14,8 @@ export default function ReducedSearchSection(): JSX.Element {
         <section id={styles.main}>
             <div id={styles.content_bloc}>
                 <SearchBar
-                    keywords={keywords}
-                    city={city}
+                    keywords={searchParams.get("keywords")}
+                    city={searchParams.get("city")}
                     onSearch={(keywords, city) => {
                         search(keywords, city)
                     }}

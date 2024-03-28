@@ -9,17 +9,14 @@ import { useSearchParams } from "next/navigation"
 
 export default function JobOffersGridview(): JSX.Element {
     const { init, getState } = useJobOffersGridviewState()
-
     const searchParams = useSearchParams()
-    const keywords = searchParams.get("keywords")
-    const citycode = searchParams.get("citycode")
 
     useEffect(() => {
-        init(keywords, citycode)
+        init(searchParams.get("keywords"), searchParams.get("city"))
     }, [])
 
     return getState({
-        onInit: () => {
+        onNoLoading: () => {
             return (
                 <section id={styles.main}>
                     <div id={styles.content_bloc}>
@@ -28,7 +25,6 @@ export default function JobOffersGridview(): JSX.Element {
                 </section>
             )
         },
-
         onLoading: () => {
             return <LoadingBloc value="Chargement du contenu" styleMode={LoadingContentStyleMode.ligth} />
         },

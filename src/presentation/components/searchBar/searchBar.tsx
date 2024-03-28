@@ -4,7 +4,6 @@ import Image from "next/image"
 import useSearchBarState from "./useSearchBarState"
 import LoadingBloc, { LoadingContentStyleMode } from "../loadingBloc/loadingBloc"
 import ErrorBloc, { ErrorContentStyleMode } from "../errorBloc/errorBloc"
-import { v4 } from "uuid"
 
 type OnSearch = (keywords: string, city: string) => void
 type SearchParams = {
@@ -13,9 +12,10 @@ type SearchParams = {
     onSearch: OnSearch
 }
 
-export default function SearchBar({ keywords, city: city, onSearch }: SearchParams): JSX.Element {
+export default function SearchBar({ keywords, city, onSearch }: SearchParams): JSX.Element {
     const keywordsInput = useRef<string>("")
     const cityInput = useRef<string>("")
+    const cityCode = useRef<string>("")
 
     const { init, getState } = useSearchBarState()
 
@@ -68,7 +68,7 @@ export default function SearchBar({ keywords, city: city, onSearch }: SearchPara
                     />
                     <datalist id="city_options">
                         {_state.cities?.map((city) => {
-                            return <option key={v4()} value={city.name}></option>
+                            return <option key={city.code} value={city.name}></option>
                         })}
                     </datalist>
 

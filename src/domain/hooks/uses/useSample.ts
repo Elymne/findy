@@ -85,5 +85,3 @@ export default function useSample(): UseSample {
         },
     }
 }
-
-export const UsePageJobOffersContext = createContext<UseSample | null>(null)

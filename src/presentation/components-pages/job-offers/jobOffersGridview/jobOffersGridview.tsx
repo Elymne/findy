@@ -4,10 +4,11 @@ import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/componen
 import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/errorBloc/errorBloc"
 import { v4 as uuidv4 } from "uuid"
 import { useContext } from "react"
-import { UsePageJobOffers, UsePageJobOffersContext } from "@src/domain/hooks/uses/usePageJobOffers"
+import { UsePageJobOffers } from "@src/domain/hooks/uses/usePageJobOffers"
+import { JobOffersPageContext } from "@src/app/job-offers/page"
 
 export default function JobOffersGridview(): JSX.Element {
-    const { getState } = useContext(UsePageJobOffersContext) as UsePageJobOffers
+    const { getState } = useContext(JobOffersPageContext) as UsePageJobOffers
 
     return getState({
         onLoading: () => {

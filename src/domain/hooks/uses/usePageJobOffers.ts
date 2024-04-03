@@ -55,5 +55,3 @@ export default function useJobOffers(): UsePageJobOffers {
         },
     }
 }
-
-export const UsePageJobOffersContext = createContext<UsePageJobOffers | null>(null)

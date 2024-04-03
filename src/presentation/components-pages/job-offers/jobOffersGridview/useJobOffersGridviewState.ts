@@ -1,5 +1,5 @@
 import PageJobOffers from "@src/domain/entities/jobOffer/pageJobOffers.entity"
-import { OnFailure, OnLoading, OnWaiting, OnSucess } from "@src/domain/hooks/useFutureState"
+import { OnFailure, OnLoading, OnWaiting, OnSucess } from "@src/domain/hooks/futureUseState"
 import { CityDatasource, CityDatasourceImpl } from "@src/infrastructure/datasources/cityDatasource/city.datasource"
 import { JobOfferDatasource, JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import { useState } from "react"

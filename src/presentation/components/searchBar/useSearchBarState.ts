@@ -1,5 +1,5 @@
 import City from "@src/domain/entities/city/city.entity"
-import { OnFailure, OnLoading, OnSucess } from "@src/domain/hooks/useFutureState"
+import { OnFailure, OnLoading, OnSucess } from "@src/domain/hooks/futureUseState"
 import { CityDatasource, CityDatasourceImpl } from "@src/infrastructure/datasources/cityDatasource/city.datasource"
 import { useState } from "react"
 

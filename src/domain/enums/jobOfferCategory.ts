@@ -1,4 +1,4 @@
-export enum JobOfferCategory {
+export enum JobCategEnum {
     Marketing,
     Communication,
     Comptability,

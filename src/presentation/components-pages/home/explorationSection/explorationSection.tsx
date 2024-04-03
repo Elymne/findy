@@ -4,30 +4,29 @@ import styles from "./explorationSection.module.css"
 import { useEffect } from "react"
 import { v4 as uuidv4 } from "uuid"
 import Card from "@src/presentation/components/card/card"
-import { JobOfferCategory } from "@src/domain/enums/jobOfferCategory"
-import useExplorationState from "./useExplorationSectionState"
+import { JobCategEnum } from "@src/domain/enums/jobOfferCategory"
 import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/components/loadingBloc/loadingBloc"
 import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/errorBloc/errorBloc"
+import useSample from "@src/domain/hooks/uses/useSample"
 
 export default function ExplorationSection(): JSX.Element {
-    const { init, getState, changeCategory } = useExplorationState()
+    const { init, getState, updateCateg } = useSample()
 
     useEffect(() => {
         initState()
     }, [])
 
     async function initState(): Promise<void> {
-        await init()
-        changeCategory(JobOfferCategory.Marketing)
+        await init(JobCategEnum.Marketing)
     }
 
-    function onCategClick(category: JobOfferCategory): void {
-        changeCategory(category)
+    function onCategClick(category: JobCategEnum): void {
+        updateCateg(category)
     }
 
-    function onKeyDown(keyBoardEvent: React.KeyboardEvent<HTMLLIElement>, category: JobOfferCategory): void {
+    function onKeyDown(keyBoardEvent: React.KeyboardEvent<HTMLLIElement>, category: JobCategEnum): void {
         if (keyBoardEvent.code === "Enter") {
-            changeCategory(category)
+            updateCateg(category)
         }
     }
 
@@ -50,7 +49,7 @@ export default function ExplorationSection(): JSX.Element {
                                     <li
                                         onClick={() => onCategClick(categ)}
                                         onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, categ)}
-                                        className={state.selectedCategory === categ ? styles.selected : undefined}
+                                        className={state.selectedCateg === categ ? styles.selected : undefined}
                                         tabIndex={0}
                                         key={uuidv4()}
                                     >
@@ -60,7 +59,7 @@ export default function ExplorationSection(): JSX.Element {
                             })}
                         </ol>
                         <ul>
-                            {state.jobOffers?.map((jobOffer) => {
+                            {state.value?.map((jobOffer) => {
                                 return <li key={jobOffer.id ?? uuidv4()}>{<Card jobOffer={jobOffer} />}</li>
                             })}
                         </ul>
@@ -72,27 +71,27 @@ export default function ExplorationSection(): JSX.Element {
 }
 
 const categories = [
-    JobOfferCategory.Marketing,
-    JobOfferCategory.Communication,
-    JobOfferCategory.Comptability,
-    JobOfferCategory.HumanResources,
-    JobOfferCategory.WebDevelop,
-    JobOfferCategory.Commercial,
+    JobCategEnum.Marketing,
+    JobCategEnum.Communication,
+    JobCategEnum.Comptability,
+    JobCategEnum.HumanResources,
+    JobCategEnum.WebDevelop,
+    JobCategEnum.Commercial,
 ]
 
-function getCategoryName(category: JobOfferCategory): string {
+function getCategoryName(category: JobCategEnum): string {
     switch (category) {
-        case JobOfferCategory.Marketing:
+        case JobCategEnum.Marketing:
             return "Marketing"
-        case JobOfferCategory.Communication:
+        case JobCategEnum.Communication:
             return "Communication"
-        case JobOfferCategory.Comptability:
+        case JobCategEnum.Comptability:
             return "Comptabilité"
-        case JobOfferCategory.HumanResources:
+        case JobCategEnum.HumanResources:
             return "Ressources Humaines"
-        case JobOfferCategory.WebDevelop:
+        case JobCategEnum.WebDevelop:
             return "Développement Web"
-        case JobOfferCategory.Commercial:
+        case JobCategEnum.Commercial:
             return "Commercial"
     }
 }

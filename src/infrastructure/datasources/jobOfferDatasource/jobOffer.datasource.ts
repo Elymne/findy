@@ -4,7 +4,7 @@ import SamplejobOffers from "@src/domain/entities/jobOffer/sampleJobOffers.entit
 import DatasourceResponse from "@src/infrastructure/models/datasourceResponse"
 import axios from "axios"
 
-export interface JobOfferDatasource {
+export default interface JobOfferDatasource {
     getSampleJobOffers(): Promise<SamplejobOffers>
     getJobOffersFromQuery(keywords: string, cityCode: string, radius: number, page: number): Promise<PageJobOffers>
 }

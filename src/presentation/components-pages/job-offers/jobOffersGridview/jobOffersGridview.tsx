@@ -1,25 +1,17 @@
-"use client"
-
-import { useEffect } from "react"
 import styles from "./jobOfferGridview.module.css"
 import Card from "@src/presentation/components/card/card"
 import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/components/loadingBloc/loadingBloc"
 import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/errorBloc/errorBloc"
 import { v4 as uuidv4 } from "uuid"
-import { useSearchParams } from "next/navigation"
-import useJobOffers from "@src/domain/hooks/uses/useJobOffers"
+import { useContext } from "react"
+import { UsePageJobOffers, UsePageJobOffersContext } from "@src/domain/hooks/uses/usePageJobOffers"
 
 export default function JobOffersGridview(): JSX.Element {
-    const { init, getState } = useJobOffers()
-    const searchParams = useSearchParams()
-
-    useEffect(() => {
-        init(searchParams.get("keywords"), searchParams.get("city"))
-    }, [])
+    const { getState } = useContext(UsePageJobOffersContext) as UsePageJobOffers
 
     return getState({
         onLoading: () => {
-            return <LoadingBloc value="Chargement du contenu" styleMode={LoadingContentStyleMode.ligth} />
+            return <LoadingBloc value="Chargement des offres d'emplois" styleMode={LoadingContentStyleMode.ligth} />
         },
         onFailure: () => {
             return <ErrorBloc value="Oups, une erreur s'est produite :(" styleMode={ErrorContentStyleMode.ligth} />

@@ -1,12 +1,12 @@
 import { FutureUseState, State } from "../futureUseState"
 import JobOfferDatasource, { JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import CityDatasource, { CityDatasourceImpl } from "@src/infrastructure/datasources/cityDatasource/city.datasource"
-import { useState } from "react"
+import { createContext, useState } from "react"
 import PageJobOffers from "@src/domain/entities/jobOffer/pageJobOffers.entity"
 
-interface PageJobOffersState extends State<PageJobOffers> {}
+export interface PageJobOffersState extends State<PageJobOffers> {}
 
-interface UsePageJobOffers extends FutureUseState<PageJobOffersState> {
+export interface UsePageJobOffers extends FutureUseState<PageJobOffersState> {
     init: (keywords: string | null, cityName: string | null) => Promise<void>
 }
 
@@ -55,3 +55,5 @@ export default function useJobOffers(): UsePageJobOffers {
         },
     }
 }
+
+export const UsePageJobOffersContext = createContext<UsePageJobOffers | null>(null)

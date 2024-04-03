@@ -1,7 +1,7 @@
 import JobOfferDatasource, { JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import { FutureUseState, State } from "../futureUseState"
 import { JobCategEnum } from "@src/domain/enums/jobOfferCategory"
-import { useRef, useState } from "react"
+import { createContext, useRef, useState } from "react"
 import SamplejobOffers from "@src/domain/entities/jobOffer/sampleJobOffers.entity"
 import JobOffer from "@src/domain/entities/jobOffer/jobOffer.entity"
 
@@ -85,3 +85,5 @@ export default function useSample(): UseSample {
         },
     }
 }
+
+export const UsePageJobOffersContext = createContext<UseSample | null>(null)

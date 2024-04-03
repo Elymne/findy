@@ -26,6 +26,7 @@ export default function useJobOffersGridviewState() {
         try {
             const city = await _cityDatasource.fetchOneByName(cityName)
             const result = await _jobOfferDatasource.getJobOffersFromQuery(keywords, city.code, 30, 1)
+
             _setState({
                 ..._state,
                 pageJobOffers: result,

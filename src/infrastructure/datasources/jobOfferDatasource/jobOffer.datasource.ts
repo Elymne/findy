@@ -20,15 +20,12 @@ export const JobOfferDatasourceImpl: JobOfferDatasource = {
 
     getJobOffersFromQuery: async function (keywords: string, cityCode: string, radius: number, page: number): Promise<PageJobOffers> {
         const baseurl = process.env.NEXT_PUBLIC_API_URL
-        const result = await axios.get<DatasourceResponse<JobOffer[]>>(
+        const result = await axios.get<DatasourceResponse<PageJobOffers>>(
             `${baseurl}/jobs?keywords=${keywords}&cityCode=${cityCode}&radius=${radius}&page=${page}`,
             {
                 timeout: 10000,
             }
         )
-        return {
-            jobOffers: result.data.data,
-            maxPage: 1,
-        }
+        return result.data.data
     },
 }

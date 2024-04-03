@@ -76,6 +76,7 @@ export default function SearchBar({ keywords, city, onSearch }: SearchParams): J
 }
 
 type OnSearch = (keywords: string, city: string) => void
+
 type SearchParams = {
     onSearch: OnSearch
     keywords?: string

@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect } from "react"
 import styles from "./jobOfferGridview.module.css"
 import useJobOffersGridviewState from "./useJobOffersGridviewState"

@@ -1,3 +1,5 @@
+"use client"
+
 import SearchBar from "@src/presentation/components/searchBar/searchBar"
 import styles from "./searchSection.module.css"
 import { useRouter } from "next/navigation"
@@ -13,7 +15,7 @@ export default function SearchSection(): JSX.Element {
                 <div id={styles.search_bar}>
                     <SearchBar
                         onSearch={(keywords: string, cityName: string) => {
-                            router.push(`/job-offers?keywords=${keywords}&city=${cityName}`, { scroll: false })
+                            router.push(`/job-offers?keywords=${keywords}&city=${cityName}`)
                         }}
                     />
                 </div>

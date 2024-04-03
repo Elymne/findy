@@ -2,7 +2,7 @@ import City, { CityDetailed } from "@src/domain/entities/city/city.entity"
 import DatasourceResponse from "@src/infrastructure/models/datasourceResponse"
 import axios from "axios"
 
-export interface CityDatasource {
+export default interface CityDatasource {
     fetchAll(): Promise<City[]>
     fetchOneByName(name: string): Promise<CityDetailed>
     fetchOneByCode(code: string): Promise<CityDetailed>

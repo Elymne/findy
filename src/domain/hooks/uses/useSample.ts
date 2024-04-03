@@ -75,13 +75,13 @@ export default function useSample(): UseSample {
             })
         },
         getState({ onLoading, onSuccess, onFailure }) {
-            if (state.error) {
-                return onFailure!(state.error)
+            if (state.error != null) {
+                return onFailure(state.error)
             }
-            if (!state.value) {
-                return onLoading!()
+            if (state.value == null) {
+                return onLoading()
             }
-            return onSuccess!(state)
+            return onSuccess(state)
         },
     }
 }

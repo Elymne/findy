@@ -59,7 +59,7 @@ export default function ExplorationSection(): JSX.Element {
                             })}
                         </ol>
                         <ul>
-                            {state.value?.map((jobOffer) => {
+                            {state.value!.map((jobOffer) => {
                                 return <li key={jobOffer.id ?? uuidv4()}>{<Card jobOffer={jobOffer} />}</li>
                             })}
                         </ul>

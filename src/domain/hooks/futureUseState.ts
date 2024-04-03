@@ -1,13 +1,5 @@
 export interface FutureUseState<T> {
-    getState: ({ onInit, onWaiting, onLoading, onSuccess, onFailure }: CallbackState<T>) => JSX.Element
-}
-
-export type CallbackState<T> = {
-    onInit?: OnInit
-    onWaiting?: OnWaiting
-    onLoading?: OnLoading
-    onSuccess?: OnSucess<T>
-    onFailure?: OnFailure
+    getState: ({ onLoading, onSuccess, onFailure }: CallbackState<T>) => JSX.Element
 }
 
 export interface State<T> {
@@ -15,8 +7,13 @@ export interface State<T> {
     error: unknown | null
 }
 
-export type OnInit = () => JSX.Element
-export type OnWaiting = () => JSX.Element
+// TODO make it better, a sort of list of possible, callback events for our hook state.
+type CallbackState<T> = {
+    onLoading: OnLoading
+    onSuccess: OnSucess<T>
+    onFailure: OnFailure
+}
+
 export type OnLoading = () => JSX.Element
 export type OnSucess<T> = (value: T) => JSX.Element
 export type OnFailure = (error: unknown) => JSX.Element

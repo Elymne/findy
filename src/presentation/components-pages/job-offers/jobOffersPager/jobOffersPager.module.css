@@ -1,0 +1,32 @@
+#contentBloc {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+#contentBloc > ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    padding: 20px 0px;
+}
+
+#contentBloc > ul > li {
+    text-decoration: none;
+    font-size: 40px;
+    margin: 0px 10px;
+}
+
+#contentBloc > ul > li:hover {
+    cursor: pointer;
+}
+
+#contentBloc > ul > li.pagerStep {
+    background-color: rgb(85, 85, 85);
+    padding: 0px 20px;
+    border-radius: 100px;
+}
+#contentBloc > ul > li.page {
+    background-color: rgb(117, 117, 117);
+    padding: 0px 20px;
+    border-radius: 100px;
+}

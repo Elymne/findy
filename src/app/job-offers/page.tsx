@@ -5,6 +5,7 @@ import JobOffersGridview from "@src/presentation/components-pages/job-offers/job
 import ReducedSearchSection from "@src/presentation/components-pages/job-offers/reducedSearchSection/reducedSearchSection"
 import { createContext, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
+import JobOffersCounter from "@src/presentation/components-pages/job-offers/jobOffersCounter/jobOffersCounter"
 
 export const JobOffersPageContext = createContext<UsePageJobOffers | null>(null)
 
@@ -23,6 +24,7 @@ export default function Page(): JSX.Element {
         <JobOffersPageContext.Provider value={{ getState, init }}>
             <main>
                 <ReducedSearchSection />
+                <JobOffersCounter />
                 <JobOffersGridview />
             </main>
         </JobOffersPageContext.Provider>

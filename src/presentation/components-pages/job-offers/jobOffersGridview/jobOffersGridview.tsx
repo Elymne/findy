@@ -18,7 +18,7 @@ export default function JobOffersGridview(): JSX.Element {
             return <ErrorBloc value="Oups, une erreur s'est produite :(" styleMode={ErrorContentStyleMode.ligth} />
         },
         onSuccess: (state) => {
-            if (state.value!.maxPage == 0) {
+            if (state.value!.totalPagesNb == 0) {
                 return (
                     <section id={styles.main}>
                         <div id={styles.content_bloc}>

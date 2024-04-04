@@ -25,7 +25,7 @@ export default function useJobOffers(): UsePageJobOffers {
                     ...state,
                     value: {
                         jobOffers: [],
-                        maxPage: 0,
+                        totalPagesNb: 0,
                     },
                 })
                 return

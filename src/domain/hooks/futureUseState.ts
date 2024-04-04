@@ -14,5 +14,5 @@ export type CallbackState<T> = {
 }
 
 type OnLoading = () => JSX.Element
-type OnSucess<T> = (value: T) => JSX.Element
+type OnSucess<T> = (result: T) => JSX.Element
 type OnFailure = (error: unknown) => JSX.Element

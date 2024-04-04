@@ -1,15 +1,15 @@
 import { ChangeEvent, useEffect, useRef } from "react"
 import styles from "./searchBar.module.css"
 import Image from "next/image"
-import useSearchBarState from "./useSearchBarState"
 import LoadingBloc, { LoadingContentStyleMode } from "../loadingBloc/loadingBloc"
 import ErrorBloc, { ErrorContentStyleMode } from "../errorBloc/errorBloc"
+import useCities from "@src/domain/hooks/uses/useCities"
 
 export default function SearchBar({ keywords, city, onSearch }: SearchParams): JSX.Element {
     const keywordsInput = useRef<string>("")
     const cityInput = useRef<string>("")
 
-    const { init, getState } = useSearchBarState()
+    const { init, getState } = useCities()
 
     function onClick(): void {
         onSearch(keywordsInput.current, cityInput.current)
@@ -36,7 +36,7 @@ export default function SearchBar({ keywords, city, onSearch }: SearchParams): J
     return getState({
         onLoading: () => <LoadingBloc value="Chargement des communes" styleMode={LoadingContentStyleMode.dark} />,
         onFailure: () => <ErrorBloc value="Une erreur s'est produite :'(" styleMode={ErrorContentStyleMode.dark} />,
-        onSuccess: (_state) => {
+        onSuccess: (state) => {
             return (
                 <div id={styles.main}>
                     <input
@@ -61,7 +61,7 @@ export default function SearchBar({ keywords, city, onSearch }: SearchParams): J
                     />
 
                     <datalist id="city_options">
-                        {_state.cities?.map((city) => {
+                        {state.value?.map((city) => {
                             return <option key={city.code} value={city.name}></option>
                         })}
                     </datalist>

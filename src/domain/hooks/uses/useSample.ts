@@ -1,7 +1,7 @@
 import JobOfferDatasource, { JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import { FutureUseState, State } from "../futureUseState"
 import { JobCategEnum } from "@src/domain/enums/jobOfferCategory"
-import { createContext, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import SamplejobOffers from "@src/domain/entities/jobOffer/sampleJobOffers.entity"
 import JobOffer from "@src/domain/entities/jobOffer/jobOffer.entity"
 

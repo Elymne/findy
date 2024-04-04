@@ -1,7 +1,7 @@
 import { FutureUseState, State } from "../futureUseState"
 import JobOfferDatasource, { JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import CityDatasource, { CityDatasourceImpl } from "@src/infrastructure/datasources/cityDatasource/city.datasource"
-import { createContext, useState } from "react"
+import { useState } from "react"
 import PageJobOffers from "@src/domain/entities/jobOffer/pageJobOffers.entity"
 
 export interface PageJobOffersState extends State<PageJobOffers> {}

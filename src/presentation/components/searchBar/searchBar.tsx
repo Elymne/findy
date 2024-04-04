@@ -11,6 +11,12 @@ export default function SearchBar({ keywords, city, onSearch }: SearchParams): J
 
     const { init, getState } = useCities()
 
+    useEffect(() => {
+        init()
+        keywordsInput.current = keywords ?? ""
+        cityInput.current = city ?? ""
+    }, [])
+
     function onClick(): void {
         onSearch(keywordsInput.current, cityInput.current)
     }
@@ -29,10 +35,6 @@ export default function SearchBar({ keywords, city, onSearch }: SearchParams): J
         cityInput.current = event.target.value
     }
 
-    useEffect(() => {
-        init()
-    }, [])
-
     return getState({
         onLoading: () => <LoadingBloc value="Chargement des communes" styleMode={LoadingContentStyleMode.dark} />,
         onFailure: () => <ErrorBloc value="Une erreur s'est produite :'(" styleMode={ErrorContentStyleMode.dark} />,
@@ -46,7 +48,7 @@ export default function SearchBar({ keywords, city, onSearch }: SearchParams): J
                         placeholder="Recherche par mots-clés"
                         onKeyDown={onKeyDownPressed}
                         onChange={onKeywordInputChange}
-                        value={keywords ?? undefined}
+                        defaultValue={keywords ?? undefined}
                     />
 
                     <input
@@ -57,7 +59,7 @@ export default function SearchBar({ keywords, city, onSearch }: SearchParams): J
                         placeholder="Paris, Lion, Nantes..."
                         onKeyDown={onKeyDownPressed}
                         onChange={onCityInputChange}
-                        value={city ?? undefined}
+                        defaultValue={city ?? undefined}
                     />
 
                     <datalist id="city_options">
@@ -79,6 +81,6 @@ type OnSearch = (keywords: string, city: string) => void
 
 type SearchParams = {
     onSearch: OnSearch
-    keywords?: string
-    city?: string
+    keywords?: string | null
+    city?: string | null
 }

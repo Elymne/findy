@@ -16,7 +16,7 @@ export default function ReducedSearchSection(): JSX.Element {
             <div id={styles.content_bloc}>
                 <SearchBar
                     onSearch={(keywords: string, city: string) => {
-                        router.replace(`/job-offers?keywords=${keywords}&city=${city}`)
+                        router.push(`/job-offers?keywords=${keywords}&city=${city}`)
                     }}
                     keywords={keywords}
                     city={city}

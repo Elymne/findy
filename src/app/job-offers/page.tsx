@@ -16,10 +16,12 @@ export default function Page(): JSX.Element {
 
     const keywords = searchParams.get("keywords")
     const city = searchParams.get("city")
+    const currentPage = searchParams.get("page") ?? "1"
 
     useEffect(() => {
-        init(keywords, city)
-    }, [keywords, city])
+        console.log("HELLOOOOOO")
+        init(keywords, city, parseInt(currentPage))
+    }, [searchParams])
 
     return (
         <JobOffersPageContext.Provider value={{ getState, init }}>

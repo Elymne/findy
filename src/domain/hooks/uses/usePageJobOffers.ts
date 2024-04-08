@@ -7,7 +7,7 @@ import PageJobOffers from "@src/domain/entities/jobOffer/pageJobOffers.entity"
 export interface PageJobOffersState extends State<PageJobOffers> {}
 
 export interface UsePageJobOffers extends FutureUseState<PageJobOffersState> {
-    init: (keywords: string | null, cityName: string | null) => Promise<void>
+    init: (keywords: string | null, cityName: string | null, currentPage: number | null) => Promise<void>
 }
 
 export default function useJobOffers(): UsePageJobOffers {
@@ -19,7 +19,12 @@ export default function useJobOffers(): UsePageJobOffers {
     })
 
     return {
-        async init(keywords, cityName) {
+        async init(keywords, cityName, currentPage) {
+            setState({
+                value: null,
+                error: null,
+            })
+
             if (!keywords || !cityName || cityName?.length === 0 || keywords.length === 0) {
                 setState({
                     ...state,
@@ -32,7 +37,7 @@ export default function useJobOffers(): UsePageJobOffers {
             }
             try {
                 const city = await cityDatasource.fetchOneByName(cityName)
-                const result = await jobOfferDatasource.getJobOffersFromQuery(keywords, city.code, 30, 1)
+                const result = await jobOfferDatasource.getJobOffersFromQuery(keywords, city.code, 30, currentPage ?? 1)
                 setState({
                     ...state,
                     value: result,

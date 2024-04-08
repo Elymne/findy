@@ -18,7 +18,11 @@ export default function JobOffersCounter(): JSX.Element {
             return <ErrorBloc value="" styleMode={ErrorContentStyleMode.ligth} />
         },
         onSuccess(result) {
-            const maxItems = (result.value?.totalPagesNb ?? 1) * 50 - errorMarge
+            if (result.value!.jobOffers.length == 0) {
+                return <></>
+            }
+
+            const maxItems = result.value!.totalPagesNb * 50 - errorMarge
             return (
                 <section id={styles.main}>
                     <div id={styles.contentBloc}>

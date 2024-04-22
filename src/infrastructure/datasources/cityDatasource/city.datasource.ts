@@ -1,33 +1,49 @@
 import City, { CityDetailed } from "@src/domain/entities/city/city.entity"
-import DatasourceResponse from "@src/infrastructure/models/datasourceResponse"
+import { CityDetailedModel, CityModel } from "@src/infrastructure/models/geoApiResponse"
 import axios from "axios"
 
 export default interface CityDatasource {
-    fetchAll(): Promise<City[]>
-    fetchOneByName(name: string): Promise<CityDetailed>
+    baseUrl: string | undefined
+    fetchByName(name: string): Promise<City[]>
     fetchOneByCode(code: string): Promise<CityDetailed>
 }
 
 export const CityDatasourceImpl: CityDatasource = {
-    fetchAll: async function (): Promise<City[]> {
-        const baseurl = process.env.NEXT_PUBLIC_API_URL
-        const result = await axios.get<DatasourceResponse<City[]>>(`${baseurl}/cities`, {
-            timeout: 10000,
+    baseUrl: process.env.NEXT_PUBLIC_GEO_API_URL,
+
+    fetchByName: async function (name: string): Promise<City[]> {
+        const axiosResponse = await axios.get<Array<CityModel>>(
+            `${this.baseUrl}/communes?fields=centre&format=json&geometryQuery=centre&boost=population&limit=10&nom=${name}`,
+            {
+                timeout: 10000,
+            }
+        )
+
+        return axiosResponse.data.map((model) => {
+            return {
+                name: model.nom,
+                code: model.code,
+            }
         })
-        return result.data.data
     },
-    fetchOneByName: async function (name: string): Promise<CityDetailed> {
-        const baseurl = process.env.NEXT_PUBLIC_API_URL
-        const result = await axios.get<DatasourceResponse<CityDetailed>>(`${baseurl}/cities/name/${name}`, {
-            timeout: 10000,
-        })
-        return result.data.data
-    },
+
     fetchOneByCode: async function (code: string): Promise<CityDetailed> {
-        const baseurl = process.env.NEXT_PUBLIC_API_URL
-        const result = await axios.get<DatasourceResponse<CityDetailed>>(`${baseurl}/cities/code/${code}`, {
-            timeout: 10000,
-        })
-        return result.data.data
+        const axiosResponse = await axios.get<CityDetailedModel>(
+            `${this.baseUrl}/communes/${code}?fields=centre&format=json&geometryQuery=centre&boost=population&limit=10&nom=${name}`,
+            {
+                timeout: 10000,
+            }
+        )
+
+        const cityDetailedModel = axiosResponse.data
+
+        return {
+            name: cityDetailedModel.nom,
+            code: cityDetailedModel.code,
+            coordinates: {
+                lat: cityDetailedModel.centre.coordinates[0],
+                lng: cityDetailedModel.centre.coordinates[1],
+            },
+        }
     },
 }

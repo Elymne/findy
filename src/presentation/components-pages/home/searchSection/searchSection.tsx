@@ -14,8 +14,8 @@ export default function SearchSection(): JSX.Element {
                 <h2>Pas d’écoles de commerce, uniquement des entreprises qui recherchent leurs futurs alternants !</h2>
                 <div id={styles.search_bar}>
                     <SearchBar
-                        onSearch={(keywords: string, cityName: string) => {
-                            router.push(`/job-offers?keywords=${keywords}&city=${cityName}`)
+                        onSearch={(keywords: string, cityCode: string) => {
+                            router.push(`/job-offers?keywords=${keywords}&citycode=${cityCode}`)
                         }}
                     />
                 </div>

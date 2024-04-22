@@ -15,12 +15,13 @@ export default function Page(): JSX.Element {
     const searchParams = useSearchParams()
 
     const keywords = searchParams.get("keywords")
-    const city = searchParams.get("city")
-    const currentPage = searchParams.get("page") ?? "1"
+    const cityCode = searchParams.get("citycode")
+    const currentPage = searchParams.get("page")
 
     useEffect(() => {
-        console.log("HELLOOOOOO")
-        init(keywords, city, parseInt(currentPage))
+        if (keywords && cityCode && cityCode?.length !== 0 && keywords.length !== 0) {
+            init(keywords, cityCode, parseInt(currentPage ?? "1"))
+        }
     }, [searchParams])
 
     return (

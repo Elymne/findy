@@ -13,8 +13,7 @@
         "react": "^18",
         "react-dom": "^18",
         "cross-env": "^7.0.3",
-        "axios": "^1.6.7",
-        "uuidv4": "^6.2.13"
+        "axios": "^1.6.7"
     },
     "devDependencies": {
         "@types/uuid": "^9.0.8",

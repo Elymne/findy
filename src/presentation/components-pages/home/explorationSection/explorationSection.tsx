@@ -2,7 +2,6 @@
 
 import styles from "./explorationSection.module.css"
 import { useEffect } from "react"
-import { v4 as uuidv4 } from "uuid"
 import Card from "@src/presentation/components/card/card"
 import { JobCategEnum } from "@src/domain/enums/jobOfferCategory"
 import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/components/loadingBloc/loadingBloc"
@@ -10,64 +9,96 @@ import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/e
 import useSample from "@src/domain/hooks/uses/useSample"
 
 export default function ExplorationSection(): JSX.Element {
-    const { init, getState, updateCateg } = useSample()
+    const { setCurrentCategory, getCurrentCategory, getState } = useSample()
 
     useEffect(() => {
-        initState()
+        setCurrentCategory(JobCategEnum.Marketing)
     }, [])
 
-    async function initState(): Promise<void> {
-        await init(JobCategEnum.Marketing)
-    }
-
     function onCategClick(category: JobCategEnum): void {
-        updateCateg(category)
+        setCurrentCategory(category)
     }
 
     function onKeyDown(keyBoardEvent: React.KeyboardEvent<HTMLLIElement>, category: JobCategEnum): void {
         if (keyBoardEvent.code === "Enter") {
-            updateCateg(category)
+            setCurrentCategory(category)
         }
     }
 
-    return getState({
-        onLoading: () => {
-            return <LoadingBloc value="Chargement du contenu" styleMode={LoadingContentStyleMode.ligth} />
-        },
-        onFailure: () => {
-            return <ErrorBloc value="Oups, une erreur s'est produite :(" styleMode={ErrorContentStyleMode.ligth} />
-        },
-        onSuccess: (state) => {
-            return (
-                <section id={styles.main}>
-                    <div id={styles.content_bloc}>
-                        <h1>Explorez nos offres d'alternance pour votre futur formation</h1>
-                        <h2>Filtrez selon votre domaine</h2>
-                        <ol>
-                            {categories.map((categ) => {
-                                return (
-                                    <li
-                                        onClick={() => onCategClick(categ)}
-                                        onKeyDown={(keyBoardEvent) => onKeyDown(keyBoardEvent, categ)}
-                                        className={state.selectedCateg === categ ? styles.selected : undefined}
-                                        tabIndex={0}
-                                        key={uuidv4()}
-                                    >
-                                        {getCategoryName(categ)}
-                                    </li>
-                                )
-                            })}
-                        </ol>
-                        <ul>
-                            {state.value!.map((jobOffer) => {
-                                return <li key={jobOffer.id ?? uuidv4()}>{<Card jobOffer={jobOffer} />}</li>
-                            })}
-                        </ul>
-                    </div>
-                </section>
-            )
-        },
-    })
+    function getCategoryClassName(categ: JobCategEnum): string | undefined {
+        if (getCurrentCategory() === null) {
+            return styles.freezed
+        }
+
+        if (getCurrentCategory() === categ) {
+            return styles.selected
+        }
+    }
+
+    return (
+        <section id={styles.main}>
+            <div id={styles.content_bloc}>
+                <h1>Explorez nos offres d'alternance pour votre futur formation</h1>
+                <h2>Filtrez selon votre domaine</h2>
+
+                <ol>
+                    {categories.map((categ, index) => {
+                        return (
+                            <li
+                                onClick={() => {
+                                    if (getCurrentCategory() == null) {
+                                        return
+                                    }
+                                    onCategClick(categ)
+                                }}
+                                onKeyDown={(keyBoardEvent) => {
+                                    if (getCurrentCategory() == null) {
+                                        return
+                                    }
+                                    onKeyDown(keyBoardEvent, categ)
+                                }}
+                                className={getCategoryClassName(categ)}
+                                tabIndex={0}
+                                key={index}
+                            >
+                                {getCategoryName(categ)}
+                            </li>
+                        )
+                    })}
+                </ol>
+
+                {getState({
+                    onLoading: () => {
+                        return (
+                            <ul>
+                                <li key={"loading"}>
+                                    <LoadingBloc value="Chargement du contenu" styleMode={LoadingContentStyleMode.ligth} />
+                                </li>
+                            </ul>
+                        )
+                    },
+                    onSuccess: (state) => {
+                        return (
+                            <ul>
+                                {state.value!.map((jobOffer, index) => {
+                                    return <li key={index}>{<Card jobOffer={jobOffer} />}</li>
+                                })}
+                            </ul>
+                        )
+                    },
+                    onFailure: () => {
+                        return (
+                            <ul>
+                                <li key={"loading"}>
+                                    <ErrorBloc value="Oups, une erreur s'est produite :(" styleMode={ErrorContentStyleMode.ligth} />
+                                </li>
+                            </ul>
+                        )
+                    },
+                })}
+            </div>
+        </section>
+    )
 }
 
 const categories = [

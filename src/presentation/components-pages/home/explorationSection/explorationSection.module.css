@@ -48,11 +48,20 @@
 }
 
 #content_bloc > ol > li.selected {
-    transform: scale(1.04, 1.04);
+    transform: scale(1.2, 1.2);
     color: #4646be;
 }
 
+#content_bloc > ol > li.freezed {
+    color: #38384d;
+}
+
+#content_bloc > ol > li.freezed:hover {
+    cursor: wait;
+}
+
 #content_bloc > ul {
+    height: 300px;
     display: flex;
     flex-direction: row;
 

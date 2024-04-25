@@ -2,7 +2,6 @@ import styles from "./jobOfferGridview.module.css"
 import Card from "@src/presentation/components/card/card"
 import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/components/loadingBloc/loadingBloc"
 import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/errorBloc/errorBloc"
-import { v4 as uuidv4 } from "uuid"
 import { useContext } from "react"
 import { UsePageJobOffers } from "@src/domain/hooks/uses/usePageJobOffers"
 import { JobOffersPageContext } from "@src/app/job-offers/page"
@@ -32,9 +31,9 @@ export default function JobOffersGridview(): JSX.Element {
                 <section id={styles.main}>
                     <div id={styles.content_bloc}>
                         <ol>
-                            {state.value!.jobOffers.map((jobOffer) => {
+                            {state.value!.jobOffers.map((jobOffer, index) => {
                                 return (
-                                    <li key={jobOffer.id ?? uuidv4()}>
+                                    <li key={index}>
                                         <Card jobOffer={jobOffer} />
                                     </li>
                                 )

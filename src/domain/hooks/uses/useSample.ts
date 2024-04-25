@@ -1,86 +1,70 @@
 import JobOfferDatasource, { JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import { FutureUseState, State } from "../futureUseState"
 import { JobCategEnum } from "@src/domain/enums/jobOfferCategory"
-import { useRef, useState } from "react"
-import SamplejobOffers from "@src/domain/entities/jobOffer/sampleJobOffers.entity"
+import { useState } from "react"
 import JobOffer from "@src/domain/entities/jobOffer/jobOffer.entity"
 
-interface SampleState extends State<JobOffer[]> {
-    selectedCateg: JobCategEnum | null
-}
+interface SampleState extends State<JobOffer[]> {}
 
 interface UseSample extends FutureUseState<SampleState> {
-    init: (category: JobCategEnum) => Promise<void>
-    updateCateg: (category: JobCategEnum) => void
+    setCurrentCategory: (category: JobCategEnum) => Promise<void>
+    getCurrentCategory: () => JobCategEnum | null
 }
 
 export default function useSample(): UseSample {
     const jobOfferDatasource: JobOfferDatasource = JobOfferDatasourceImpl
 
-    const sample = useRef<SamplejobOffers | null>(null)
-
+    const [category, setCategory] = useState<JobCategEnum | null>(null)
     const [state, setState] = useState<SampleState>({
-        selectedCateg: null,
-        value: null,
+        value: [],
         error: undefined,
     })
 
-    function getJobOffersFromCateg(category: JobCategEnum): JobOffer[] {
-        if (sample.current == null) {
-            throw Error("This hook has to be initialized before using this function")
-        }
-        switch (category) {
-            case JobCategEnum.Marketing: {
-                return sample.current.marketing
-            }
-            case JobCategEnum.Commercial: {
-                return sample.current.commercial
-            }
-            case JobCategEnum.Communication: {
-                return sample.current.communication
-            }
-            case JobCategEnum.Comptability: {
-                return sample.current.comptability
-            }
-            case JobCategEnum.HumanResources: {
-                return sample.current.humanResources
-            }
-            case JobCategEnum.WebDevelop: {
-                return sample.current.webDev
-            }
-        }
-    }
-
     return {
-        async init(category) {
+        async setCurrentCategory(category) {
+            if (state.value == null) {
+                return
+            }
+
             try {
-                sample.current = await jobOfferDatasource.getSampleJobOffers()
+                setCategory(category)
+                setState({
+                    value: null,
+                    error: null,
+                })
+
+                const jobOffersResult = await jobOfferDatasource.getSampleJobOffers(category)
+
+                console.log(`Result : ${jobOffersResult}`)
+
                 setState({
                     ...state,
-                    selectedCateg: category,
-                    value: getJobOffersFromCateg(category),
+                    value: jobOffersResult.slice(0, 4),
                 })
             } catch (error) {
                 setState({
-                    ...state,
                     error: error,
+                    value: [],
                 })
             }
         },
-        updateCateg(category) {
-            setState({
-                ...state,
-                selectedCateg: category,
-                value: getJobOffersFromCateg(category),
-            })
+
+        getCurrentCategory() {
+            if (state.value == null) {
+                return null
+            }
+            return category
         },
+
         getState({ onLoading, onSuccess, onFailure }) {
             if (state.error != null) {
                 return onFailure(state.error)
             }
+
             if (state.value == null) {
                 return onLoading()
             }
+
             return onSuccess(state)
         },
     }

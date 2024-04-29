@@ -1,9 +1,11 @@
-import HookSection from "./widgets/hook/hookSection"
+import ExplorationSection from "@src/presentation/components-pages/home/explorationSection/explorationSection"
+import SearchSection from "@src/presentation/components-pages/home/searchSection/searchSection"
 
-export default function Home() {
+export default function Page(): JSX.Element {
     return (
         <main>
-            <HookSection />
+            <SearchSection />
+            <ExplorationSection />
         </main>
     )
 }

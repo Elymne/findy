@@ -1,0 +1,80 @@
+#search_section {
+    position: relative;
+    border-bottom: 1px solid #000000;
+    background-image: url("/images/background_top.jpg");
+    background-size: cover;
+}
+
+#search_section::before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    animation: shade_in 1s cubic-bezier(0, 0, 0.2, 1) 0.2s 1 normal forwards;
+}
+
+@keyframes shade_in {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+}
+
+#content_bloc {
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+    padding-top: 300px;
+    padding-bottom: 100px;
+    width: 1280px;
+}
+
+#content_bloc > h1 {
+    color: rgb(255, 255, 255);
+    line-height: 60px;
+    font-size: 60px;
+    font-weight: bold;
+    padding-bottom: 40px;
+
+    opacity: 0%;
+    animation: fade_in_translate 1s cubic-bezier(0, 0, 0.2, 1) 0s 1 forwards;
+}
+
+#content_bloc > h2 {
+    color: rgb(255, 255, 255);
+    line-height: 40px;
+    font-size: 40px;
+    font-weight: normal;
+    padding-bottom: 80px;
+
+    opacity: 0%;
+    animation: fade_in_translate 1s cubic-bezier(0, 0, 0.2, 1) 0.4s 1 forwards;
+}
+
+@keyframes fade_in_translate {
+    from {
+        opacity: 0%;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 100%;
+        transform: translateX(0px);
+    }
+}
+
+#search_bar {
+    padding: 0 100px;
+    opacity: 0%;
+    animation: fade_in 2s cubic-bezier(0, 0, 0.2, 1) 0.8s 1 forwards;
+}
+
+@keyframes fade_in {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}

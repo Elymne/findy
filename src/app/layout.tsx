@@ -1,9 +1,13 @@
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import "./globals.css"
-import Navbar from "@src/presentation/widgets/navbar/navbar"
+import type { Metadata } from "next"
+import { Akshar } from "next/font/google"
+import Footer from "@src/presentation/components/footer/footer"
+import Navbar from "@src/presentation/components/navbar/navbar"
 
-const inter = Inter({ subsets: ["latin"] })
+const akshar = Akshar({
+    subsets: ["latin"],
+    variable: "--font-inter",
+})
 
 export default function RootLayout({
     children,
@@ -12,12 +16,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={inter.className}>
-                <header>
-                    <Navbar />
-                </header>
+            <body className={akshar.className}>
+                <Navbar />
                 {children}
-                <footer></footer>
+                <Footer />
             </body>
         </html>
     )

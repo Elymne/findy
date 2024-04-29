@@ -2,3 +2,29 @@
     padding: 0;
     margin: 0;
 }
+
+*:focus-visible {
+    outline-width: 2px;
+    outline-color: #0fdbff;
+    background-color: #2dd5ff2c;
+    outline-style: solid;
+}
+
+button:focus-visible {
+    background-color: #2dd5ff2c;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f1f5fc;
+}
+
+input {
+    background-color: #f1f5fc;
+}
+
+button {
+    background-color: #f1f5fc;
+}

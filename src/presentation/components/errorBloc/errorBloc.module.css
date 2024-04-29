@@ -1,0 +1,17 @@
+#main h1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 40px 0px;
+
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.light_style {
+    color: #222222;
+}
+
+.dark_style {
+    color: #ffffff;
+}

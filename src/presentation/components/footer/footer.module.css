@@ -1,0 +1,74 @@
+#main {
+    margin-top: auto;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #15074f;
+}
+
+#main > h1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    font-size: 40px;
+    font-weight: 800;
+    color: white;
+    padding-right: 100px;
+}
+
+#main > section {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#main > section > h1 {
+    padding-bottom: 20px;
+    font-size: 22px;
+    color: white;
+}
+
+#main > section > a {
+    text-decoration: none;
+
+    padding: 2px 20px;
+    margin-bottom: 20px;
+
+    border: solid 2px white;
+    border-radius: 20px;
+
+    font-weight: lighter;
+    font-size: 20px;
+    text-align: center;
+
+    color: white;
+}
+
+#main > section > a:hover {
+    background-color: white;
+    color: #15074f;
+}
+
+#main > section > span > a {
+    text-decoration: none;
+
+    padding: 2px 20px;
+    margin-bottom: 20px;
+    margin-right: 6px;
+
+    border: solid 2px white;
+    border-radius: 20px;
+
+    font-weight: lighter;
+    font-size: 20px;
+    text-align: center;
+
+    color: white;
+}
+
+#main > section > span > a:hover {
+    background-color: white;
+    color: #15074f;
+}

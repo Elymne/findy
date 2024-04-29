@@ -1,0 +1,64 @@
+#contentBloc {
+    width: 1280px;
+    margin: 0 auto;
+}
+
+#contentBloc > ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+#contentBloc > ul > li {
+    text-decoration: none;
+    font-size: 20px;
+
+    margin: 0px 10px;
+    padding: 10px 20px;
+    border-radius: 100px;
+}
+
+#contentBloc > ul > li:hover {
+    cursor: pointer;
+}
+
+#contentBloc > ul > li.pagerStep {
+    background-color: transparent;
+    color: rgb(37, 37, 37);
+}
+
+#contentBloc > ul > li.pagerStep:hover {
+    background-color: rgb(220, 220, 220);
+}
+
+#contentBloc > ul > li.pagerStepInactive {
+    background-color: rgb(170, 170, 170);
+    color: rgb(100, 100, 100);
+}
+
+#contentBloc > ul > li.pagerStepInactive:hover {
+    cursor: default;
+}
+
+#contentBloc > ul > li.page {
+    background-color: transparent;
+    font-weight: lighter;
+}
+
+#contentBloc > ul > li.page:hover {
+    background-color: rgb(220, 220, 220);
+}
+
+#contentBloc > ul > li.pageActive {
+    background-color: rgb(82, 82, 247);
+    color: rgb(255, 255, 255);
+    font-weight: lighter;
+}
+
+#contentBloc > ul > li.pageActive:hover {
+    cursor: default;
+}

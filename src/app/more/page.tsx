@@ -1,3 +1,3 @@
-export default () => {
-    return <p>More</p>
+export default function Page(): JSX.Element {
+    return <main>Média</main>
 }

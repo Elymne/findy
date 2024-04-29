@@ -3,35 +3,34 @@ import Card from "@src/presentation/components/card/card"
 import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/components/loadingBloc/loadingBloc"
 import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/errorBloc/errorBloc"
 import { useContext } from "react"
-import { UsePageJobOffers } from "@src/domain/hooks/uses/usePageJobOffers"
 import { JobOffersPageContext } from "@src/app/job-offers/page"
+import { UseFetchJobOffers } from "@src/app/job-offers/useFetchJobOffers"
 
 export default function JobOffersGridview(): JSX.Element {
-    const { getState } = useContext(JobOffersPageContext) as UsePageJobOffers
+    const { getState, currentJobOffers } = useContext(JobOffersPageContext) as UseFetchJobOffers
 
     return getState({
         onLoading: () => {
-            return <LoadingBloc value="Chargement des offres d'emplois" styleMode={LoadingContentStyleMode.ligth} />
+            return <LoadingBloc value="Chargement en cours…" styleMode={LoadingContentStyleMode.ligth} />
         },
         onFailure: () => {
             return <ErrorBloc value="Oups, une erreur s'est produite :(" styleMode={ErrorContentStyleMode.ligth} />
         },
-        onSuccess: (state) => {
-            if (state.value!.totalPagesNb == 0) {
-                return (
-                    <section id={styles.main}>
-                        <div id={styles.content_bloc}>
-                            <h1>Commencez votre recherche</h1>
-                        </div>
-                    </section>
-                )
-            }
-
+        onWaiting() {
+            return (
+                <section id={styles.main}>
+                    <div id={styles.content_bloc}>
+                        <h1>Commencez votre recherche</h1>
+                    </div>
+                </section>
+            )
+        },
+        onSuccess: () => {
             return (
                 <section id={styles.main}>
                     <div id={styles.content_bloc}>
                         <ol>
-                            {state.value!.jobOffers.map((jobOffer, index) => {
+                            {currentJobOffers.map((jobOffer, index) => {
                                 return (
                                     <li key={index}>
                                         <Card jobOffer={jobOffer} />

@@ -22,7 +22,7 @@ export default function Footer(): JSX.Element {
                 <a href="#">Qui sommes-nous ?</a>
                 <span>
                     <a href="#">Le concept</a>
-                    <a href="#">Offres d'alternance</a>
+                    <a href="#">Offres d&apos;alternance</a>
                 </span>
             </section>
         </footer>

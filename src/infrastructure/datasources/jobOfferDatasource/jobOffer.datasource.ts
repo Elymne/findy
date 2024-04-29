@@ -1,16 +1,16 @@
 import JobOffer from "@src/domain/entities/jobOffer/jobOffer.entity"
 import PageJobOffers from "@src/domain/entities/jobOffer/pageJobOffers.entity"
-import { JobCategEnum } from "@src/domain/enums/jobOfferCategory"
+import JobCategory from "@src/domain/enums/jobOfferCategory"
 import DatasourceResponse from "@src/infrastructure/models/datasourceResponse"
 import axios from "axios"
 
 export default interface JobOfferDatasource {
-    getSampleJobOffers(categ: JobCategEnum): Promise<JobOffer[]>
+    getJobOffersSample(categ: JobCategory): Promise<JobOffer[]>
     getJobOffersFromQuery(keywords: string, cityCode: string, radius: number, page: number): Promise<PageJobOffers>
 }
 
 export const JobOfferDatasourceImpl: JobOfferDatasource = {
-    getSampleJobOffers: async function (categ: JobCategEnum): Promise<JobOffer[]> {
+    getJobOffersSample: async function (categ: JobCategory): Promise<JobOffer[]> {
         const baseurl = process.env.NEXT_PUBLIC_API_URL
         const result = await axios.get<DatasourceResponse<JobOffer[]>>(`${baseurl}/jobs/sample`, {
             timeout: 10000,
@@ -18,7 +18,7 @@ export const JobOfferDatasourceImpl: JobOfferDatasource = {
                 categ: categ,
             },
         })
-        return result.data.data
+        return result.data.data.slice(0, 5)
     },
 
     getJobOffersFromQuery: async function (keywords: string, cityCode: string, radius: number, page: number): Promise<PageJobOffers> {

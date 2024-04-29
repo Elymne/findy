@@ -1,38 +1,48 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react"
 import styles from "./searchBar.module.css"
 import Image from "next/image"
-import useCitiesByName from "@src/domain/hooks/uses/useCities"
+import useCityInputAutoCompletion from "@src/presentation/components/searchBar/useCityInputAutoCompletion"
 import { CityDatasourceImpl } from "@src/infrastructure/datasources/cityDatasource/city.datasource"
-import City from "@src/domain/entities/city/city.entity"
+
+type SearchParams = {
+    onSearch: (keywords: string, cityCode: string) => void
+    keywords?: string | null
+    cityCode?: string | null
+}
 
 export default function SearchBar({ keywords, cityCode, onSearch }: SearchParams): JSX.Element {
     const keywordsInput = useRef<string>("")
-    const cityInput = useRef<string>("")
-    const citySearchList = useRef<Array<City>>([])
+    const { currentCities, currentCityInput, updateInputText, getState } = useCityInputAutoCompletion(CityDatasourceImpl)
 
-    const [defaultCityName, setDefaultCityName] = useState<string | null>()
-
-    const { search, getState } = useCitiesByName()
+    // TODO : Trouver un nom approprié à ce truc.
+    const [initCityName, setInitCityName] = useState<string | null>()
 
     useEffect(() => {
-        if (keywords) keywordsInput.current = keywords
-        if (cityCode) findCityName(cityCode)
+        if (keywords != null) {
+            keywordsInput.current = keywords
+        }
+        if (cityCode != null) {
+            fetchAndSetDefaultCityName(cityCode)
+        }
     }, [])
 
-    async function findCityName(cityCode: string) {
-        const cityName = (await CityDatasourceImpl.fetchOneByCode(cityCode)).name
-        setDefaultCityName(cityName)
+    async function fetchAndSetDefaultCityName(cityCode: string) {
+        setInitCityName((await CityDatasourceImpl.fetchOneByCode(cityCode)).name)
     }
 
     function onClick(): void {
-        const cityCode = citySearchList.current.find((elem) => elem.name == cityInput.current)?.code
-        if (cityCode) onSearch(keywordsInput.current, cityCode)
+        const cityCode = currentCities.find((elem) => elem.name == currentCityInput)?.code
+        if (cityCode != null) {
+            onSearch(keywordsInput.current, cityCode)
+        }
     }
 
     function onKeyDownPressed(keyBoardEvent: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>): void {
         if (keyBoardEvent.code === "Enter") {
-            const cityCode = citySearchList.current.find((elem) => elem.name == cityInput.current)?.code
-            if (cityCode) onSearch(keywordsInput.current, cityCode)
+            const cityCode = currentCities.find((elem) => elem.name == currentCityInput)?.code
+            if (cityCode != null) {
+                onSearch(keywordsInput.current, cityCode)
+            }
         }
     }
 
@@ -41,9 +51,8 @@ export default function SearchBar({ keywords, cityCode, onSearch }: SearchParams
     }
 
     function onCityInputChange(event: ChangeEvent<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>) {
-        cityInput.current = event.target.value
-        // TODO Implémenter un delayeur ici pour éviter de faire 1 millions d'appel sur geo.api.
-        search(cityInput.current)
+        setInitCityName(null)
+        updateInputText(event.target.value)
     }
 
     return (
@@ -66,7 +75,7 @@ export default function SearchBar({ keywords, cityCode, onSearch }: SearchParams
                 placeholder="Paris, Lion, Nantes..."
                 onKeyDown={onKeyDownPressed}
                 onChange={onCityInputChange}
-                defaultValue={defaultCityName ? defaultCityName : cityInput.current}
+                defaultValue={initCityName ? initCityName : currentCityInput}
             />
 
             {getState({
@@ -84,11 +93,10 @@ export default function SearchBar({ keywords, cityCode, onSearch }: SearchParams
                         </datalist>
                     )
                 },
-                onSuccess: (state) => {
-                    citySearchList.current = state.value ?? []
+                onSuccess: () => {
                     return (
                         <datalist id="city_options">
-                            {state.value?.map((city) => {
+                            {currentCities.map((city) => {
                                 return <option key={city.code} value={city.name}></option>
                             })}
                         </datalist>
@@ -101,17 +109,4 @@ export default function SearchBar({ keywords, cityCode, onSearch }: SearchParams
             </button>
         </div>
     )
-}
-
-type OnSearch = (keywords: string, cityCode: string) => void
-
-type SearchParams = {
-    onSearch: OnSearch
-    keywords?: string | null
-    cityCode?: string | null
-}
-
-type UiState = {
-    keywordsInput: string
-    cityInput: string
 }

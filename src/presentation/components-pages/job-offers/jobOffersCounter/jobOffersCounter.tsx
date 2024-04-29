@@ -1,33 +1,27 @@
 import { JobOffersPageContext } from "@src/app/job-offers/page"
-import { UsePageJobOffers } from "@src/domain/hooks/uses/usePageJobOffers"
 import { useContext } from "react"
-import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/components/loadingBloc/loadingBloc"
-import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/errorBloc/errorBloc"
 import styles from "./jobOffersCounter.module.css"
+import { UseFetchJobOffers } from "@src/app/job-offers/useFetchJobOffers"
 
 export default function JobOffersCounter(): JSX.Element {
-    const { getState } = useContext(JobOffersPageContext) as UsePageJobOffers
-
+    const { getState, currentJobOffers, currentTotalPageNumber } = useContext(JobOffersPageContext) as UseFetchJobOffers
     const errorMarge: number = Math.floor(Math.random() * 5)
 
     return getState({
-        onLoading() {
-            return <LoadingBloc value="" styleMode={LoadingContentStyleMode.ligth} />
-        },
-        onFailure() {
-            return <ErrorBloc value="" styleMode={ErrorContentStyleMode.ligth} />
-        },
-        onSuccess(result) {
-            if (result.value!.jobOffers.length == 0) {
+        onWaiting: () => <></>,
+        onLoading: () => <></>,
+        onFailure: () => <></>,
+        onSuccess() {
+            if (currentJobOffers.length == 0) {
                 return <></>
             }
 
-            const maxItems = result.value!.totalPagesNb * 50 - errorMarge
+            const maxItems = currentTotalPageNumber * 50 - errorMarge
             return (
                 <section id={styles.main}>
                     <div id={styles.contentBloc}>
                         <h1>
-                            Nombres d'offres : <span>{maxItems}</span>
+                            Nombres d&aposoffres : <span>{maxItems}</span>
                         </h1>
                     </div>
                 </section>

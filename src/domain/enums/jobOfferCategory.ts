@@ -1,4 +1,4 @@
-export enum JobCategEnum {
+enum JobCategory {
     Marketing = "marketing",
     Communication = "communication",
     Comptability = "comptability",
@@ -6,3 +6,5 @@ export enum JobCategEnum {
     HumanResources = "rh",
     Commercial = "commercial",
 }
+
+export default JobCategory

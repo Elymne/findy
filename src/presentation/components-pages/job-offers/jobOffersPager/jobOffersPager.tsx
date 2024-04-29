@@ -1,9 +1,7 @@
 import styles from "./jobOffersPager.module.css"
 import { useContext } from "react"
 import { JobOffersPageContext } from "@src/app/job-offers/page"
-import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/errorBloc/errorBloc"
-import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/components/loadingBloc/loadingBloc"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { UseFetchJobOffers } from "@src/app/job-offers/useFetchJobOffers"
 
 type JobOffersPagerParams = { keywords: string; cityCode: string; selectedPage: number }

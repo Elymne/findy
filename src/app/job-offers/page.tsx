@@ -1,5 +1,4 @@
 "use client"
-
 import useFetchJobOffers, { UseFetchJobOffers } from "@src/app/job-offers/useFetchJobOffers"
 import JobOffersGridview from "@src/presentation/components-pages/job-offers/jobOffersGridview/jobOffersGridview"
 import ReducedSearchSection from "@src/presentation/components-pages/job-offers/reducedSearchSection/reducedSearchSection"
@@ -21,7 +20,7 @@ export default function Page(): JSX.Element {
     const selectedPage: number = parseInt(searchParams.get("page") ?? "1")
 
     useEffect(() => {
-        if (keywords && cityCode && cityCode?.length !== 0 && keywords.length !== 0) {
+        if (keywords != "" && cityCode != "") {
             fetch(keywords, cityCode, selectedPage)
         }
     }, [])

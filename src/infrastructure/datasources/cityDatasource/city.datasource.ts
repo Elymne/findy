@@ -12,6 +12,10 @@ export const CityDatasourceImpl: CityDatasource = {
     baseUrl: process.env.NEXT_PUBLIC_GEO_API_URL,
 
     fetchByName: async function (name: string): Promise<City[]> {
+        if (name == "") {
+            throw Error(`Can't use an empty string for name param`)
+        }
+
         const axiosResponse = await axios.get<Array<CityModel>>(`${this.baseUrl}/communes`, {
             params: {
                 fields: "centre",
@@ -33,6 +37,10 @@ export const CityDatasourceImpl: CityDatasource = {
     },
 
     fetchOneByCode: async function (code: string): Promise<CityDetailed> {
+        if (code == "") {
+            throw Error(`Can't use an empty string for code param.`)
+        }
+
         const axiosResponse = await axios.get<CityDetailedModel>(`${this.baseUrl}/communes/${code}`, {
             params: {
                 fields: "centre",
@@ -45,14 +53,12 @@ export const CityDatasourceImpl: CityDatasource = {
             timeout: 10000,
         })
 
-        const cityDetailedModel = axiosResponse.data
-
         return {
-            name: cityDetailedModel.nom,
-            code: cityDetailedModel.code,
+            name: axiosResponse.data.nom,
+            code: axiosResponse.data.code,
             coordinates: {
-                lat: cityDetailedModel.centre.coordinates[0],
-                lng: cityDetailedModel.centre.coordinates[1],
+                lat: axiosResponse.data.centre.coordinates[0],
+                lng: axiosResponse.data.centre.coordinates[1],
             },
         }
     },

@@ -1,3 +1,5 @@
+"use client"
+
 import { ChangeEvent, useEffect, useRef, useState } from "react"
 import styles from "./searchBar.module.css"
 import Image from "next/image"
@@ -5,35 +7,27 @@ import useCityInputAutoCompletion from "@src/presentation/components/searchBar/u
 import { CityDatasourceImpl } from "@src/infrastructure/datasources/cityDatasource/city.datasource"
 
 type SearchParams = {
-    onSearch: (keywords: string, cityCode: string) => void
-    keywords?: string | null
-    cityCode?: string | null
+    keywords: string
+    cityCode: string
 }
 
-export default function SearchBar({ keywords, cityCode, onSearch }: SearchParams): JSX.Element {
+export default function SearchBar({ keywords, cityCode }: SearchParams): JSX.Element {
     const keywordsInput = useRef<string>("")
-    const { currentCities, currentCityInput, updateInputText, getState } = useCityInputAutoCompletion(CityDatasourceImpl)
+    const { currentCities, currentCityInput, initInputText, updateInputText, getState } = useCityInputAutoCompletion(CityDatasourceImpl)
 
     // TODO : Trouver un nom approprié à ce truc.
     const [initCityName, setInitCityName] = useState<string | null>()
 
     useEffect(() => {
-        if (keywords != null) {
-            keywordsInput.current = keywords
-        }
-        if (cityCode != null) {
-            fetchAndSetDefaultCityName(cityCode)
-        }
+        keywordsInput.current = keywords
+        initInputText(cityCode)
     }, [])
-
-    async function fetchAndSetDefaultCityName(cityCode: string) {
-        setInitCityName((await CityDatasourceImpl.fetchOneByCode(cityCode)).name)
-    }
 
     function onClick(): void {
         const cityCode = currentCities.find((elem) => elem.name == currentCityInput)?.code
         if (cityCode != null) {
-            onSearch(keywordsInput.current, cityCode)
+            console.log(`/job-offers?keywords=${keywordsInput.current}&citycode=${cityCode}`)
+            location.href = `/job-offers?keywords=${keywordsInput.current}&citycode=${cityCode}`
         }
     }
 
@@ -41,7 +35,8 @@ export default function SearchBar({ keywords, cityCode, onSearch }: SearchParams
         if (keyBoardEvent.code === "Enter") {
             const cityCode = currentCities.find((elem) => elem.name == currentCityInput)?.code
             if (cityCode != null) {
-                onSearch(keywordsInput.current, cityCode)
+                console.log(`/job-offers?keywords=${keywordsInput.current}&citycode=${cityCode}`)
+                location.href = `/job-offers?keywords=${keywordsInput.current}&citycode=${cityCode}`
             }
         }
     }

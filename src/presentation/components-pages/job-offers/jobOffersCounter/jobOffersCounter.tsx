@@ -1,6 +1,6 @@
+import styles from "./jobOffersCounter.module.css"
 import { JobOffersPageContext } from "@src/app/job-offers/page"
 import { useContext } from "react"
-import styles from "./jobOffersCounter.module.css"
 import { UseFetchJobOffers } from "@src/app/job-offers/useFetchJobOffers"
 
 export default function JobOffersCounter(): JSX.Element {
@@ -21,7 +21,7 @@ export default function JobOffersCounter(): JSX.Element {
                 <section id={styles.main}>
                     <div id={styles.contentBloc}>
                         <h1>
-                            Nombres d&aposoffres : <span>{maxItems}</span>
+                            Nombres d&apos;offres : <span>{maxItems}</span>
                         </h1>
                     </div>
                 </section>

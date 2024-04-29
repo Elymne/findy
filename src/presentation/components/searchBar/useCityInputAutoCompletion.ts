@@ -32,7 +32,7 @@ export default function useCityInputAutoCompletion(cityDatasource: CityDatasourc
             }
             refCityInput.current = text
             refTimeout = setTimeout(() => {
-                fetch
+                fetch()
             }, 1_000)
         },
 

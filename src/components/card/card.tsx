@@ -3,11 +3,12 @@ import styles from "./card.module.css"
 import Image from "next/image"
 
 export default function Card({ jobOffer }: { jobOffer: JobOffer }): JSX.Element {
+    // TODO : Hardcoder un onclick et on enter press pour ces éléments.
     return (
-        <a href={jobOffer.sourceUrl} target="_blank">
-            <article id={styles.card} tabIndex={0}>
+        <article id={styles.card}>
+            <a href={jobOffer.sourceUrl} target="_blank" tabIndex={0}>
                 <Image
-                    src={jobOffer.imageUrl}
+                    src={jobOffer.imageUrl ?? "/images/placeholder.jpg"}
                     placeholder="blur"
                     blurDataURL="/images/placeholder.jpg"
                     width="0"
@@ -18,7 +19,7 @@ export default function Card({ jobOffer }: { jobOffer: JobOffer }): JSX.Element 
                 />
 
                 <Image
-                    src={jobOffer.companyLogoUrl}
+                    src={jobOffer.companyLogoUrl ?? "/images/logo_placeholder.png"}
                     placeholder="blur"
                     blurDataURL="/images/logo_placeholder.png"
                     height={60}
@@ -28,14 +29,8 @@ export default function Card({ jobOffer }: { jobOffer: JobOffer }): JSX.Element 
                 />
 
                 <div>
-                    <h1>{jobOffer.companyName}</h1>
-
-                    <h2>
-                        <span>
-                            <Image className={styles.icon} src="/svg/badge.svg" height={20} width={20} alt="Toolbox icon" />
-                        </span>
-                        {jobOffer.title}
-                    </h2>
+                    <h1>{jobOffer.title}</h1>
+                    <h2 className={styles.company}>{jobOffer.companyName}</h2>
 
                     <h2>
                         <span>
@@ -51,7 +46,7 @@ export default function Card({ jobOffer }: { jobOffer: JobOffer }): JSX.Element 
                         {jobOffer.createdWhile}
                     </h2>
                 </div>
-            </article>
-        </a>
+            </a>
+        </article>
     )
 }

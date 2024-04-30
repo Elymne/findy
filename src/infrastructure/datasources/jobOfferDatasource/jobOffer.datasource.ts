@@ -18,7 +18,7 @@ export const JobOfferDatasourceImpl: JobOfferDatasource = {
                 categ: categ,
             },
         })
-        return result.data.data.slice(0, 5)
+        return result.data.data.slice(0, 4)
     },
 
     getJobOffersFromQuery: async function (keywords: string, cityCode: string, radius: number, page: number): Promise<PageJobOffers> {

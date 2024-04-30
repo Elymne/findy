@@ -16,7 +16,11 @@
     border-color: rgba(0, 0, 0, 0.2);
 }
 
-#card > img.logo {
+#card > a {
+    text-decoration: none;
+}
+
+#card > a > img.logo {
     top: 70px;
     left: 20px;
     border: 1px solid #e9e9e9;
@@ -26,22 +30,41 @@
     object-fit: cover;
 }
 
-#card > div {
+#card > a > div {
     padding: 40px 0px 40px 20px;
 }
 
-#card > div > h1 {
+#card > a > div > h1 {
     font-size: 20px;
-    font-weight: bolder;
+    font-weight: bold;
+    letter-spacing: 0.1px;
     color: rgb(32, 32, 32);
+    margin-right: 20px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    min-height: 2em;
+    line-height: 1em;
+}
+
+#card > a > div > h2.company {
+    font-size: 18px;
+    font-weight: lighter;
+    color: rgb(100, 100, 100);
+    margin-bottom: 20px;
 
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-#card > div > h2 {
-    font-size: 20px;
+#card > a > div > h2 {
+    font-size: 18px;
     font-weight: lighter;
     color: rgb(100, 100, 100);
 
@@ -50,6 +73,7 @@
     text-overflow: ellipsis;
 }
 
-#card > div > h2 > span > img.icon {
+#card > a > div > h2 > span > img.icon {
+    vertical-align: sub;
     margin-right: 10px;
 }

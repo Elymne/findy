@@ -39,8 +39,6 @@
     font-weight: bold;
     letter-spacing: 0.1px;
     color: rgb(32, 32, 32);
-
-    margin-bottom: 20px;
     margin-right: 20px;
 
     overflow: hidden;
@@ -54,6 +52,17 @@
     line-height: 1em;
 }
 
+#card > a > div > h2.company {
+    font-size: 18px;
+    font-weight: lighter;
+    color: rgb(100, 100, 100);
+    margin-bottom: 20px;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 #card > a > div > h2 {
     font-size: 18px;
     font-weight: lighter;
@@ -65,5 +74,6 @@
 }
 
 #card > a > div > h2 > span > img.icon {
+    vertical-align: sub;
     margin-right: 10px;
 }

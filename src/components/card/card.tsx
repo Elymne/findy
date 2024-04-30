@@ -3,9 +3,10 @@ import styles from "./card.module.css"
 import Image from "next/image"
 
 export default function Card({ jobOffer }: { jobOffer: JobOffer }): JSX.Element {
+    // TODO : Hardcoder un onclick et on enter press pour ces éléments.
     return (
-        <article id={styles.card} tabIndex={0}>
-            <a href={jobOffer.sourceUrl} target="_blank">
+        <article id={styles.card}>
+            <a href={jobOffer.sourceUrl} target="_blank" tabIndex={0}>
                 <Image
                     src={jobOffer.imageUrl ?? "/images/placeholder.jpg"}
                     placeholder="blur"
@@ -29,13 +30,7 @@ export default function Card({ jobOffer }: { jobOffer: JobOffer }): JSX.Element 
 
                 <div>
                     <h1>{jobOffer.title}</h1>
-
-                    <h2>
-                        <span>
-                            <Image className={styles.icon} src="/svg/badge.svg" height={20} width={20} alt="Toolbox icon" />
-                        </span>
-                        {jobOffer.companyName}
-                    </h2>
+                    <h2 className={styles.company}>{jobOffer.companyName}</h2>
 
                     <h2>
                         <span>

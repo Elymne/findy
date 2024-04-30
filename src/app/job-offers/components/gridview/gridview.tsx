@@ -1,10 +1,12 @@
-import styles from "./jobOfferGridview.module.css"
+"use client"
+
+import styles from "./gridview.module.css"
 import Card from "@src/components/card/card"
 import LoadingBloc, { LoadingContentStyleMode } from "@src/components/loadingBloc/loadingBloc"
 import ErrorBloc, { ErrorContentStyleMode } from "@src/components/errorBloc/errorBloc"
 import { useAppContext } from "@src/app/job-offers/appContext"
 
-export default function JobOffersGridview(): JSX.Element {
+export default function Gridview(): JSX.Element {
     const { getState, currentJobOffers } = useAppContext()
 
     return getState({

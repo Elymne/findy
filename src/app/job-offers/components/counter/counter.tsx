@@ -1,7 +1,9 @@
-import { useAppContext } from "@src/app/job-offers/appContext"
-import styles from "./jobOffersCounter.module.css"
+"use client"
 
-export default function JobOffersCounter(): JSX.Element {
+import { useAppContext } from "@src/app/job-offers/appContext"
+import styles from "./counter.module.css"
+
+export default function Counter(): JSX.Element {
     const { getState, currentJobOffers, currentTotalPageNumber } = useAppContext()
     const errorMarge: number = Math.floor(Math.random() * 5)
 
@@ -9,7 +11,7 @@ export default function JobOffersCounter(): JSX.Element {
         onWaiting: () => <></>,
         onLoading: () => <></>,
         onFailure: () => <></>,
-        onSuccess() {
+        onSuccess: () => {
             if (currentJobOffers.length == 0) {
                 return <></>
             }

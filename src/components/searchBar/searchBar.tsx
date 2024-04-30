@@ -21,7 +21,7 @@ export default function SearchBar({ keywords, cityCode }: SearchParams): JSX.Ele
     useEffect(() => {
         keywordsInput.current = keywords
         initInputText(cityCode)
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     function onClick(): void {
         const cityCode = currentCities.find((elem) => elem.name == currentCityInput)?.code

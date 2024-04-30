@@ -1,3 +1,5 @@
+"use client"
+
 import JobOfferDatasource from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import CityDatasource from "@src/infrastructure/datasources/cityDatasource/city.datasource"
 import JobOffer from "@src/domain/entities/jobOffer/jobOffer.entity"
@@ -26,7 +28,6 @@ export default function useFetchJobOffers(jobOfferDatasource: JobOfferDatasource
                 refJobOffers.current = []
                 refTotalPage.current = currentPage
                 setState(CustomState.LOADING)
-
                 const city = await cityDatasource.fetchOneByCode(cityCode)
                 const pageJobOffers = await jobOfferDatasource.getJobOffersFromQuery(keywords, city.code, 30, currentPage ?? 1)
                 refJobOffers.current = pageJobOffers.jobOffers

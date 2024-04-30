@@ -1,11 +1,17 @@
-import styles from "./jobOffersPager.module.css"
-import { useRouter } from "next/navigation"
+"use client"
+
+import styles from "./pager.module.css"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useAppContext } from "@src/app/job-offers/appContext"
 
-type JobOffersPagerParams = { keywords: string; cityCode: string; selectedPage: number }
-export default function JobOffersPager({ keywords, cityCode, selectedPage }: JobOffersPagerParams): JSX.Element {
+export default function Pager(): JSX.Element {
     const { getState, currentTotalPageNumber } = useAppContext()
     const router = useRouter()
+
+    const searchParams = useSearchParams()
+    const keywords: string = searchParams.get("keywords") ?? ""
+    const cityCode: string = searchParams.get("citycode") ?? ""
+    const selectedPage: number = parseInt(searchParams.get("page") ?? "1")
 
     function onClick(type: PageElementType, totalPages: number, selectedPage?: number): void {
         switch (type) {

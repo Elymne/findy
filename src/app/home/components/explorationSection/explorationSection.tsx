@@ -14,7 +14,7 @@ export default function ExplorationSection(): JSX.Element {
 
     useEffect(() => {
         setCurrentCategory(JobCategory.Marketing)
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     function onCategClick(category: JobCategory): void {
         setCurrentCategory(category)

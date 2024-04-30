@@ -3,7 +3,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react"
 import styles from "./searchBar.module.css"
 import Image from "next/image"
-import useCityInputAutoCompletion from "@src/presentation/components/searchBar/useCityInputAutoCompletion"
+import useCityInputAutoCompletion from "@src/components/searchBar/useCityInputAutoCompletion"
 import { CityDatasourceImpl } from "@src/infrastructure/datasources/cityDatasource/city.datasource"
 
 type SearchParams = {

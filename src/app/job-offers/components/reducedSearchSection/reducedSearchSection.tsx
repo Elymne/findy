@@ -1,5 +1,5 @@
 import styles from "./reducedSearchSection.module.css"
-import SearchBar from "@src/presentation/components/searchBar/searchBar"
+import SearchBar from "@src/components/searchBar/searchBar"
 
 type ReducedSearchSectionParams = { keywords: string; cityCode: string }
 export default function ReducedSearchSection({ keywords, cityCode }: ReducedSearchSectionParams): JSX.Element {

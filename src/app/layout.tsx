@@ -1,8 +1,8 @@
 import "./globals.css"
 import type { Metadata } from "next"
 import { Akshar } from "next/font/google"
-import Footer from "@src/presentation/components/footer/footer"
-import Navbar from "@src/presentation/components/navbar/navbar"
+import Footer from "@src/components/footer/footer"
+import Navbar from "@src/components/navbar/navbar"
 
 const akshar = Akshar({
     subsets: ["latin"],
@@ -27,5 +27,5 @@ export default function RootLayout({
 
 export const metadata: Metadata = {
     title: "Findy",
-    description: "Findy ?",
+    description: "Findy",
 }

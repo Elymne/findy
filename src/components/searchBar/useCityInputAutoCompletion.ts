@@ -1,6 +1,6 @@
 import City from "@src/domain/entities/city/city.entity"
 import CityDatasource from "@src/infrastructure/datasources/cityDatasource/city.datasource"
-import { CustomState } from "../../../domain/hooks/futureUseState"
+import { CustomState } from "../../domain/hooks/futureUseState"
 import { useRef, useState } from "react"
 
 export default function useCityInputAutoCompletion(cityDatasource: CityDatasource) {

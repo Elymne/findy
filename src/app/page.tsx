@@ -1,11 +1,5 @@
-import ExplorationSection from "@src/presentation/components-pages/home/explorationSection/explorationSection"
-import SearchSection from "@src/presentation/components-pages/home/searchSection/searchSection"
+import { redirect } from "next/navigation"
 
-export default function Page(): JSX.Element {
-    return (
-        <main>
-            <SearchSection />
-            <ExplorationSection />
-        </main>
-    )
+export default function Page() {
+    redirect("/home")
 }

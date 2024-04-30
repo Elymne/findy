@@ -2,10 +2,10 @@
 
 import styles from "./explorationSection.module.css"
 import { useEffect } from "react"
-import Card from "@src/presentation/components/card/card"
-import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/components/loadingBloc/loadingBloc"
-import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/errorBloc/errorBloc"
-import useJobOffersSample from "@src/presentation/components-pages/home/explorationSection/useJobOffersSample"
+import Card from "@src/components/card/card"
+import LoadingBloc, { LoadingContentStyleMode } from "@src/components/loadingBloc/loadingBloc"
+import ErrorBloc, { ErrorContentStyleMode } from "@src/components/errorBloc/errorBloc"
+import useJobOffersSample from "@src/app/home/components/explorationSection/useJobOffersSample"
 import { JobOfferDatasourceImpl } from "@src/infrastructure/datasources/jobOfferDatasource/jobOffer.datasource"
 import JobCategory from "@src/domain/enums/jobOfferCategory"
 

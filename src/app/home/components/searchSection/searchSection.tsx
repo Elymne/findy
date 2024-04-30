@@ -1,4 +1,4 @@
-import SearchBar from "@src/presentation/components/searchBar/searchBar"
+import SearchBar from "@src/components/searchBar/searchBar"
 import styles from "./searchSection.module.css"
 
 export default function SearchSection(): JSX.Element {

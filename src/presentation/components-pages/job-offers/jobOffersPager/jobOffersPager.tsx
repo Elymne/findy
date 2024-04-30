@@ -1,12 +1,10 @@
 import styles from "./jobOffersPager.module.css"
-import { useContext } from "react"
-import { JobOffersPageContext } from "@src/app/job-offers/page"
 import { useRouter } from "next/navigation"
-import { UseFetchJobOffers } from "@src/app/job-offers/useFetchJobOffers"
+import { useAppContext } from "@src/app/job-offers/appContext"
 
 type JobOffersPagerParams = { keywords: string; cityCode: string; selectedPage: number }
 export default function JobOffersPager({ keywords, cityCode, selectedPage }: JobOffersPagerParams): JSX.Element {
-    const { getState, currentTotalPageNumber } = useContext(JobOffersPageContext) as UseFetchJobOffers
+    const { getState, currentTotalPageNumber } = useAppContext()
     const router = useRouter()
 
     function onClick(type: PageElementType, totalPages: number, selectedPage?: number): void {

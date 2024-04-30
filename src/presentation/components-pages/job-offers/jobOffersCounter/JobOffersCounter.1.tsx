@@ -1,5 +1,5 @@
-import { useAppContext } from "@src/app/job-offers/appContext"
 import styles from "./jobOffersCounter.module.css"
+import { useAppContext } from "@src/app/job-offers/appContext"
 
 export default function JobOffersCounter(): JSX.Element {
     const { getState, currentJobOffers, currentTotalPageNumber } = useAppContext()

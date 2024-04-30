@@ -2,12 +2,10 @@ import styles from "./jobOfferGridview.module.css"
 import Card from "@src/presentation/components/card/card"
 import LoadingBloc, { LoadingContentStyleMode } from "@src/presentation/components/loadingBloc/loadingBloc"
 import ErrorBloc, { ErrorContentStyleMode } from "@src/presentation/components/errorBloc/errorBloc"
-import { useContext } from "react"
-import { JobOffersPageContext } from "@src/app/job-offers/page"
-import { UseFetchJobOffers } from "@src/app/job-offers/useFetchJobOffers"
+import { useAppContext } from "@src/app/job-offers/appContext"
 
 export default function JobOffersGridview(): JSX.Element {
-    const { getState, currentJobOffers } = useContext(JobOffersPageContext) as UseFetchJobOffers
+    const { getState, currentJobOffers } = useAppContext()
 
     return getState({
         onLoading: () => {

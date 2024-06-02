@@ -67,7 +67,7 @@ export default function SearchBar({ keywords, cityCode }: SearchParams): JSX.Ele
                 name="city_choice"
                 id="city_choice"
                 list="city_options"
-                placeholder="Paris, Lion, Nantes..."
+                placeholder="Paris, Lyon, Nantes..."
                 onKeyDown={onKeyDownPressed}
                 onChange={onCityInputChange}
                 defaultValue={initCityName ? initCityName : currentCityInput}

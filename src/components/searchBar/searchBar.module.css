@@ -1,6 +1,5 @@
 #main {
     display: flex;
-    flex-direction: row;
 }
 
 #main input {
@@ -91,8 +90,18 @@
     filter: invert(100%);
 }
 
+#main > button > span {
+    font-weight: bold;
+    font-size: 18;
+    color: #d8d8d8;
+}
+
 /* ? Desktop ? */
 @media (min-width: 1300px) {
+    #main {
+        flex-direction: row;
+    }
+
     #main input {
         padding: 24px 40px;
         font-size: 20px;
@@ -110,6 +119,10 @@
 
 /* ? Small Desktop ? */
 @media (min-width: 1000px) and (max-width: 1300px) {
+    #main {
+        flex-direction: row;
+    }
+
     #main input {
         padding: 20px 40px;
         font-size: 18px;
@@ -127,6 +140,10 @@
 
 /* ? Tablet ? */
 @media (min-width: 600px) and (max-width: 1000px) {
+    #main {
+        flex-direction: row;
+    }
+
     #main input {
         padding: 18px 20px;
         font-size: 16px;
@@ -144,6 +161,26 @@
 
 /* ? Mobile ? */
 @media (max-width: 600px) {
+    #main {
+        flex-direction: column;
+    }
+
+    #main input:nth-child(1) {
+        border-radius: 10px 10px 10px 10px;
+        border-style: none;
+        margin-bottom: 10px;
+    }
+
+    #main input:nth-child(2) {
+        border-radius: 10px 10px 10px 10px;
+        border-style: none;
+        margin-bottom: 10px;
+    }
+
+    #main > button {
+        border-radius: 10px 10px 10px 10px;
+    }
+
     #main input {
         padding: 16px 40px;
         font-size: 14px;
@@ -155,6 +192,6 @@
     }
 
     #main > button {
-        padding: 0px 40px;
+        padding: 10px 40px;
     }
 }

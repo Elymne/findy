@@ -13,6 +13,7 @@ type SearchParams = {
 
 export default function SearchBar({ keywords, cityCode }: SearchParams): JSX.Element {
     const keywordsInput = useRef<string>("")
+    const [innerWidth, setInnerWidth] = useState<number>(0)
     const { currentCities, currentCityInput, initInputText, updateInputText, getState } = useCityInputAutoCompletion(CityDatasourceImpl)
 
     // TODO : Trouver un nom approprié à ce truc.
@@ -20,7 +21,12 @@ export default function SearchBar({ keywords, cityCode }: SearchParams): JSX.Ele
 
     useEffect(() => {
         keywordsInput.current = keywords
+        setInnerWidth(window.innerWidth)
         initInputText(cityCode)
+
+        window.addEventListener("resize", () => {
+            setInnerWidth(window.innerWidth)
+        })
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     function onClick(): void {
@@ -41,13 +47,29 @@ export default function SearchBar({ keywords, cityCode }: SearchParams): JSX.Ele
         }
     }
 
-    function onKeywordInputChange(event: ChangeEvent<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>) {
+    function onKeywordInputChange(event: ChangeEvent<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>): void {
         keywordsInput.current = event.target.value
     }
 
-    function onCityInputChange(event: ChangeEvent<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>) {
+    function onCityInputChange(event: ChangeEvent<HTMLButtonElement | HTMLInputElement | HTMLSelectElement>): void {
         setInitCityName(null)
         updateInputText(event.target.value)
+    }
+
+    function displayButton(): JSX.Element {
+        if (innerWidth > 600) {
+            return (
+                <button onClick={onClick} onKeyDown={onKeyDownPressed}>
+                    <Image src="svg/magnifying_glass.svg" height={30} width={30} alt="Icone de loupe" />
+                </button>
+            )
+        }
+
+        return (
+            <button onClick={onClick} onKeyDown={onKeyDownPressed}>
+                <span>Rechercher</span>
+            </button>
+        )
     }
 
     return (
@@ -99,9 +121,7 @@ export default function SearchBar({ keywords, cityCode }: SearchParams): JSX.Ele
                 },
             })}
 
-            <button onClick={onClick} onKeyDown={onKeyDownPressed}>
-                <Image src="svg/magnifying_glass.svg" height={30} width={30} alt="Icone de loupe" />
-            </button>
+            {displayButton()}
         </div>
     )
 }

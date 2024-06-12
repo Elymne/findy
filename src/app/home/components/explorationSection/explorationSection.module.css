@@ -167,10 +167,9 @@
     }
 
     #content_bloc > ul {
-        height: 500px;
-        flex-direction: row;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        height: 500px;
         gap: 10px;
     }
 }

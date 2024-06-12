@@ -95,13 +95,7 @@ export default function ExplorationSection(): JSX.Element {
 
                 {getState({
                     onLoading: () => {
-                        return (
-                            <ul>
-                                <li key={"loading"}>
-                                    <LoadingBloc value="Chargement du contenu…" styleMode={LoadingContentStyleMode.ligth} />
-                                </li>
-                            </ul>
-                        )
+                        return <LoadingBloc value="Chargement du contenu…" styleMode={LoadingContentStyleMode.ligth} />
                     },
                     onSuccess: () => {
                         return (
@@ -113,13 +107,7 @@ export default function ExplorationSection(): JSX.Element {
                         )
                     },
                     onFailure: () => {
-                        return (
-                            <ul>
-                                <li key={"error"}>
-                                    <ErrorBloc value="Oups, une erreur s'est produite :(" styleMode={ErrorContentStyleMode.ligth} />
-                                </li>
-                            </ul>
-                        )
+                        return <ErrorBloc value="Oups, une erreur s'est produite :(" styleMode={ErrorContentStyleMode.ligth} />
                     },
                 })}
             </div>

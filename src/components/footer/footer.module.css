@@ -12,7 +12,6 @@
     flex-direction: column;
     justify-content: center;
 
-    font-size: 40px;
     font-weight: 800;
     color: white;
     padding-right: 100px;
@@ -26,7 +25,6 @@
 
 #main > section > h1 {
     padding-bottom: 20px;
-    font-size: 22px;
     color: white;
 }
 
@@ -62,7 +60,6 @@
     border-radius: 20px;
 
     font-weight: lighter;
-    font-size: 20px;
     text-align: center;
 
     color: white;
@@ -71,4 +68,84 @@
 #main > section > span > a:hover {
     background-color: white;
     color: #15074f;
+}
+
+@media (min-width: 1300px) {
+    #main {
+        flex-direction: row;
+    }
+
+    #main > h1 {
+        font-size: 40px;
+    }
+
+    #main > section > h1 {
+        font-size: 22px;
+    }
+
+    #main > section > a {
+        font-size: 20px;
+    }
+
+    #main > section > span > a {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1300px) {
+    #main {
+        flex-direction: row;
+    }
+
+    #main > h1 {
+        font-size: 30px;
+    }
+
+    #main > section > h1 {
+        font-size: 20px;
+    }
+
+    #main > section > a {
+        font-size: 18px;
+    }
+
+    #main > section > span > a {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1000px) {
+    #main {
+        flex-direction: row;
+    }
+
+    #main > section > h1 {
+        font-size: 18px;
+    }
+
+    #main > section > a {
+        font-size: 16px;
+    }
+
+    #main > section > span > a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    #main {
+        flex-direction: column;
+    }
+
+    #main > section > h1 {
+        font-size: 18px;
+    }
+
+    #main > section > a {
+        font-size: 16px;
+    }
+
+    #main > section > span > a {
+        font-size: 16px;
+    }
 }

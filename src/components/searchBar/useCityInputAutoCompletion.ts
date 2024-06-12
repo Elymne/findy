@@ -14,6 +14,12 @@ export default function useCityInputAutoCompletion(cityDatasource: CityDatasourc
     async function fetch() {
         try {
             refCities.current = []
+            if (!refCityInput.current) {
+                setState(CustomState.SUCCESS)
+                return
+            }
+
+            refCities.current = []
             setState(CustomState.LOADING)
             refCities.current = await cityDatasource.fetchByName(refCityInput.current)
             setState(CustomState.SUCCESS)
@@ -28,6 +34,11 @@ export default function useCityInputAutoCompletion(cityDatasource: CityDatasourc
         currentCities: refCities.current,
 
         async initInputText(cityCode: string) {
+            if (!cityCode) {
+                setState(CustomState.SUCCESS)
+                return
+            }
+
             try {
                 setState(CustomState.LOADING)
                 const city = await cityDatasource.fetchOneByCode(cityCode)

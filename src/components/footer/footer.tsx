@@ -1,13 +1,35 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import styles from "./footer.module.css"
 
 export default function Footer(): JSX.Element {
-    return (
-        <footer id={styles.main}>
+    const [innerWidth, setInnerWidth] = useState<number>(0)
+
+    useEffect(() => {
+        setInnerWidth(window.innerWidth)
+        window.addEventListener("resize", () => {
+            setInnerWidth(window.innerWidth)
+        })
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+    function displayTitle(): JSX.Element {
+        if (innerWidth <= 1000) {
+            return <></>
+        }
+
+        return (
             <h1>
                 FINDY
                 <br />
                 ALTERNANCE
             </h1>
+        )
+    }
+
+    return (
+        <footer id={styles.main}>
+            {displayTitle()}
 
             <section>
                 <h1>Informations</h1>

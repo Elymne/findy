@@ -1,12 +1,9 @@
 #main {
     display: flex;
-    flex-direction: row;
 }
 
 #main input {
     flex-grow: 1;
-    padding: 24px 40px;
-    font-size: 20px;
     font-weight: 100;
     color: rgb(79, 84, 117);
 
@@ -18,8 +15,6 @@
 
 #main select {
     flex-grow: 1;
-    padding: 24px 40px;
-    font-size: 20px;
     font-weight: 100;
     color: rgb(79, 84, 117);
 
@@ -52,7 +47,6 @@
 #main > button {
     position: relative;
     overflow: hidden;
-    padding: 20px 40px;
     border-color: #d8d8d8;
     border-width: 1px;
     border-style: none;
@@ -94,4 +88,110 @@
 
 #main > button > img {
     filter: invert(100%);
+}
+
+#main > button > span {
+    font-weight: bold;
+    font-size: 18;
+    color: #d8d8d8;
+}
+
+/* ? Desktop ? */
+@media (min-width: 1300px) {
+    #main {
+        flex-direction: row;
+    }
+
+    #main input {
+        padding: 24px 40px;
+        font-size: 20px;
+    }
+
+    #main select {
+        padding: 0px 40px;
+        font-size: 20px;
+    }
+
+    #main > button {
+        padding: 0px 40px;
+    }
+}
+
+/* ? Small Desktop ? */
+@media (min-width: 1000px) and (max-width: 1300px) {
+    #main {
+        flex-direction: row;
+    }
+
+    #main input {
+        padding: 20px 40px;
+        font-size: 18px;
+    }
+
+    #main select {
+        padding: 0px 40px;
+        font-size: 18px;
+    }
+
+    #main > button {
+        padding: 0px 30px;
+    }
+}
+
+/* ? Tablet ? */
+@media (min-width: 600px) and (max-width: 1000px) {
+    #main {
+        flex-direction: row;
+    }
+
+    #main input {
+        padding: 18px 20px;
+        font-size: 16px;
+    }
+
+    #main select {
+        padding: 0px 20px;
+        font-size: 16px;
+    }
+
+    #main > button {
+        padding: 0px 22px;
+    }
+}
+
+/* ? Mobile ? */
+@media (max-width: 600px) {
+    #main {
+        flex-direction: column;
+    }
+
+    #main input:nth-child(1) {
+        border-radius: 10px 10px 10px 10px;
+        border-style: none;
+        margin-bottom: 10px;
+    }
+
+    #main input:nth-child(2) {
+        border-radius: 10px 10px 10px 10px;
+        border-style: none;
+        margin-bottom: 10px;
+    }
+
+    #main > button {
+        border-radius: 10px 10px 10px 10px;
+    }
+
+    #main input {
+        padding: 16px 40px;
+        font-size: 14px;
+    }
+
+    #main select {
+        padding: 0px 40px;
+        font-size: 14px;
+    }
+
+    #main > button {
+        padding: 10px 40px;
+    }
 }

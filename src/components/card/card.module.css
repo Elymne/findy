@@ -116,12 +116,12 @@
 
 @media (min-width: 600px) and (max-width: 1000px) {
     #card > a > img.logo {
-        top: 30px;
+        top: 10px;
         left: 20px;
     }
 
     #card > a > div {
-        padding: 40px 10px 20px 10px;
+        padding: 20px 10px 20px 10px;
     }
 
     #card > a > div > h1 {
@@ -140,4 +140,21 @@
 }
 
 @media (max-width: 600px) {
+    #card > a > div {
+        padding: 0px 10px 10px 10px;
+    }
+
+    #card > a > div > h1 {
+        font-size: 14px;
+        letter-spacing: 0.1px;
+    }
+
+    #card > a > div > h2.company {
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+
+    #card > a > div > h2 {
+        font-size: 14px;
+    }
 }

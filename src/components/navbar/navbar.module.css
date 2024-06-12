@@ -15,7 +15,6 @@
     justify-content: flex-start;
     list-style-type: none;
     margin: 0 auto;
-    width: 1280px;
 }
 
 #navbar > ul > li {
@@ -67,4 +66,28 @@
 
 #navbar > ul > li > a.normalUnderline:focus::after {
     transform: scaleX(0);
+}
+
+@media (min-width: 1300px) {
+    #navbar > ul {
+        width: 1200px;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1300px) {
+    #navbar > ul {
+        width: 900px;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1000px) {
+    #navbar > ul {
+        width: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    #navbar > ul {
+        margin: 0px 20px;
+    }
 }

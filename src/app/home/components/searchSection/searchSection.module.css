@@ -151,7 +151,7 @@
 /* ? Mobile ? */
 @media (max-width: 600px) {
     #content_bloc {
-        padding-top: 160px;
+        padding-top: 100px;
         padding-bottom: 60px;
     }
 

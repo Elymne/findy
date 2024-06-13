@@ -34,7 +34,7 @@
 
 @media (min-width: 1000px) and (max-width: 1300px) {
     #content_bloc {
-        width: 900px;
+        margin: 0px 20px;
     }
 
     #content_bloc > ol {
@@ -45,7 +45,7 @@
 
 @media (min-width: 600px) and (max-width: 1000px) {
     #content_bloc {
-        width: 560px;
+        margin: 0px 20px;
     }
 
     #content_bloc > ol {

@@ -33,7 +33,7 @@
     #content_bloc {
         padding-top: 140px;
         padding-bottom: 60px;
-        width: 900px;
+        margin: 0px 20px;
     }
 }
 
@@ -41,7 +41,7 @@
     #content_bloc {
         padding-top: 100px;
         padding-bottom: 40px;
-        width: 600px;
+        margin: 0px 20px;
     }
 }
 

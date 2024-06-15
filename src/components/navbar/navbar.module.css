@@ -82,12 +82,12 @@
 
 @media (min-width: 600px) and (max-width: 1000px) {
     #navbar > ul {
-        width: 500px;
+        margin: 0px 20px;
     }
 }
 
 @media (max-width: 600px) {
     #navbar > ul {
-        margin: 0px 10px;
+        margin: 0px 20px;
     }
 }

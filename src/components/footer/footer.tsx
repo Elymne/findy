@@ -35,7 +35,7 @@ export default function Footer(): JSX.Element {
                 <h1>Informations</h1>
                 <a href="#">Politique de confidentialité</a>
                 <span>
-                    <a href="#">Mentions légales</a>
+                    <a href="/info/legal-notice">Mentions légales</a>
                     <a href="#">CGU</a>
                 </span>
             </section>

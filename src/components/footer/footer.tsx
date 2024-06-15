@@ -33,18 +33,18 @@ export default function Footer(): JSX.Element {
 
             <section>
                 <h1>Informations</h1>
-                <a href="#">Politique de confidentialité</a>
+                <a href="/info/privacy">Politique de confidentialité</a>
                 <span>
                     <a href="/info/legal-notice">Mentions légales</a>
-                    <a href="#">CGU</a>
+                    <a href="/info/cgu">CGU</a>
                 </span>
             </section>
             <section>
                 <h1>A propos</h1>
-                <a href="#">Qui sommes-nous ?</a>
+                <a href="/info/who">Qui sommes-nous ?</a>
                 <span>
-                    <a href="#">Le concept</a>
-                    <a href="#">Offres d&apos;alternance</a>
+                    <a href="/info/concept">Le concept</a>
+                    <a href="/job-offers">Offres d&apos;alternance</a>
                 </span>
             </section>
         </footer>

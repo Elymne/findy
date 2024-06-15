@@ -10,42 +10,20 @@ export default function Page(): JSX.Element {
                 <section>
                     <h1>Editeur</h1>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        Findy Alternance est un projet à but non lucratif créé par deux associés dans le but d'aider les jeunes étudiants à
+                        trouver facilement une alternances sans que celle-ci ne provienne d' une école privé dans un contexte où la plupart
+                        des offres d'alternances trouvables sur les sites de recherches d'emplois en sont remplis. Il s'agit tout simplement
+                        d'un agrégateur d'offres d'emplois répertoriant une liste non exaustive d'offres d'emplois issues de plusieurs
+                        plateformes.
                     </p>
                     <ul>
-                        <li>Nom commercial : Findy-Alternance</li>
-                        <li>Quelque part dans une rue - 44120 Nantes, France</li>
-                        <li>Téléphone : +33 00 00 00 00</li>
-                        <li>Email : badibux@outlook.com</li>
-                    </ul>
-                    <ul>
-                        <li>N° de SIREN : 123 456 789</li>
-                        <li>TVA : pas de TVA mdr</li>
-                        <li>Code qui n'existe pas ?</li>
+                        <li>Nom de l'association : Findy-Alternance</li>
+                        <li>Email : findy.alternance@outlook.fr</li>
                     </ul>
                 </section>
                 <section>
                     <h1>Hébergeur</h1>
-
-                    <p>Le site fin-alternance.com est hébergé par vercel.com</p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <ul>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    </ul>
-                    <ul>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    </ul>
+                    <p>Le site findy-alternance.com est hébergé par la plateforme Vercel.</p>
                 </section>
             </div>
         </main>

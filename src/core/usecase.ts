@@ -1,20 +1,17 @@
-export interface Usecase<P> {
-  perform: (params: P) => Promise<Result>
+export interface Usecase<D, P> {
+  perform(params: P): Promise<Result<D>>
 }
 
-export interface UsecaseNoParams {
-  perform: () => Promise<Result>
+export interface UsecaseNoParams<D> {
+  perform(): Promise<Result<D>>
 }
 
-export interface Result {
+export interface Result<D> {
   logMessage: string
-}
-
-export interface Success<D> extends Result {
   data: D
 }
 
-export interface Failure<E> extends Result {
+export interface Failure<D> extends Result<D> {
   code: number
-  error: E
+  exception: string | null
 }

@@ -1,6 +1,5 @@
 export default interface SearchOffers {
-  title: string
-  zone: string
+  keyWords: string
+  codeZone: string
   distance: number | null
-  date: Date | null
 }

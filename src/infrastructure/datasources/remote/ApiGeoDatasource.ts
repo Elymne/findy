@@ -1,5 +1,5 @@
 import type Zone from '@/domain/models/results/Zone.result'
-import type { CityRepository } from '@/domain/repositories/CityRepository'
+import type { ZoneRepository } from '@/domain/repositories/ZoneRepository'
 import axios, { type AxiosRequestConfig } from 'axios'
 
 const baseUrl = 'https://geo.api.gouv.fr'
@@ -13,7 +13,7 @@ interface GeoApiModel {
   }
 }
 
-export const ApiGeoDatasource: CityRepository = {
+export const ApiGeoDatasource: ZoneRepository = {
   findManyByName: async function (name: string): Promise<Zone[]> {
     const url = `${baseUrl}/communes`
     const options: AxiosRequestConfig = {

@@ -50,7 +50,7 @@ export const FranceTravailDatasource: OfferRepository = {
     const url = `${baseUrl}/v2/offres/search`
     const options: AxiosRequestConfig = {
       headers: {
-        Authorization: `Bearer ${process.env.FRANCE_TRAVAIL_API_KEY}`,
+        Authorization: `Bearer ${import.meta.env.VUE_APP_FRANCE_TRAVAIL_API_KEY}`,
         Accept: 'application/json',
       },
       params: {
@@ -84,7 +84,7 @@ export const FranceTravailDatasource: OfferRepository = {
     const url = `${baseUrl}/v2/offres/${id}`
     const options: AxiosRequestConfig = {
       headers: {
-        Authorization: `Bearer ${process.env.FRANCE_TRAVAIL_API_KEY}`,
+        Authorization: `Bearer ${import.meta.env.VUE_APP_FRANCE_TRAVAIL_API_KEY}`,
         Accept: 'application/json',
       },
     }

@@ -3,7 +3,7 @@ import { FranceTravailDatasource } from '../datasources/remote/FranceTravailData
 import { Container } from './Container'
 import { IName } from './IName'
 
-export function buildContainer() {
+export default function buildContainer() {
   buildRepositories()
   buildUsecases()
 }

@@ -1,5 +1,5 @@
 import type Zone from '@/domain/models/results/Zone.result'
-import type { ZoneRepository } from '@/domain/repositories/ZoneRepository'
+import type ZoneRepository from '@/domain/repositories/ZoneRepository'
 import axios, { type AxiosRequestConfig } from 'axios'
 
 const baseUrl = 'https://geo.api.gouv.fr'

@@ -1,6 +1,6 @@
-import type Company from './Company.result'
-import type Skill from './Skill.result'
-import type Zone from './Zone.result'
+import type Company from './Company.model'
+import type Skill from './Skill.model'
+import type Zone from './Zone.model'
 
 export default interface DetailedOffer {
   title: string

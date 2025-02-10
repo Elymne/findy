@@ -1,0 +1,58 @@
+import type Offer from '@/models/Offer.model'
+import type { AxiosRequestConfig } from 'axios'
+import axios from 'axios'
+import { reactive } from 'vue'
+
+export enum Status {
+  NONE,
+  LOADING,
+  SUCCESS,
+  FAILURE,
+}
+
+interface SampleState {
+  status: Status
+  data: Offer[] | undefined | null
+  fetchSample(code: SampleCode): Promise<void>
+}
+
+const SampleStateImpl = reactive<SampleState>({
+  status: Status.NONE,
+  data: [],
+  fetchSample: async function (code: SampleCode): Promise<void> {
+    try {
+      this.status = Status.LOADING
+      const options: AxiosRequestConfig = {
+        method: 'GET',
+        url: `${import.meta.env.VITE_API_URL}/offers/sample`,
+        headers: {
+          Accept: 'application/json',
+        },
+        params: {
+          code: code,
+        },
+      }
+
+      const response = await axios.request(options)
+
+      if (response.status == 200 || response.status == 204) {
+        this.data = response.data
+        this.status = Status.SUCCESS
+        return
+      }
+
+      this.data = null
+      this.status = Status.FAILURE
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_) {
+      this.data = null
+      this.status = Status.FAILURE
+    }
+  },
+})
+
+export enum SampleCode {
+  DEVELOP = 1,
+}
+
+export default SampleStateImpl

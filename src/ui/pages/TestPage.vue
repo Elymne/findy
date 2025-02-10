@@ -1,28 +1,17 @@
 <script setup lang="ts">
-import type OfferRepository from '@/domain/repositories/OfferRepository'
-import { Container } from '@/infrastructure/di/Container'
-import { IName } from '@/infrastructure/di/IName'
-import { onBeforeMount, ref } from 'vue'
-import type Offer from '@/domain/models/results/Offer.result'
-
-const offerRepository: OfferRepository = Container.get(IName.OfferRepository) as OfferRepository
-const bidule = ref<Offer[]>([])
+import SampleStateImpl, { SampleCode, Status } from '@/states/SampleState'
+import { onBeforeMount } from 'vue'
 
 onBeforeMount(async () => {
-  console.log(bidule)
-
-  bidule.value = await offerRepository.findManyBySearch({
-    keyWords: 'Dev',
-    codeZone: '',
-    distance: null,
-  })
-
-  console.log(bidule)
+  await SampleStateImpl.fetchSample(SampleCode.DEVELOP)
+  console.log(SampleStateImpl.data)
 })
 </script>
 
 <template>
   <main>
-    <h1>Testons…</h1>
+    <h1 v-if="SampleStateImpl.status == Status.LOADING">Chargement…</h1>
+    <h1 v-if="SampleStateImpl.status == Status.FAILURE">Echec</h1>
+    <h1 v-if="SampleStateImpl.status == Status.SUCCESS">Succès du chargement</h1>
   </main>
 </template>

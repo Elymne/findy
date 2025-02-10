@@ -1,4 +1,4 @@
-import type Offer from './Offer.result'
+import type Offer from './Offer.model'
 
 export default interface Offers {
   jobs: Offer[]

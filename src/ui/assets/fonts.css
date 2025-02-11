@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'lexend';
-  src: url('./fonts/lexend/LexendTera-Thin.ttf');
+  src: url('./fonts/lexend/LexendTera-Regular.ttf');
 }
 
 @font-face {
@@ -31,14 +31,14 @@ h1 {
   font-family: 'quicksand-bold';
   font-size: 1.96rem;
   font-weight: normal;
-  margin: 0.2rem 0;
+  padding: 0.2rem 0;
 }
 
 h2 {
   font-family: 'quicksand-semibold';
   font-size: 1.44rem;
   font-weight: normal;
-  margin: 0.1rem 0;
+  padding: 0.1rem 0;
 }
 
 label,
@@ -55,15 +55,10 @@ a {
 
 a {
   color: rgb(28, 55, 173);
-
-  transition-property: font-size;
-  transition-duration: 0.2s;
-  transition-delay: 0s;
 }
 
 a:hover {
   background: transparent !important;
   color: rgb(68, 98, 233);
   cursor: pointer;
-  font-size: 0.98rem;
 }

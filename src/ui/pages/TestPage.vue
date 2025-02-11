@@ -11,9 +11,7 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <main>
-    <h1 v-if="SampleState.status == Status.LOADING">Chargement…</h1>
-    <h1 v-if="SampleState.status == Status.FAILURE">Echec</h1>
-    <h1 v-if="SampleState.status == Status.SUCCESS">Succès du chargement</h1>
-  </main>
+  <h1 v-if="SampleState.status == Status.LOADING">Chargement…</h1>
+  <h1 v-if="SampleState.status == Status.FAILURE">Echec</h1>
+  <h1 v-if="SampleState.status == Status.SUCCESS">Succès du chargement</h1>
 </template>

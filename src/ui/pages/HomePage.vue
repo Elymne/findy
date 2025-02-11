@@ -1,9 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ImageBlock from '../components/ImageBlock.vue'
+</script>
 
 <template>
-  <main>
-    <h1>Heading</h1>
-    <h2>Sub-heading</h2>
-    <p>Body text yes, super, j'adore les baguettes.</p>
-  </main>
+  <ImageBlock />
 </template>

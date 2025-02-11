@@ -1,25 +1,20 @@
+import { Status } from '@/core/Status'
 import type Offer from '@/models/Offer.model'
+import type { SampleCode } from '@/models/SampleCode.enum'
 import type { AxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import { reactive } from 'vue'
 
-export enum Status {
-  NONE,
-  LOADING,
-  SUCCESS,
-  FAILURE,
-}
-
-interface SampleState {
+interface SampleStateI {
   status: Status
-  data: Offer[] | undefined | null
-  fetchSample(code: SampleCode): Promise<void>
+  data: Offer[] | null
+  fetch(code: SampleCode): Promise<void>
 }
 
-const SampleStateImpl = reactive<SampleState>({
+export const SampleState = reactive<SampleStateI>({
   status: Status.NONE,
   data: [],
-  fetchSample: async function (code: SampleCode): Promise<void> {
+  fetch: async function (code: SampleCode): Promise<void> {
     try {
       this.status = Status.LOADING
       const options: AxiosRequestConfig = {
@@ -50,9 +45,3 @@ const SampleStateImpl = reactive<SampleState>({
     }
   },
 })
-
-export enum SampleCode {
-  DEVELOP = 1,
-}
-
-export default SampleStateImpl

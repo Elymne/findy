@@ -1,13 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SearchBar from './SearchBar.vue'
+</script>
 
 <template>
-  <section>
+  <section id="image-block">
     <div>
       <h1>TROUVEZ VOTRE ALTERNANCE EN QUELQUES CLICS</h1>
       <h2>
         Pas d’écoles de commerce, uniquement des entreprises qui recherchent leurs futurs alternants
         !
       </h2>
+      <SearchBar />
     </div>
   </section>
 </template>
@@ -19,7 +22,8 @@
   }
 
   h1,
-  h2 {
+  h2,
+  #search-bar {
     width: 1200px;
     margin: 0 auto;
   }
@@ -27,23 +31,41 @@
 
 @media (max-width: 1280px) and (min-width: 780px) {
   div {
-    padding: 100px 30px;
+    padding: 100px 0px;
+  }
+
+  h1,
+  h2,
+  #search-bar {
+    margin: auto 40px;
   }
 }
 
 @media (max-width: 780px) and (min-width: 480px) {
   div {
-    padding: 100px 30px;
+    padding: 100px 0px;
+  }
+
+  h1,
+  h2,
+  #search-bar {
+    margin: auto 20px;
   }
 }
 
 @media (max-width: 480px) {
   div {
-    padding: 40px 20px;
+    padding: 40px 0px;
+  }
+
+  h1,
+  h2,
+  #search-bar {
+    margin: auto 4px;
   }
 }
 
-section {
+#image-block {
   position: fixed;
   width: 100vw;
   left: 0px;
@@ -55,6 +77,10 @@ section {
 div {
   width: 100vw;
   animation: shade_in 1s cubic-bezier(0, 0, 0.2, 1) 0s 1 normal forwards;
+}
+
+#search-bar {
+  margin-top: 60px;
 }
 
 @keyframes shade_in {

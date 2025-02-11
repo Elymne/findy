@@ -56,12 +56,16 @@ header > nav > ul {
 }
 
 header > nav > ul > li > a {
+  position: relative;
   text-decoration: none;
 
   font-family: 'lexend';
+  color: rgb(59, 59, 59);
   font-size: 1.4rem;
   letter-spacing: 0px;
+}
 
-  color: rgb(48, 48, 48);
+header > nav > ul > li > a:hover {
+  color: rgb(102, 102, 102);
 }
 </style>

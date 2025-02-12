@@ -49,14 +49,19 @@ div {
 }
 
 input:focus {
-  background-color: rgb(255, 255, 255);
-  color: rgb(95, 106, 182);
-  outline: none;
+  background-color: rgb(244, 246, 255);
+  color: rgb(70, 87, 197);
+  outline: solid 1px rgb(76, 93, 201);
 }
 
 button:hover {
   cursor: pointer;
   background-color: rgb(104, 124, 240);
+}
+
+button:focus {
+  background-color: rgb(104, 124, 240);
+  outline: solid 1px rgb(76, 93, 201);
 }
 
 @media (min-width: 780px) {
@@ -73,7 +78,6 @@ button:hover {
     border: none;
 
     padding: 16px;
-    transition: border-color 0.2s ease-in;
   }
 
   input:nth-child(1) {
@@ -88,7 +92,6 @@ button:hover {
     border-radius: 0px 10px 10px 0px;
 
     background-color: rgb(84, 102, 202);
-    transition: background-color 0.2s;
   }
 
   button > p {

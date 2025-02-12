@@ -4,7 +4,7 @@ defineProps(['title', 'company', 'companyLogo', 'zone', 'JobTitle', 'date'])
 
 <template>
   <article>
-    <a>
+    <a tabindex="0">
       <img class="top-image" src="./../assets/images/background_top.jpg" />
       <div>
         <h2>{{ title }}</h2>
@@ -29,12 +29,18 @@ a {
   background-color: #ffffff;
 
   transition: transform 0.2s ease-in-out;
+  user-select: none;
 }
 
 a:hover {
   transform: scale(0.94);
   background: #ffffff !important;
   border: 1px solid #cacaca;
+}
+
+a:focus {
+  transform: scale(0.94);
+  background: #ffffff !important;
 }
 
 img.top-image {

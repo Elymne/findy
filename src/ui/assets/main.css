@@ -22,6 +22,11 @@ main {
   flex: 1;
 }
 
+*:focus {
+  color: rgb(70, 87, 197);
+  outline: solid 1px rgb(76, 93, 201);
+}
+
 @media (min-width: 1280px) {
   * {
     font-size: 21px;

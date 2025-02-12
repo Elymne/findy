@@ -48,7 +48,8 @@ input {
 }
 
 p,
-a {
+a,
+button {
   font-family: 'quicksand';
   font-size: 1rem;
 }

@@ -9,7 +9,7 @@ export default interface Offer {
 
   tags: string[]
 
-  createdAt: Date
-  updateAt: Date | null
+  createdAt: string
+  updateAt: string | null
   imgUrl: string | null
 }

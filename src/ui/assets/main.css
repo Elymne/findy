@@ -22,18 +22,12 @@ main {
   flex: 1;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
 @media (min-width: 1280px) {
   * {
     font-size: 21px;
   }
 
-  main {
+  section.responsive {
     width: 1200px;
     margin: 0 auto;
   }
@@ -44,7 +38,7 @@ main {
     font-size: 18px;
   }
 
-  main {
+  section.responsive {
     margin: 0 20px;
   }
 }
@@ -54,7 +48,7 @@ main {
     font-size: 16px;
   }
 
-  main {
+  section.responsive {
     margin: 0 10px;
   }
 }
@@ -64,7 +58,7 @@ main {
     font-size: 14px;
   }
 
-  main {
+  section.responsive {
     margin: 0 4px;
   }
 }

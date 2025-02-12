@@ -4,7 +4,7 @@ import SearchBar from './SearchBar.vue'
 
 <template>
   <section id="image-block">
-    <div>
+    <div id="fade-in">
       <h1>TROUVEZ VOTRE ALTERNANCE EN QUELQUES CLICS</h1>
       <h2>
         Pas d’écoles de commerce, uniquement des entreprises qui recherchent leurs futurs alternants
@@ -17,7 +17,7 @@ import SearchBar from './SearchBar.vue'
 
 <style scoped>
 @media (min-width: 1280px) {
-  div {
+  #fade-in {
     padding: 100px 0;
   }
 
@@ -27,10 +27,14 @@ import SearchBar from './SearchBar.vue'
     width: 1200px;
     margin: 0 auto;
   }
+
+  #search-bar {
+    margin-top: 60px;
+  }
 }
 
 @media (max-width: 1280px) and (min-width: 780px) {
-  div {
+  #fade-in {
     padding: 100px 0px;
   }
 
@@ -39,10 +43,14 @@ import SearchBar from './SearchBar.vue'
   #search-bar {
     margin: auto 40px;
   }
+
+  #search-bar {
+    margin-top: 40px;
+  }
 }
 
 @media (max-width: 780px) and (min-width: 480px) {
-  div {
+  #fade-in {
     padding: 100px 0px;
   }
 
@@ -51,22 +59,32 @@ import SearchBar from './SearchBar.vue'
   #search-bar {
     margin: auto 20px;
   }
+
+  #search-bar {
+    margin-top: 10px;
+  }
 }
 
 @media (max-width: 480px) {
-  div {
+  #fade-in {
     padding: 40px 0px;
   }
 
-  h1,
-  h2,
   #search-bar {
-    margin: auto 4px;
+    margin: auto 10px;
+    margin-top: 10px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  h2 {
+    display: none;
   }
 }
 
 #image-block {
-  position: fixed;
   width: 100vw;
   left: 0px;
 
@@ -74,7 +92,7 @@ import SearchBar from './SearchBar.vue'
   background-size: cover;
 }
 
-div {
+#fade-in {
   width: 100vw;
   animation: shade_in 1s cubic-bezier(0, 0, 0.2, 1) 0s 1 normal forwards;
 }
@@ -105,7 +123,6 @@ h2 {
 
 #search-bar {
   opacity: 0;
-  margin-top: 60px;
   animation: fade_in_translate 1s cubic-bezier(0, 0, 0.2, 1) 0.6s 1 forwards;
 }
 

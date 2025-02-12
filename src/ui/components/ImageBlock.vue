@@ -79,10 +79,6 @@ div {
   animation: shade_in 1s cubic-bezier(0, 0, 0.2, 1) 0s 1 normal forwards;
 }
 
-#search-bar {
-  margin-top: 60px;
-}
-
 @keyframes shade_in {
   from {
     background-color: rgba(0, 0, 0, 0);
@@ -105,6 +101,12 @@ h1 {
 h2 {
   opacity: 0;
   animation: fade_in_translate 1s cubic-bezier(0, 0, 0.2, 1) 0.4s 1 forwards;
+}
+
+#search-bar {
+  opacity: 0;
+  margin-top: 60px;
+  animation: fade_in_translate 1s cubic-bezier(0, 0, 0.2, 1) 0.6s 1 forwards;
 }
 
 @keyframes fade_in_translate {

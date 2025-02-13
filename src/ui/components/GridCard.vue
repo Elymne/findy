@@ -57,6 +57,18 @@ img.top-image {
   object-fit: cover;
 }
 
+@media (min-width: 780px) {
+  img.top-image {
+    height: 140px;
+  }
+}
+
+@media (max-width: 780px) {
+  img.top-image {
+    height: 80px;
+  }
+}
+
 div {
   padding: 0 10px 10px 10px;
 }

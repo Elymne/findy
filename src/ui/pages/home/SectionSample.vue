@@ -35,7 +35,7 @@ onBeforeMount(async () => {
 
 <style scoped>
 h1 {
-  width: 100vw;
+  width: 90vw;
   margin-top: 40px;
   margin-bottom: 40px;
 }

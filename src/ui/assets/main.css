@@ -44,7 +44,6 @@ main {
   }
 
   section.responsive {
-    width: 100vw;
     margin: 0 20px;
   }
 }
@@ -55,7 +54,6 @@ main {
   }
 
   section.responsive {
-    width: 100vw;
     margin: 0 10px;
   }
 }
@@ -66,7 +64,6 @@ main {
   }
 
   section.responsive {
-    width: 100vw;
     margin: 0 4px;
   }
 }

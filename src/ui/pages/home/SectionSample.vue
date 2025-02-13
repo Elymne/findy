@@ -35,6 +35,7 @@ onBeforeMount(async () => {
 
 <style scoped>
 h1 {
+  width: 100vw;
   margin-top: 40px;
   margin-bottom: 40px;
 }
@@ -44,9 +45,6 @@ h1 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
-  }
-
-  #offer-button {
   }
 }
 

@@ -8,7 +8,7 @@ import Card from '@/ui/components/GridCard.vue'
 import Button from '@/ui/components/CustomButton.vue'
 
 onBeforeMount(async () => {
-  await SampleState.fetch(SampleCode.DEVELOP)
+  SampleState.fetch(SampleCode.DEVELOP)
 })
 </script>
 
@@ -23,6 +23,7 @@ onBeforeMount(async () => {
         :company="offer.company"
         :zone="offer.zone"
         :date="offer.updateAt ?? offer.createdAt"
+        :redirect="'#'"
       />
     </div>
     <Button
@@ -30,6 +31,7 @@ onBeforeMount(async () => {
       :text="`Voir les offres`"
       :onClick="() => console.log('MERDE ALORS')"
     />
+    <hr />
   </section>
 </template>
 
@@ -48,10 +50,6 @@ onBeforeMount(async () => {
 }
 
 @media (max-width: 1280px) and (min-width: 780px) {
-  #search-bar {
-    margin-top: 40px;
-  }
-
   section {
     margin: auto 40px;
   }
@@ -61,19 +59,11 @@ onBeforeMount(async () => {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
   }
-
-  h1 {
-    margin: auto 20px;
-  }
 }
 
 @media (max-width: 780px) and (min-width: 480px) {
-  section {
-    margin: auto 0;
-  }
-
   h1 {
-    margin: auto 20px;
+    margin-left: 20px;
   }
 
   #grid-offers {
@@ -86,8 +76,16 @@ onBeforeMount(async () => {
   }
 
   #grid-offers > a {
-    padding: 0 4px;
+    padding-right: 4px;
     flex: 0 0 300px;
+  }
+
+  #grid-offers > a:first-child {
+    padding-left: 20px;
+  }
+
+  #grid-offers > a:last-child {
+    padding-right: 20px;
   }
 }
 
@@ -110,13 +108,25 @@ onBeforeMount(async () => {
   }
 
   #grid-offers > a {
-    padding: 0 4px;
+    padding-right: 4px;
     flex: 0 0 260px;
+  }
+
+  #grid-offers > a:first-child {
+    padding-left: 4px;
+  }
+
+  #grid-offers > a:last-child {
+    padding-right: 4px;
   }
 }
 
 h1 {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+hr {
+  margin: 20px 0;
 }
 </style>

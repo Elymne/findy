@@ -13,7 +13,7 @@
   </header>
 </template>
 
-<style>
+<style scoped>
 @media (min-width: 1280px) {
   nav {
     width: 1200px;
@@ -45,7 +45,7 @@ header {
   flex-direction: column;
 }
 
-header > hr {
+hr {
   border-bottom: 1px solid rgb(48, 48, 48);
   border-top: none;
 }

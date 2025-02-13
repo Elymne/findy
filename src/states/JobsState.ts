@@ -1,0 +1,43 @@
+import { Status } from '@/core/Status'
+import type Job from '@/models/Job.module'
+import type { AxiosRequestConfig } from 'axios'
+import axios from 'axios'
+import { reactive } from 'vue'
+
+interface JobsStateI {
+  status: Status
+  data: Job[] | null
+  fetch(): Promise<void>
+}
+
+export const JobsState = reactive<JobsStateI>({
+  status: Status.NONE,
+  data: [],
+  fetch: async function (): Promise<void> {
+    try {
+      this.status = Status.LOADING
+      const options: AxiosRequestConfig = {
+        method: 'GET',
+        url: `${import.meta.env.VITE_API_URL}/jobs`,
+        headers: {
+          Accept: 'application/json',
+        },
+      }
+
+      const response = await axios.request<Job[]>(options)
+
+      if (response.status == 200 || response.status == 204) {
+        this.data = response.data.slice(0, 14)
+        this.status = Status.SUCCESS
+        return
+      }
+
+      this.data = null
+      this.status = Status.FAILURE
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_) {
+      this.data = null
+      this.status = Status.FAILURE
+    }
+  },
+})

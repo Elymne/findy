@@ -49,7 +49,7 @@ button::after {
   background: rgba(224, 224, 224, 0.2);
   top: -50px;
   height: 160px;
-  left: -80%;
+  left: -100%;
   transform: rotate(30deg);
   width: 100px;
   transition: left 0.2s ease-in;

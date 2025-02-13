@@ -10,7 +10,7 @@ const sDate = new Date(date)
 
 <template>
   <a>
-    <article class="card-component" tabindex="0">
+    <article tabindex="0">
       <img class="top-image" src="./../assets/images/background_top.jpg" />
       <div>
         <p class="title">{{ title }}</p>

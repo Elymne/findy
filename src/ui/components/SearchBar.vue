@@ -88,7 +88,7 @@ button:focus {
   }
 
   button {
-    flex-grow: 0.4;
+    width: 100px;
     border: none;
 
     border-radius: 0px 10px 10px 0px;

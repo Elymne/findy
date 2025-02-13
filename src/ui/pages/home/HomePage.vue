@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ImageBlock from '@/ui/components/ImageBlock.vue'
-import QuickLookBlock from '@/ui/components/QuickLookBlock.vue'
+import SectionHeader from '@/ui/pages/home/SectionHeader.vue'
+import SectionSample from '@/ui/pages/home/SectionSample.vue'
 </script>
 
 <template>
-  <ImageBlock />
-  <QuickLookBlock />
+  <SectionHeader />
+  <SectionSample />
 </template>

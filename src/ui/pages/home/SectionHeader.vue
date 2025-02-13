@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SearchBar from './SearchBar.vue'
+import SearchBar from '@/ui/components/SearchBar.vue'
 </script>
 
 <template>
@@ -88,7 +88,7 @@ import SearchBar from './SearchBar.vue'
   width: 100vw;
   left: 0px;
 
-  background-image: url('./../assets/images/background_top.jpg');
+  background-image: url('../../assets/images/background_top.jpg');
   background-size: cover;
 }
 

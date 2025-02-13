@@ -4,8 +4,8 @@ import { SampleState } from '@/states/SampleState'
 import { Status } from '@/core/Status'
 import { onBeforeMount } from 'vue'
 
-import Card from './CardComponent.vue'
-import Button from './CustomButton.vue'
+import Card from '@/ui/components/CardComponent.vue'
+import Button from '@/ui/components/CustomButton.vue'
 
 onBeforeMount(async () => {
   await SampleState.fetch(SampleCode.DEVELOP)

@@ -54,13 +54,18 @@ input:focus {
   outline: solid 1px rgb(76, 93, 201);
 }
 
+button {
+  cursor: pointer;
+  background-color: rgb(100, 106, 136);
+}
+
 button:hover {
   cursor: pointer;
-  background-color: rgb(104, 124, 240);
+  background-color: rgb(146, 157, 218);
 }
 
 button:focus {
-  background-color: rgb(104, 124, 240);
+  background-color: rgb(146, 157, 218);
   outline: solid 1px rgb(76, 93, 201);
 }
 
@@ -72,11 +77,8 @@ button:focus {
   input {
     flex-grow: 1;
     font-weight: 100;
-    color: rgb(79, 84, 117);
-    background-color: rgb(250, 250, 250);
 
     border: none;
-
     padding: 16px;
   }
 
@@ -90,8 +92,6 @@ button:focus {
     border: none;
 
     border-radius: 0px 10px 10px 0px;
-
-    background-color: rgb(84, 102, 202);
   }
 
   button > p {
@@ -117,9 +117,6 @@ button:focus {
     font-weight: 100;
     width: 90vw;
 
-    color: rgb(79, 84, 117);
-    background-color: rgb(250, 250, 250);
-
     border: none;
     border-radius: 10px;
 
@@ -129,8 +126,6 @@ button:focus {
   button {
     margin-top: 20px;
     padding: 20px 40px;
-
-    background-color: rgb(84, 102, 202);
 
     border: none;
     border-radius: 40px;

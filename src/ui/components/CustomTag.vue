@@ -23,6 +23,7 @@ p {
   color: rgb(39, 39, 39);
 
   text-decoration: none;
+  font-size: 0.9rem;
 }
 
 a:hover,

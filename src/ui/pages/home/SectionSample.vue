@@ -62,7 +62,8 @@ onBeforeMount(async () => {
 }
 
 @media (max-width: 780px) and (min-width: 480px) {
-  h1 {
+  h1,
+  #offer-button {
     margin-left: 20px;
   }
 
@@ -94,7 +95,8 @@ onBeforeMount(async () => {
     margin: auto 0;
   }
 
-  h1 {
+  h1,
+  #offer-button {
     margin: auto 4px;
   }
 

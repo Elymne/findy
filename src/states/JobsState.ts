@@ -27,7 +27,7 @@ export const JobsState = reactive<JobsStateI>({
       const response = await axios.request<Job[]>(options)
 
       if (response.status == 200 || response.status == 204) {
-        this.data = response.data.slice(0, 14)
+        this.data = response.data.slice(0, 20)
         this.status = Status.SUCCESS
         return
       }

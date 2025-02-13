@@ -37,7 +37,7 @@ onBeforeMount(async () => {
       </li>
     </ul>
     <Button
-      id="offer-button"
+      id="job-button"
       :text="`Voir tous les secteurs`"
       :onClick="() => console.log('MERDE ALORS')"
     />
@@ -64,7 +64,8 @@ hr {
 }
 
 #list-job > li {
-  margin: 10px 6px;
+  margin-bottom: 16px;
+  margin-right: 10px;
 }
 
 @media (min-width: 1280px) {
@@ -101,8 +102,11 @@ hr {
     margin: auto 0;
   }
 
-  h1 {
-    margin: auto 20px;
+  h1,
+  #list-job,
+  #job-button {
+    margin-right: 20px;
+    margin-left: 20px;
   }
 
   #grid-job {
@@ -113,10 +117,6 @@ hr {
     margin: 0 20px;
     padding-bottom: 40px;
   }
-
-  #list-job {
-    display: none;
-  }
 }
 
 @media (max-width: 480px) {
@@ -124,7 +124,9 @@ hr {
     margin: auto 0;
   }
 
-  h1 {
+  h1,
+  #list-job,
+  #job-button {
     margin: auto 4px;
   }
 
@@ -135,10 +137,6 @@ hr {
 
     margin: 0 20px;
     padding-bottom: 40px;
-  }
-
-  #list-job {
-    display: none;
   }
 }
 </style>

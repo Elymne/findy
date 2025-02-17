@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { SearchZoneState } from '@/states/SearchZoneState.reactive'
+import { computed, onBeforeMount, ref } from 'vue'
 
 const props = defineProps<{
   keywordsProp: string | null
@@ -7,15 +8,28 @@ const props = defineProps<{
 }>()
 
 const keyWords = ref<string>(props.keywordsProp ?? '')
+const keyWordsChange = computed({
+  get: () => keyWords.value,
+  set: (val) => {
+    keyWords.value = val
+  },
+})
+
 const zone = ref<string>(props.zoneProp ?? '')
+const zoneComputed = computed({
+  get: () => zone.value,
+  set: (val) => {
+    zone.value = val
+    SearchZoneState.onUpdate(val)
+  },
+})
 
-function carotte(payload: MouseEvent) {
-  console.log(payload)
-  console.log('Clicked!')
-}
+onBeforeMount(() => {
+  SearchZoneState.onInit(props.zoneProp ?? '')
+})
 
-function change() {
-  console.log('New val !')
+function onClick() {
+  console.log(SearchZoneState.data?.find((elem) => elem.name == zone.value))
 }
 </script>
 
@@ -25,23 +39,25 @@ function change() {
       type="text"
       name="keywords-input"
       id="keywords-input"
-      v-model="keyWords"
+      v-model="keyWordsChange"
       placeholder="Rechercher ton métier"
     />
     <input
-      @keypress="change"
       type="text"
       name="zone-input"
       id="zone-input"
       list="zone-options"
-      v-model="zone"
+      v-model="zoneComputed"
       placeholder="Où ?"
     />
     <datalist id="zone-options">
-      <option key="1" value="Tartine au beurre"></option>
-      <option key="2" value="Tartine au caca"></option>
+      <option
+        v-for="zone in SearchZoneState.data"
+        :key="zone.postalCode"
+        :value="zone.name"
+      ></option>
     </datalist>
-    <button @click="carotte">
+    <button @click="onClick">
       <img src="./../assets/svg/magnifying_glass.svg" alt="Icone de loupe" />
       <p>Rechercher</p>
     </button>

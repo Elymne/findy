@@ -4,11 +4,11 @@ import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
 import { reactive } from 'vue'
 
-interface SearchBarStateI {
+interface SearchZoneStateI {
   status: Status
   data: Zone[] | null
-  onInit(text: string): Promise<void>
-  onUpdate(text: string): Promise<void>
+  onInit(text: string | null): Promise<void>
+  onUpdate(text: string | null): Promise<void>
 }
 
 async function fetch(text: string): Promise<AxiosResponse<Zone[]>> {
@@ -27,7 +27,7 @@ async function fetch(text: string): Promise<AxiosResponse<Zone[]>> {
 
 let refTimeout: NodeJS.Timeout | null = null
 
-export const SearchBarState = reactive<SearchBarStateI>({
+export const SearchZoneState = reactive<SearchZoneStateI>({
   status: Status.NONE,
   data: [],
   onInit: async function (text: string): Promise<void> {

@@ -7,10 +7,7 @@ import SectionZone from '@/ui/pages/home/SectionZone.vue'
 
 <template>
   <SectionHeader />
-
   <SectionSample />
-
   <SectionJob />
-
   <SectionZone />
 </template>

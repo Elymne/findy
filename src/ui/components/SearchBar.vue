@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import router from '@/router'
 import { SearchZoneState } from '@/states/SearchZoneState.reactive'
 import { computed, onBeforeMount, ref } from 'vue'
 
@@ -29,7 +30,18 @@ onBeforeMount(() => {
 })
 
 function onClick() {
-  console.log(SearchZoneState.data?.find((elem) => elem.name == zone.value))
+  const selectedZone = SearchZoneState.data?.find((elem) => elem.name == zone.value)
+  if (!selectedZone) {
+    return
+  }
+
+  router.push({
+    path: 'offers',
+    query: {
+      keyWords: keyWords.value,
+      codezone: selectedZone.postalCode,
+    },
+  })
 }
 </script>
 

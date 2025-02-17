@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const keyWords = ref<string>('')
-const zone = ref<string>('')
+const props = defineProps<{
+  keywordsProp: string | null
+  zoneProp: string | null
+}>()
+
+const keyWords = ref<string>(props.keywordsProp ?? '')
+const zone = ref<string>(props.zoneProp ?? '')
 
 function carotte(payload: MouseEvent) {
   console.log(payload)
@@ -48,6 +53,10 @@ div {
   display: flex;
 }
 
+input {
+  border: none;
+}
+
 input:focus {
   background-color: rgb(244, 246, 255);
   color: rgb(70, 87, 197);
@@ -78,18 +87,24 @@ button:focus {
     flex-grow: 1;
     font-weight: 100;
 
-    border: none;
     padding: 16px;
   }
 
   input:nth-child(1) {
     border-radius: 20px 0px 0px 20px;
     border-right: solid 1px rgb(79, 84, 117);
+    border-left: solid 1px rgb(79, 84, 117);
+    border-top: solid 1px rgb(79, 84, 117);
+    border-bottom: solid 1px rgb(79, 84, 117);
+  }
+
+  input:nth-child(2) {
+    border-top: solid 1px rgb(79, 84, 117);
+    border-bottom: solid 1px rgb(79, 84, 117);
   }
 
   button {
     width: 100px;
-    border: none;
 
     border-radius: 0px 10px 10px 0px;
   }
@@ -117,7 +132,7 @@ button:focus {
     font-weight: 100;
     width: 90vw;
 
-    border: none;
+    border: solid 1px rgb(79, 84, 117);
     border-radius: 10px;
 
     transition: border-color 0.2s ease-in;

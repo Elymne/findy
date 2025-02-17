@@ -11,13 +11,13 @@ const sDate = new Date(date)
 <template>
   <a>
     <article tabindex="0">
-      <img class="top-image" src="./../assets/images/background_top.jpg" />
       <div>
         <p class="title">{{ title }}</p>
         <p class="company">{{ company ?? 'Entreprise inconnue*' }}</p>
         <p class="zone">{{ zone }}</p>
         <p class="date">{{ sDate.toLocaleString() }}</p>
       </div>
+      <img class="top-image" src="./../assets/images/background_top.jpg" />
     </article>
   </a>
 </template>
@@ -29,7 +29,7 @@ a {
 
 article {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: start;
 
   border: 1px solid #e9e9e9;
@@ -40,7 +40,7 @@ article {
 }
 
 article:hover {
-  transform: scale(0.94);
+  transform: scale(0.98);
   background: #ffffff !important;
   border: 1px solid #cacaca;
 }
@@ -50,15 +50,20 @@ article:focus {
   background: #ffffff !important;
 }
 
-img.top-image {
-  width: 100%;
-  height: 140px;
-  border-radius: 10px 10px 0px 0px;
-  object-fit: cover;
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 0 10px 10px 10px;
+
+  flex-grow: 1;
 }
 
-div {
-  padding: 0 10px 10px 10px;
+img.top-image {
+  width: 200px;
+  height: 100%;
+  border-radius: 0 10px 10px 0;
+  object-fit: cover;
 }
 
 p {

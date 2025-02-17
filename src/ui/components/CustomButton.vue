@@ -18,7 +18,6 @@ button {
   margin-top: 20px;
   text-decoration: none;
 
-  padding: 20px;
   position: relative;
   overflow: hidden;
 
@@ -63,5 +62,29 @@ button:hover::after {
 button:focus-visible::after {
   left: 140%;
   transition: left 0.2s ease-in;
+}
+
+@media (min-width: 1280px) {
+  button {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 1280px) and (min-width: 780px) {
+  button {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 780px) and (min-width: 480px) {
+  button {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  button {
+    padding: 10px;
+  }
 }
 </style>

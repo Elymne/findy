@@ -28,6 +28,7 @@ a:focus {
 }
 
 article {
+  background-size: cover;
   background-color: black;
   border-radius: 10px;
 

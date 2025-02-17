@@ -17,19 +17,15 @@ onBeforeMount(async () => {
     <div id="grid-job">
       <ImageCard
         :text="'Informatique'"
-        image-url="src/ui/assets/images/informatique-card.png"
+        image-url="src/ui/assets/images/informatique-card.jpg"
         :redirect="'#'"
       />
       <ImageCard
-        :text="'Informatique'"
-        image-url="src/ui/assets/images/informatique-card.png"
+        :text="'Marketing'"
+        image-url="src/ui/assets/images/marketing-card.jpg"
         :redirect="'#'"
       />
-      <ImageCard
-        :text="'Informatique'"
-        image-url="src/ui/assets/images/informatique-card.png"
-        :redirect="'#'"
-      />
+      <ImageCard :text="'Santé'" image-url="src/ui/assets/images/sante-card.jpg" :redirect="'#'" />
     </div>
     <hr />
     <ul id="list-job">

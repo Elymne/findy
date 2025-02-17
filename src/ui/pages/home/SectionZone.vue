@@ -2,9 +2,7 @@
 import { onBeforeMount } from 'vue'
 import { JobsState } from '@/states/JobsState.reactive'
 
-import Tag from '@/ui/components/CustomTag.vue'
 import ImageCard from '@/ui/components/ImageCard.vue'
-import Button from '@/ui/components/CustomButton.vue'
 
 onBeforeMount(async () => {
   JobsState.fetch()
@@ -13,21 +11,17 @@ onBeforeMount(async () => {
 
 <template>
   <section>
-    <h1>Rechercher par secteur de métier ?</h1>
+    <h1>Rechercher par ville ?</h1>
     <div id="grid-job">
+      <ImageCard :text="'Paris'" image-url="src/ui/assets/images/paris-card.jpg" :redirect="'#'" />
       <ImageCard
         :text="'Nantes'"
-        image-url="src/ui/assets/images/informatique-card.png"
+        image-url="src/ui/assets/images/nantes-card.jpg"
         :redirect="'#'"
       />
       <ImageCard
-        :text="'Informatique'"
-        image-url="src/ui/assets/images/informatique-card.png"
-        :redirect="'#'"
-      />
-      <ImageCard
-        :text="'Informatique'"
-        image-url="src/ui/assets/images/informatique-card.png"
+        :text="'La Creuse'"
+        image-url="src/ui/assets/images/lacreuse-card.jpg"
         :redirect="'#'"
       />
     </div>

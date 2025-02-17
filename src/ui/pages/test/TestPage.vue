@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Status } from '@/core/Status'
 import { SampleCode } from '@/models/SampleCode.enum'
-import { SampleState } from '@/states/SampleState'
+import { SampleState } from '@/states/SampleState.reactive'
 import { onBeforeMount } from 'vue'
 
 onBeforeMount(async () => {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SampleCode } from '@/models/SampleCode.enum'
-import { SampleState } from '@/states/SampleState'
+import { SampleState } from '@/states/SampleState.reactive'
 import { Status } from '@/core/Status'
 import { onBeforeMount } from 'vue'
 
@@ -31,7 +31,6 @@ onBeforeMount(async () => {
       :text="`Voir les offres`"
       :onClick="() => console.log('MERDE ALORS')"
     />
-    <hr />
   </section>
 </template>
 
@@ -126,9 +125,5 @@ onBeforeMount(async () => {
 h1 {
   margin-top: 60px;
   margin-bottom: 20px;
-}
-
-hr {
-  margin: 20px 0;
 }
 </style>

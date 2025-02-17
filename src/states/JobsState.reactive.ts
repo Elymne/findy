@@ -34,8 +34,11 @@ export const JobsState = reactive<JobsStateI>({
 
       this.data = null
       this.status = Status.FAILURE
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (_) {
+    } catch (err) {
+      if (import.meta.env.MODE == 'dev') {
+        console.log(err)
+      }
+
       this.data = null
       this.status = Status.FAILURE
     }

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue'
-import { JobsState } from '@/states/JobsState'
+import { JobsState } from '@/states/JobsState.reactive'
 
 import Tag from '@/ui/components/CustomTag.vue'
 import ImageCard from '@/ui/components/ImageCard.vue'
@@ -31,6 +31,7 @@ onBeforeMount(async () => {
         :redirect="'#'"
       />
     </div>
+    <hr />
     <ul id="list-job">
       <li v-for="job in JobsState.data" :key="job.code">
         <Tag :text="job.title" :redirection="null" />
@@ -41,7 +42,6 @@ onBeforeMount(async () => {
       :text="`Voir tous les secteurs`"
       :onClick="() => console.log('MERDE ALORS')"
     />
-    <hr />
   </section>
 </template>
 
@@ -49,10 +49,6 @@ onBeforeMount(async () => {
 h1 {
   margin-top: 60px;
   margin-bottom: 20px;
-}
-
-hr {
-  margin: 20px 0;
 }
 
 #list-job {
@@ -66,6 +62,10 @@ hr {
 #list-job > li {
   margin-bottom: 16px;
   margin-right: 10px;
+}
+
+hr {
+  margin: 20px 0;
 }
 
 @media (min-width: 1280px) {

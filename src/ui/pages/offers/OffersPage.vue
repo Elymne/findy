@@ -5,25 +5,32 @@ import { useRoute } from 'vue-router'
 
 import ListCard from '@/ui/components/ListCard.vue'
 import SearchBar from '@/ui/components/SearchBar.vue'
+import { SearchZoneState } from '@/states/SearchZoneState.reactive'
 
 const keywords = ref<string>('')
-const codezone = ref<string>('')
+const zone = ref<string>('')
 const distance = ref<string>('')
 const page = ref<string>('')
 
 onBeforeMount(async () => {
   const route = useRoute()
+
+  const codezone = route.query.codezone as string
+  const selectedZone = SearchZoneState.data?.find((elem) => elem.code == codezone)
+  if (selectedZone != null) {
+    zone.value = selectedZone.name as string
+  }
+
   keywords.value = route.query.keywords as string
-  codezone.value = route.query.codezone as string
   distance.value = route.query.distance as string
   page.value = route.query.page as string
 
-  await PageOffersState.fetch(keywords.value, codezone.value, distance.value, page.value)
+  await PageOffersState.fetch(keywords.value, zone.value, distance.value, page.value)
 })
 </script>
 
 <template>
-  <SearchBar :keywords-prop="keywords" :zone-prop="codezone" />
+  <SearchBar :keywords-prop="keywords" :zone-prop="zone" />
   <h1>Les offres</h1>
   <section>
     <ListCard

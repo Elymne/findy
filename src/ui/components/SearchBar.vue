@@ -31,15 +31,16 @@ onBeforeMount(() => {
 
 function onClick() {
   const selectedZone = SearchZoneState.data?.find((elem) => elem.name == zone.value)
-  if (!selectedZone) {
+
+  if (selectedZone == undefined) {
     return
   }
 
   router.push({
     path: 'offers',
     query: {
-      keyWords: keyWords.value,
-      codezone: selectedZone.postalCode,
+      keywords: keyWords.value,
+      codezone: selectedZone.code,
     },
   })
 }
@@ -63,11 +64,7 @@ function onClick() {
       placeholder="Où ?"
     />
     <datalist id="zone-options">
-      <option
-        v-for="zone in SearchZoneState.data"
-        :key="zone.postalCode"
-        :value="zone.name"
-      ></option>
+      <option v-for="zone in SearchZoneState.data" :key="zone.code" :value="zone.name"></option>
     </datalist>
     <button @click="onClick">
       <img src="./../assets/svg/magnifying_glass.svg" alt="Icone de loupe" />

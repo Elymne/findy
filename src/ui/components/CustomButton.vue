@@ -28,12 +28,6 @@ button {
   transition: background-color 0.2s;
 }
 
-button > span {
-  font-weight: bold;
-  font-size: 18;
-  color: #d8d8d8;
-}
-
 button:hover {
   cursor: pointer;
 }

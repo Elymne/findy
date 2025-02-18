@@ -30,9 +30,5 @@ a:hover,
 p:hover {
   background-color: rgb(39, 39, 39) !important;
   color: rgb(255, 255, 255);
-
-  -webkit-transition: background-color 0.6s ease-in color 0.6s ease-in;
-  -ms-transition: background-color 0.6s ease-in color 0.6s ease-in;
-  transition: background-color 0.6s ease-in color 0.6s ease-in;
 }
 </style>

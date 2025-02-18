@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import router from '@/router'
-import { SearchZoneState } from '@/states/SearchZoneState.reactive'
+import { SearchZoneState } from '@/ui/components/searchBar/SearchZoneState.reactive'
 import { computed, onBeforeMount, ref } from 'vue'
 
 const props = defineProps<{

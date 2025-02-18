@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue'
-import { JobsState } from '@/states/JobsState.reactive'
-
+import SectionJobState from './states/SectionJob.state'
 import Tag from '@/ui/components/CustomTag.vue'
 import ImageCard from '@/ui/components/ImageCard.vue'
 import Button from '@/ui/components/CustomButton.vue'
 
 onBeforeMount(async () => {
-  JobsState.fetch()
+  SectionJobState.fetch()
 })
 </script>
 
@@ -16,20 +15,24 @@ onBeforeMount(async () => {
     <h1>Rechercher par secteur de métier ?</h1>
     <div id="grid-job">
       <ImageCard
-        :text="'Informatique'"
         image-url="src/ui/assets/images/informatique-card.jpg"
-        :redirect="'#'"
+        :text="'Informatique'"
+        :redirect="'/offers'"
       />
       <ImageCard
-        :text="'Marketing'"
         image-url="src/ui/assets/images/marketing-card.jpg"
-        :redirect="'#'"
+        :text="'Marketing'"
+        :redirect="'/offers'"
       />
-      <ImageCard :text="'Santé'" image-url="src/ui/assets/images/sante-card.jpg" :redirect="'#'" />
+      <ImageCard
+        image-url="src/ui/assets/images/sante-card.jpg"
+        :text="'Santé'"
+        :redirect="'/offers'"
+      />
     </div>
     <hr />
     <ul id="list-job">
-      <li v-for="job in JobsState.data" :key="job.code">
+      <li v-for="job in SectionJobState.data" :key="job.code">
         <Tag :text="job.title" :redirection="null" />
       </li>
     </ul>

@@ -4,13 +4,13 @@ import type { AxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import { reactive } from 'vue'
 
-interface JobsStateI {
+interface ISectionJobState {
   status: Status
   data: Job[] | null
   fetch(): Promise<void>
 }
 
-export const JobsState = reactive<JobsStateI>({
+const SectionJobState = reactive<ISectionJobState>({
   status: Status.NONE,
   data: [],
   fetch: async function (): Promise<void> {
@@ -44,3 +44,5 @@ export const JobsState = reactive<JobsStateI>({
     }
   },
 })
+
+export default SectionJobState

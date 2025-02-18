@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SearchBar from '@/ui/components/SearchBar.vue'
+import SearchBar from '@/ui/components/searchBar/SearchBar.vue'
 </script>
 
 <template>

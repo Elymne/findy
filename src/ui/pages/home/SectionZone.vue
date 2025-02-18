@@ -1,28 +1,25 @@
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
-import { JobsState } from '@/states/JobsState.reactive'
-
 import ImageCard from '@/ui/components/ImageCard.vue'
-
-onBeforeMount(async () => {
-  JobsState.fetch()
-})
 </script>
 
 <template>
   <section>
     <h1>Rechercher par ville ?</h1>
     <div id="grid-job">
-      <ImageCard :text="'Paris'" image-url="src/ui/assets/images/paris-card.jpg" :redirect="'#'" />
+      <ImageCard
+        :text="'Paris'"
+        image-url="src/ui/assets/images/paris-card.jpg"
+        :redirect="'/offers'"
+      />
       <ImageCard
         :text="'Nantes'"
         image-url="src/ui/assets/images/nantes-card.jpg"
-        :redirect="'#'"
+        :redirect="'/offers'"
       />
       <ImageCard
         :text="'La Creuse'"
         image-url="src/ui/assets/images/lacreuse-card.jpg"
-        :redirect="'#'"
+        :redirect="'/offers'"
       />
     </div>
   </section>

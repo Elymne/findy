@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { PageOffersState } from '@/states/OffersState.reactive'
 import { onBeforeMount, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 import ListCard from '@/ui/components/ListCard.vue'
-import SearchBar from '@/ui/components/SearchBar.vue'
-import { SearchZoneState } from '@/states/SearchZoneState.reactive'
+import SearchBar from '@/ui/components/searchBar/SearchBar.vue'
+import OffersPageState from './states/OffersPage.state'
 
 const keywords = ref<string>('')
 const zone = ref<string>('')
@@ -15,17 +14,13 @@ const page = ref<string>('')
 onBeforeMount(async () => {
   const route = useRoute()
 
-  const codezone = route.query.codezone as string
-  const selectedZone = SearchZoneState.data?.find((elem) => elem.code == codezone)
-  if (selectedZone != null) {
-    zone.value = selectedZone.name as string
-  }
+  keywords.value = route.query.keywords?.toString() ?? ''
+  distance.value = route.query.distance?.toString() ?? ''
+  page.value = route.query.page?.toString() ?? ''
+  const codezone = route.query.codezone?.toString() ?? ''
 
-  keywords.value = route.query.keywords as string
-  distance.value = route.query.distance as string
-  page.value = route.query.page as string
-
-  await PageOffersState.fetch(keywords.value, zone.value, distance.value, page.value)
+  await OffersPageState.fetch(keywords.value, codezone, distance.value, page.value)
+  zone.value = OffersPageState.zone ?? ''
 })
 </script>
 
@@ -34,7 +29,7 @@ onBeforeMount(async () => {
   <h1>Les offres</h1>
   <section>
     <ListCard
-      v-for="offer in PageOffersState.data?.jobs"
+      v-for="offer in OffersPageState.data?.jobs"
       :key="offer.id"
       :title="offer.title"
       :company="offer.company"

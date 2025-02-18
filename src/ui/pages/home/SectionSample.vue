@@ -1,23 +1,22 @@
 <script setup lang="ts">
 import { SampleCode } from '@/models/SampleCode.enum'
-import { SampleState } from '@/states/SampleState.reactive'
 import { Status } from '@/core/Status'
 import { onBeforeMount } from 'vue'
-
 import Card from '@/ui/components/GridCard.vue'
 import Button from '@/ui/components/CustomButton.vue'
+import SectionSampleState from './states/SectionSample.state'
 
 onBeforeMount(async () => {
-  SampleState.fetch(SampleCode.DEVELOP)
+  SectionSampleState.fetch(SampleCode.DEVELOP)
 })
 </script>
 
 <template>
   <section id="QuickLookBlock">
     <h1>C'est quoi les offres aujourd'hui ?</h1>
-    <div id="grid-offers" v-if="SampleState.status == Status.SUCCESS">
+    <div id="grid-offers" v-if="SectionSampleState.status == Status.SUCCESS">
       <Card
-        v-for="offer in SampleState.data"
+        v-for="offer in SectionSampleState.data"
         :key="offer.id"
         :title="offer.title"
         :company="offer.company"

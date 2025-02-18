@@ -1,41 +1,34 @@
 import { Status } from '@/core/Status'
-import type PageOffers from '@/models/PageOffers.model'
+import type Offer from '@/models/Offer.model'
+import type { SampleCode } from '@/models/SampleCode.enum'
 import type { AxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import { reactive } from 'vue'
 
-interface PageOffersStateI {
+interface ISectionSampleState {
   status: Status
-  data: PageOffers | null
-  fetch(keywords: string, codezone: string, distance: string, page: string): Promise<void>
+  data: Offer[] | null
+  fetch(code: SampleCode): Promise<void>
 }
 
-export const PageOffersState = reactive<PageOffersStateI>({
+const SectionSampleState = reactive<ISectionSampleState>({
   status: Status.NONE,
-  data: null,
-  fetch: async function (
-    keywords: string,
-    codezone: string,
-    distance: string,
-    page: string,
-  ): Promise<void> {
+  data: [],
+  fetch: async function (code: SampleCode): Promise<void> {
     try {
       this.status = Status.LOADING
       const options: AxiosRequestConfig = {
         method: 'GET',
-        url: `${import.meta.env.VITE_API_URL}/offers`,
+        url: `${import.meta.env.VITE_API_URL}/offers/sample`,
         headers: {
           Accept: 'application/json',
         },
         params: {
-          keywords: keywords,
-          codezone: codezone,
-          distance: distance,
-          page: page,
+          code: code,
         },
       }
 
-      const response = await axios.request<PageOffers>(options)
+      const response = await axios.request(options)
 
       if (response.status == 200 || response.status == 204) {
         this.data = response.data
@@ -55,3 +48,5 @@ export const PageOffersState = reactive<PageOffersStateI>({
     }
   },
 })
+
+export default SectionSampleState

@@ -1,6 +1,5 @@
 import HomePage from '@/ui/pages/home/HomePage.vue'
 import OffersPage from '@/ui/pages/offers/OffersPage.vue'
-import TestPage from '@/ui/pages/test/TestPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -15,11 +14,6 @@ const router = createRouter({
       path: '/offers',
       name: 'offers',
       component: OffersPage,
-    },
-    {
-      path: '/test',
-      name: 'test',
-      component: TestPage,
     },
   ],
 })

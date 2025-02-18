@@ -27,19 +27,29 @@ async function fetch(text: string): Promise<AxiosResponse<Zone[]>> {
 
 let refTimeout: NodeJS.Timeout | null = null
 
+/**
+ * This usecase fo this reactive component is to fidn the list of France region when user is searching region from Region input searchBar.
+ */
 export const SearchZoneState = reactive<SearchZoneStateI>({
   status: Status.NONE,
   data: [],
-  onInit: async function (text: string): Promise<void> {
+
+  /**
+   * I need this when I'm using the Offers page because a code city can be used to filters offers from the previous search from any page.
+   * The code should be taken from url.
+   * @param {string} code INSEE code.
+   * @returns {void}
+   */
+  onInit: async function (code: string): Promise<void> {
     try {
-      if (!text) {
+      if (!code) {
         this.data = []
         this.status = Status.SUCCESS
         return
       }
 
       this.status = Status.LOADING
-      const res = await fetch(text)
+      const res = await fetch(code)
       if (res.status != 200 && res.status != 206) {
         this.data = []
         this.status = Status.FAILURE

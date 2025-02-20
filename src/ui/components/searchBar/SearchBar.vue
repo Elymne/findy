@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import router from '@/router'
 import { SearchZoneState } from '@/ui/components/searchBar/SearchZoneState.reactive'
-import { computed, onBeforeMount, ref } from 'vue'
+import { computed, onBeforeMount, ref, toRef } from 'vue'
 
 const props = defineProps<{
-  keywordsProp: string | null
-  zoneProp: string | null
+  keywordsProp: string
+  zoneProp: string
 }>()
+
+console.log(props.zoneProp)
 
 const keyWords = ref<string>(props.keywordsProp ?? '')
 const keyWordsChange = computed({
@@ -16,7 +18,9 @@ const keyWordsChange = computed({
   },
 })
 
-const zone = ref<string>(props.zoneProp ?? '')
+console.log(toRef(props.zoneProp).value)
+
+const zone = ref<string>(toRef(props.zoneProp).value ?? '')
 const zoneComputed = computed({
   get: () => zone.value,
   set: (val) => {
@@ -67,7 +71,7 @@ function onClick() {
       <option v-for="zone in SearchZoneState.data" :key="zone.code" :value="zone.name"></option>
     </datalist>
     <button @click="onClick">
-      <img src="./../assets/svg/magnifying_glass.svg" alt="Icone de loupe" />
+      <img src="./../../assets/svg/magnifying_glass.svg" alt="Icone de loupe" />
       <p>Rechercher</p>
     </button>
   </div>

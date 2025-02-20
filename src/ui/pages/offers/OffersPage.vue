@@ -1,33 +1,42 @@
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue'
+import { onBeforeMount } from 'vue'
 import { useRoute } from 'vue-router'
 
 import ListCard from '@/ui/components/ListCard.vue'
 import SearchBar from '@/ui/components/searchBar/SearchBar.vue'
 import OffersPageState from './states/OffersPage.state'
+import { Status } from '@/core/Status'
 
-const keywords = ref<string>('')
-const zone = ref<string>('')
-const distance = ref<string>('')
-const page = ref<string>('')
+const route = useRoute()
+
+let keywords!: string
+let distance!: string
+let page!: string
 
 onBeforeMount(async () => {
-  const route = useRoute()
+  keywords = route.query.keywords?.toString() ?? ''
+  distance = route.query.distance?.toString() ?? ''
+  page = route.query.page?.toString() ?? ''
 
-  keywords.value = route.query.keywords?.toString() ?? ''
-  distance.value = route.query.distance?.toString() ?? ''
-  page.value = route.query.page?.toString() ?? ''
   const codezone = route.query.codezone?.toString() ?? ''
+  await OffersPageState.fetch(keywords, codezone, distance, page)
 
-  await OffersPageState.fetch(keywords.value, codezone, distance.value, page.value)
-  zone.value = OffersPageState.zone ?? ''
+  // zone = OffersPageState.zone ?? ''
 })
 </script>
 
 <template>
-  <SearchBar :keywords-prop="keywords" :zone-prop="zone" />
-  <h1>Les offres</h1>
-  <section>
+  <section v-if="OffersPageState.status == Status.LOADING">
+    <h1>Chargement…</h1>
+  </section>
+
+  <section v-if="OffersPageState.status == Status.FAILURE">
+    <h1>Une erreur s'est produite</h1>
+  </section>
+
+  <section v-if="OffersPageState.status == Status.SUCCESS">
+    <SearchBar :keywords-prop="keywords" :zone-prop="OffersPageState.zone as string" />
+    <h1>Les offres</h1>
     <ListCard
       v-for="offer in OffersPageState.data?.jobs"
       :key="offer.id"

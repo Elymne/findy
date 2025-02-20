@@ -41,7 +41,7 @@ const OffersPageState = reactive<IOffersPageState>({
         },
         {
           method: 'GET',
-          url: `${import.meta.env.VITE_API_URL}/zone/${codezone}`,
+          url: `${import.meta.env.VITE_API_URL}/zones/${codezone}`,
           headers: {
             Accept: 'application/json',
           },

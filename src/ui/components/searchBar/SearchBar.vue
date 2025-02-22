@@ -8,8 +8,6 @@ const props = defineProps<{
   zoneProp: string
 }>()
 
-console.log(props.zoneProp)
-
 const keyWords = ref<string>(props.keywordsProp ?? '')
 const keyWordsChange = computed({
   get: () => keyWords.value,
@@ -17,8 +15,6 @@ const keyWordsChange = computed({
     keyWords.value = val
   },
 })
-
-console.log(toRef(props.zoneProp).value)
 
 const zone = ref<string>(toRef(props.zoneProp).value ?? '')
 const zoneComputed = computed({
@@ -34,8 +30,18 @@ onBeforeMount(() => {
 })
 
 function onClick() {
-  const selectedZone = SearchZoneState.data?.find((elem) => elem.name == zone.value)
+  if (zone.value.length == 0) {
+    router.push({
+      path: 'offers',
+      query: {
+        keywords: keyWords.value,
+      },
+    })
+    window.location.reload()
+    return
+  }
 
+  const selectedZone = SearchZoneState.data?.find((elem) => elem.name == zone.value)
   if (selectedZone == undefined) {
     return
   }

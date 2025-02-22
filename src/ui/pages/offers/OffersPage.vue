@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 import ListCard from '@/ui/components/ListCard.vue'
@@ -10,18 +10,24 @@ import { Status } from '@/core/Status'
 const route = useRoute()
 
 let keywords!: string
+let codezone!: string
 let distance!: string
 let page!: string
 
 onBeforeMount(async () => {
   keywords = route.query.keywords?.toString() ?? ''
+  codezone = route.query.codezone?.toString() ?? ''
   distance = route.query.distance?.toString() ?? ''
   page = route.query.page?.toString() ?? ''
-
-  const codezone = route.query.codezone?.toString() ?? ''
   await OffersPageState.fetch(keywords, codezone, distance, page)
+})
 
-  // zone = OffersPageState.zone ?? ''
+watch(route, async () => {
+  keywords = route.query.keywords?.toString() ?? ''
+  codezone = route.query.codezone?.toString() ?? ''
+  distance = route.query.distance?.toString() ?? ''
+  page = route.query.page?.toString() ?? ''
+  await OffersPageState.fetch(keywords, codezone, distance, page)
 })
 </script>
 

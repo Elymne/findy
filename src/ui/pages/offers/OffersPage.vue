@@ -9,15 +9,15 @@ import { Status } from '@/core/Status'
 
 const route = useRoute()
 
-let keywords!: string
-let codezone!: string
-let distance!: string
-let page!: string
+let keywords!: string | undefined
+let codezone!: string | undefined
+let distance!: string | undefined
+let page!: string | undefined
 
 onBeforeMount(async () => {
-  keywords = route.query.keywords?.toString() ?? ''
-  codezone = route.query.codezone?.toString() ?? ''
-  distance = route.query.distance?.toString() ?? ''
+  keywords = route.query.keywords?.toString()
+  codezone = route.query.codezone?.toString()
+  distance = route.query.distance?.toString()
   page = route.query.page?.toString() ?? ''
   await OffersPageState.fetch(keywords, codezone, distance, page)
 })

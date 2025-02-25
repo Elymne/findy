@@ -15,6 +15,11 @@ const router = createRouter({
       name: 'offers',
       component: OffersPage,
     },
+    {
+      path: '/offers/:id',
+      name: 'offer',
+      component: OffersPage,
+    },
   ],
 })
 

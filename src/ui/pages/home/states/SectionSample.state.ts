@@ -19,7 +19,7 @@ const SectionSampleState = reactive<ISectionSampleState>({
       this.status = Status.LOADING
       const options: AxiosRequestConfig = {
         method: 'GET',
-        url: `${import.meta.env.VITE_API_URL}/offers/sample`,
+        url: `${import.meta.env.VITE_API_URL}/sample`,
         headers: {
           Accept: 'application/json',
         },

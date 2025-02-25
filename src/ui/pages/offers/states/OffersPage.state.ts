@@ -9,7 +9,7 @@ interface IOffersPageState {
   status: Status
   data: PageOffers | null
   zone: string | null
-  fetch(keywords: string, codezone: string, distance: string, page: string): Promise<void>
+  fetch(keywords?: string, codezone?: string, distance?: string, page?: string): Promise<void>
 }
 
 const OffersPageState = reactive<IOffersPageState>({
@@ -18,10 +18,10 @@ const OffersPageState = reactive<IOffersPageState>({
   zone: null,
 
   fetch: async function (
-    keywords: string,
-    codezone: string,
-    distance: string,
-    page: string,
+    keywords?: string,
+    codezone?: string,
+    distance?: string,
+    page?: string,
   ): Promise<void> {
     try {
       this.status = Status.LOADING

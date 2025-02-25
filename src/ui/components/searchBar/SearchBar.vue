@@ -4,8 +4,8 @@ import { SearchZoneState } from '@/ui/components/searchBar/SearchZoneState.react
 import { computed, onBeforeMount, ref, toRef } from 'vue'
 
 const props = defineProps<{
-  keywordsProp: string
-  zoneProp: string
+  keywordsProp?: string
+  zoneProp?: string
 }>()
 
 const keyWords = ref<string>(props.keywordsProp ?? '')
@@ -37,7 +37,6 @@ function onClick() {
         keywords: keyWords.value,
       },
     })
-    window.location.reload()
     return
   }
 

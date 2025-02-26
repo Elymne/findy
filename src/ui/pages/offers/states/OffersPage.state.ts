@@ -1,7 +1,7 @@
 import { Status } from '@/core/Status'
 import type PageOffers from '@/models/PageOffers.model'
 import type Zone from '@/models/Zone.model'
-import type { AxiosRequestConfig } from 'axios'
+import type { AxiosResponse } from 'axios'
 import axios from 'axios'
 import { reactive } from 'vue'
 
@@ -25,8 +25,10 @@ const OffersPageState = reactive<IOffersPageState>({
   ): Promise<void> {
     try {
       this.status = Status.LOADING
-      const options: AxiosRequestConfig[] = [
-        {
+      const axiosRequests = new Array<Promise<AxiosResponse>>()
+
+      axiosRequests.push(
+        axios.request<PageOffers>({
           method: 'GET',
           url: `${import.meta.env.VITE_API_URL}/offers`,
           headers: {
@@ -38,31 +40,43 @@ const OffersPageState = reactive<IOffersPageState>({
             distance: distance,
             page: page,
           },
-        },
-        {
-          method: 'GET',
-          url: `${import.meta.env.VITE_API_URL}/zones/${codezone}`,
-          headers: {
-            Accept: 'application/json',
-          },
-        },
-      ]
+        }),
+      )
 
-      const response = await Promise.all([
-        await axios.request<PageOffers>(options[0]),
-        await axios.request<Zone>(options[1]),
-      ])
+      if (codezone) {
+        axiosRequests.push(
+          axios.request<Zone>({
+            method: 'GET',
+            url: `${import.meta.env.VITE_API_URL}/zones/${codezone}`,
+            headers: {
+              Accept: 'application/json',
+            },
+          }),
+        )
+      }
 
-      if ((response[0].status == 200 || response[0].status == 204) && response[1].status == 200) {
-        this.data = response[0].data
-        this.zone = response[1].data.name
-        this.status = Status.SUCCESS
+      let hasError = false
+      const responses = await Promise.all(axiosRequests)
+      responses.forEach((value, index) => {
+        if ((index == 0 && value.status == 200) || value.status == 204) {
+          this.data = responses[0].data
+          return
+        }
+        if (index == 1 && value.status == 200) {
+          this.zone = responses[1].data.name
+          return
+        }
+        hasError = true
+      })
+
+      if (hasError) {
+        this.data = null
+        this.zone = null
+        this.status = Status.FAILURE
         return
       }
 
-      this.data = null
-      this.zone = null
-      this.status = Status.FAILURE
+      this.status = Status.SUCCESS
     } catch (err) {
       if (import.meta.env.MODE == 'dev') {
         console.log(err)

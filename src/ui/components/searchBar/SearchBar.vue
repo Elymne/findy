@@ -1,56 +1,61 @@
 <script setup lang="ts">
+import type Zone from '@/models/Zone.model'
 import router from '@/router'
 import { SearchZoneState } from '@/ui/components/searchBar/SearchZoneState.reactive'
-import { computed, onBeforeMount, ref, toRef } from 'vue'
+import { computed, onBeforeMount, ref } from 'vue'
+import type { LocationQueryRaw } from 'vue-router'
 
 const props = defineProps<{
   keywordsProp?: string
   zoneProp?: string
 }>()
 
-const keyWords = ref<string>(props.keywordsProp ?? '')
+const keyWords = ref<string | undefined>(props.keywordsProp)
 const keyWordsChange = computed({
   get: () => keyWords.value,
-  set: (val) => {
-    keyWords.value = val
-  },
+  set: (val) => (keyWords.value = val),
 })
 
-const zone = ref<string>(toRef(props.zoneProp).value ?? '')
+const zone = ref<string | undefined>(props.zoneProp)
 const zoneComputed = computed({
   get: () => zone.value,
   set: (val) => {
     zone.value = val
-    SearchZoneState.onUpdate(val)
+    if (val) {
+      SearchZoneState.onUpdate(val)
+    }
   },
 })
 
+const errorMessage = ref<string | null>(null)
+
 onBeforeMount(() => {
-  SearchZoneState.onInit(props.zoneProp ?? '')
+  if (props.zoneProp) {
+    SearchZoneState.onInit(props.zoneProp)
+  }
 })
 
 function onClick() {
-  if (zone.value.length == 0) {
-    router.push({
-      path: 'offers',
-      query: {
-        keywords: keyWords.value,
-      },
-    })
-    return
+  const query: LocationQueryRaw = {}
+
+  if (keyWords.value && keyWords.value.length != 0) {
+    query.keywords = keyWords.value
   }
 
-  const selectedZone = SearchZoneState.data?.find((elem) => elem.name == zone.value)
-  if (selectedZone == undefined) {
-    return
+  let selectedZone: Zone | undefined = undefined
+  if (zone.value && zone.value.length != 0) {
+    selectedZone = SearchZoneState.data?.find((elem) => elem.name == zone.value)
+    if (!selectedZone) {
+      errorMessage.value = "Cette commune n'existe pas."
+      return
+    }
+    query.codezone = selectedZone!.code
   }
 
+  errorMessage.value = null
   router.push({
     path: 'offers',
-    query: {
-      keywords: keyWords.value,
-      codezone: selectedZone.code,
-    },
+    query: query,
   })
 }
 </script>

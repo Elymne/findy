@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { onBeforeMount, watch } from 'vue'
 import { useRoute } from 'vue-router'
-
-import ListCard from '@/ui/components/ListCard.vue'
-import SearchBar from '@/ui/components/searchBar/SearchBar.vue'
 import OffersPageState from './states/OffersPage.state'
 import { Status } from '@/core/Status'
+import ListCard from '@/ui/components/ListCard.vue'
+import SearchBar from '@/ui/components/searchBar/SearchBar.vue'
 
 const route = useRoute()
 
@@ -18,15 +17,17 @@ onBeforeMount(async () => {
   keywords = route.query.keywords?.toString()
   codezone = route.query.codezone?.toString()
   distance = route.query.distance?.toString()
-  page = route.query.page?.toString() ?? ''
+  page = route.query.page?.toString()
+
   await OffersPageState.fetch(keywords, codezone, distance, page)
 })
 
 watch(route, async () => {
-  keywords = route.query.keywords?.toString() ?? ''
-  codezone = route.query.codezone?.toString() ?? ''
-  distance = route.query.distance?.toString() ?? ''
-  page = route.query.page?.toString() ?? ''
+  keywords = route.query.keywords?.toString()
+  codezone = route.query.codezone?.toString()
+  distance = route.query.distance?.toString()
+  page = route.query.page?.toString()
+
   await OffersPageState.fetch(keywords, codezone, distance, page)
 })
 </script>

@@ -1,14 +1,14 @@
-import { Status } from '@/core/Status'
-import type Zone from '@/models/Zone.model'
+import { reactive } from 'vue'
 import type { AxiosRequestConfig, AxiosResponse } from 'axios'
 import axios from 'axios'
-import { reactive } from 'vue'
+import { Status } from '@/core/Status'
+import type Zone from '@/models/Zone.model'
 
 interface SearchZoneStateI {
   status: Status
   data: Zone[] | null
-  onInit(text: string | null): Promise<void>
-  onUpdate(text: string | null): Promise<void>
+  onInit(codeZone: string): Promise<void>
+  onUpdate(inputValue: string): Promise<void>
 }
 
 async function fetch(text: string): Promise<AxiosResponse<Zone[]>> {
@@ -37,19 +37,13 @@ export const SearchZoneState = reactive<SearchZoneStateI>({
   /**
    * I need this when I'm using the Offers page because a code city can be used to filters offers from the previous search from any page.
    * The code should be taken from url.
-   * @param {string} code INSEE code.
+   * @param {string} codeZone INSEE code.
    * @returns {void}
    */
-  onInit: async function (code: string): Promise<void> {
+  onInit: async function (codeZone: string): Promise<void> {
     try {
-      if (!code) {
-        this.data = []
-        this.status = Status.SUCCESS
-        return
-      }
-
       this.status = Status.LOADING
-      const res = await fetch(code)
+      const res = await fetch(codeZone)
       if (res.status != 200 && res.status != 206) {
         this.data = []
         this.status = Status.FAILURE
@@ -74,13 +68,13 @@ export const SearchZoneState = reactive<SearchZoneStateI>({
     }
   },
 
-  onUpdate: async function (text: string): Promise<void> {
+  onUpdate: async function (inputValue: string): Promise<void> {
     try {
       if (refTimeout != null) {
         clearTimeout(refTimeout)
       }
 
-      if (!text) {
+      if (inputValue.length == 0) {
         this.data = []
         this.status = Status.SUCCESS
         return
@@ -88,7 +82,7 @@ export const SearchZoneState = reactive<SearchZoneStateI>({
 
       this.status = Status.LOADING
       refTimeout = setTimeout(async () => {
-        const res = await fetch(text)
+        const res = await fetch(inputValue)
         if (res.status != 200 && res.status != 206) {
           this.data = []
           this.status = Status.FAILURE

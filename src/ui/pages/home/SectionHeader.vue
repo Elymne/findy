@@ -10,7 +10,7 @@ import SearchBar from '@/ui/components/searchBar/SearchBar.vue'
         Pas d’écoles de commerce, uniquement des entreprises qui recherchent leurs futurs alternants
         !
       </h2>
-      <SearchBar :keywordsProp="null" :zone-prop="null" />
+      <SearchBar />
     </div>
   </section>
 </template>

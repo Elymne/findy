@@ -17,29 +17,34 @@ onBeforeMount(async () => {
       <ImageCard
         image-url="src/ui/assets/images/informatique-card.jpg"
         :text="'Informatique'"
-        :redirect="'/offers'"
+        :redirect="'/offers?keywords=Informatique'"
       />
       <ImageCard
         image-url="src/ui/assets/images/marketing-card.jpg"
         :text="'Marketing'"
-        :redirect="'/offers'"
+        :redirect="'/offers?keywords=Marketing'"
       />
       <ImageCard
         image-url="src/ui/assets/images/sante-card.jpg"
         :text="'Santé'"
-        :redirect="'/offers'"
+        :redirect="'/offers?keywords=Santé'"
       />
     </div>
     <hr />
     <ul id="list-job">
       <li v-for="job in SectionJobState.data" :key="job.code">
-        <Tag :text="job.title" :redirection="null" />
+        <Tag :text="job.title" :redirection="`/offers?keywords=${job.title}`" />
       </li>
     </ul>
     <Button
       id="job-button"
       :text="`Voir tous les secteurs`"
-      :onClick="() => console.log('MERDE ALORS')"
+      :onClick="
+        () => {
+          // TODO page à faire.
+          console.log('MERDE ALORS')
+        }
+      "
     />
   </section>
 </template>

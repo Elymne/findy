@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { date } = defineProps<{
+  id: string
   title: string
   company: string
   zone: string
@@ -9,7 +10,7 @@ const sDate = new Date(date)
 </script>
 
 <template>
-  <a>
+  <a :href="`/offers/${id}`">
     <article tabindex="0">
       <div>
         <p class="title">{{ title }}</p>
@@ -25,6 +26,7 @@ const sDate = new Date(date)
 <style scoped>
 a {
   user-select: none;
+  text-decoration: none;
 }
 
 article {

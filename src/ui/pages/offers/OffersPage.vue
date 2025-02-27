@@ -47,6 +47,7 @@ watch(route, async () => {
     <ListCard
       v-for="offer in OffersPageState.data?.jobs"
       :key="offer.id"
+      :id="offer.id"
       :title="offer.title"
       :company="offer.company"
       :zone="offer.zone"

@@ -1,4 +1,5 @@
 import HomePage from '@/ui/pages/home/HomePage.vue'
+import OfferPage from '@/ui/pages/offer/OfferPage.vue'
 import OffersPage from '@/ui/pages/offers/OffersPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -7,18 +8,15 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
       component: HomePage,
     },
     {
       path: '/offers',
-      name: 'offers',
       component: OffersPage,
     },
     {
       path: '/offers/:id',
-      name: 'offer',
-      component: OffersPage,
+      component: OfferPage,
     },
   ],
 })

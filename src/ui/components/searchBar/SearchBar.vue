@@ -104,6 +104,7 @@ input:focus {
 
 button {
   cursor: pointer;
+  border: none;
   background-color: rgb(100, 106, 136);
 }
 

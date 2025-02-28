@@ -5,10 +5,21 @@ import { onBeforeMount } from 'vue'
 import Card from '@/ui/components/GridCard.vue'
 import Button from '@/ui/components/CustomButton.vue'
 import SectionSampleState from './states/SectionSample.state'
+import router from '@/router'
 
+// TODO : gérer les différents affichages d'offres en fonction de la recherche de l'utilisateur ou alors randomiser tout cela. A voir.
 onBeforeMount(async () => {
   SectionSampleState.fetch(SampleCode.DEVELOP)
 })
+
+function onButtonClick() {
+  router.push({
+    path: 'offers',
+    query: {
+      keywords: 'Développeur',
+    },
+  })
+}
 </script>
 
 <template>
@@ -22,14 +33,10 @@ onBeforeMount(async () => {
         :company="offer.company"
         :zone="offer.zone"
         :date="offer.updateAt ?? offer.createdAt"
-        :redirect="'#'"
+        :redirect="`offers/${offer.id}`"
       />
     </div>
-    <Button
-      id="offer-button"
-      :text="`Voir les offres`"
-      :onClick="() => console.log('MERDE ALORS')"
-    />
+    <Button id="offer-button" :text="`Voir les offres`" :onClick="onButtonClick" />
   </section>
 </template>
 

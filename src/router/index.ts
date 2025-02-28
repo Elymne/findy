@@ -18,6 +18,10 @@ const router = createRouter({
       path: '/offers/:id',
       component: OfferPage,
     },
+    {
+      path: '/:pathMatch(.*)*',
+      component: HomePage,
+    },
   ],
 })
 

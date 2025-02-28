@@ -17,23 +17,23 @@ onBeforeMount(async () => {
       <ImageCard
         image-url="src/ui/assets/images/informatique-card.jpg"
         :text="'Informatique'"
-        :redirect="'/offers?keywords=Informatique'"
+        :redirect="'/offers?codejob=62'"
       />
       <ImageCard
         image-url="src/ui/assets/images/marketing-card.jpg"
         :text="'Marketing'"
-        :redirect="'/offers?keywords=Marketing'"
+        :redirect="'/offers?codejob=47'"
       />
       <ImageCard
         image-url="src/ui/assets/images/sante-card.jpg"
         :text="'Santé'"
-        :redirect="'/offers?keywords=Santé'"
+        :redirect="'/offers?codejob=86'"
       />
     </div>
     <hr />
     <ul id="list-job">
       <li v-for="job in SectionJobState.data" :key="job.code">
-        <Tag :text="job.title" :redirection="`/offers?keywords=${job.title}`" />
+        <Tag :text="job.title" :redirection="`/offers?codejob=${job.code}`" />
       </li>
     </ul>
     <Button

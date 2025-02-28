@@ -9,26 +9,43 @@ import SearchBar from '@/ui/components/searchBar/SearchBar.vue'
 const route = useRoute()
 
 let keywords!: string | undefined
-let codezone!: string | undefined
+let codeZone!: string | undefined
+let codeJob!: string | undefined
 let distance!: string | undefined
 let page!: string | undefined
 
 onBeforeMount(async () => {
   keywords = route.query.keywords?.toString()
-  codezone = route.query.codezone?.toString()
+  codeZone = route.query.codezone?.toString()
+  codeJob = route.query.codejob?.toString()
   distance = route.query.distance?.toString()
   page = route.query.page?.toString()
 
-  await OffersPageState.fetch(keywords, codezone, distance, page)
+  console.log(codeJob)
+
+  await OffersPageState.fetch({
+    keywords: keywords,
+    codejob: codeJob,
+    codezone: codeZone,
+    distance: distance,
+    page: page,
+  })
 })
 
 watch(route, async () => {
   keywords = route.query.keywords?.toString()
-  codezone = route.query.codezone?.toString()
+  codeZone = route.query.codezone?.toString()
+  codeJob = route.query.codejob?.toString()
   distance = route.query.distance?.toString()
   page = route.query.page?.toString()
 
-  await OffersPageState.fetch(keywords, codezone, distance, page)
+  await OffersPageState.fetch({
+    keywords: keywords,
+    codejob: codeJob,
+    codezone: codeZone,
+    distance: distance,
+    page: page,
+  })
 })
 </script>
 

@@ -5,11 +5,19 @@ import type { AxiosResponse } from 'axios'
 import axios from 'axios'
 import { reactive } from 'vue'
 
+type fetchParams = {
+  keywords?: string
+  codezone?: string
+  codejob?: string
+  distance?: string
+  page?: string
+}
+
 interface IOffersPageState {
   status: Status
   data: PageOffers | null
   zone: string | null
-  fetch(keywords?: string, codezone?: string, distance?: string, page?: string): Promise<void>
+  fetch(params: fetchParams): Promise<void>
 }
 
 const OffersPageState = reactive<IOffersPageState>({
@@ -17,12 +25,7 @@ const OffersPageState = reactive<IOffersPageState>({
   data: null,
   zone: null,
 
-  fetch: async function (
-    keywords?: string,
-    codezone?: string,
-    distance?: string,
-    page?: string,
-  ): Promise<void> {
+  fetch: async function (params: fetchParams): Promise<void> {
     try {
       this.status = Status.LOADING
       const axiosRequests = new Array<Promise<AxiosResponse>>()
@@ -35,19 +38,20 @@ const OffersPageState = reactive<IOffersPageState>({
             Accept: 'application/json',
           },
           params: {
-            keywords: keywords,
-            codezone: codezone,
-            distance: distance,
-            page: page,
+            keywords: params.keywords,
+            codezone: params.codezone,
+            codejob: params.codejob,
+            distance: params.distance,
+            page: params.page,
           },
         }),
       )
 
-      if (codezone) {
+      if (params.codezone) {
         axiosRequests.push(
           axios.request<Zone>({
             method: 'GET',
-            url: `${import.meta.env.VITE_API_URL}/zones/${codezone}`,
+            url: `${import.meta.env.VITE_API_URL}/zones/${params.codezone}`,
             headers: {
               Accept: 'application/json',
             },

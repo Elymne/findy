@@ -29,14 +29,19 @@ onBeforeMount(async () => {
       <p id="date" v-if="OfferPageState.data?.createdAt">
         {{ getFrDate(OfferPageState.data?.createdAt) }}
       </p>
-      <p>
+      <p id="origin">
         Offre d'origine :
         <a :href="OfferPageState.data?.origin">{{ OfferPageState.data?.origin }}</a>
       </p>
+      <ul id="list-tag        ">
+        <li v-for="tag in OfferPageState.data?.tags" :key="tag">
+          <Tag :text="tag" :redirection="''" />
+        </li>
+      </ul>
     </article>
 
     <article v-if="OfferPageState.data?.skills && OfferPageState.data?.skills.length > 0">
-      <h2 id="skills-subtitle">Compétences :</h2>
+      <h2 id="skills-subtitle">Compétences Techniques :</h2>
       <ul id="list-job">
         <li v-for="skill in OfferPageState.data?.skills" :key="skill">
           <Tag :text="skill" :redirection="''" />
@@ -45,7 +50,7 @@ onBeforeMount(async () => {
     </article>
 
     <article v-if="OfferPageState.data?.softSkills && OfferPageState.data?.softSkills.length > 0">
-      <h2 id="softskills-subtitle">Compétences secondaire :</h2>
+      <h2 id="softskills-subtitle">Compétences :</h2>
       <ul id="list-job">
         <li v-for="softSkill in OfferPageState.data?.softSkills" :key="softSkill.title">
           <Tag :text="softSkill.title" :redirection="''" />
@@ -58,7 +63,7 @@ onBeforeMount(async () => {
       <p id="description">{{ OfferPageState.data?.description }}</p>
     </article>
 
-    <article v-if="!OfferPageState.data?.contact">
+    <article v-if="OfferPageState.data?.contact">
       <h2 id="contact-title">Nous contacter :</h2>
       <p>Nom : {{ OfferPageState.data?.contact?.name }}</p>
       <p>Commentaire : {{ OfferPageState.data?.contact?.com }}</p>
@@ -102,6 +107,10 @@ article > * {
 #subtitle,
 #date {
   color: grey;
+}
+
+#origin {
+  margin-bottom: 10px;
 }
 
 h2 {

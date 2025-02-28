@@ -20,14 +20,14 @@ onBeforeMount(async () => {
         :redirect="'/offers?codejob=62'"
       />
       <ImageCard
-        image-url="src/ui/assets/images/marketing-card.jpg"
-        :text="'Marketing'"
-        :redirect="'/offers?codejob=47'"
+        image-url="src/ui/assets/images/metal-card.jpg"
+        :text="'Métallurgie'"
+        :redirect="'/offers?codejob=24'"
       />
       <ImageCard
-        image-url="src/ui/assets/images/sante-card.jpg"
-        :text="'Santé'"
-        :redirect="'/offers?codejob=86'"
+        image-url="src/ui/assets/images/recherche-card.jpg"
+        :text="'Recherche'"
+        :redirect="'/offers?codejob=72'"
       />
     </div>
     <hr />

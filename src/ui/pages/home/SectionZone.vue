@@ -4,22 +4,22 @@ import ImageCard from '@/ui/components/ImageCard.vue'
 
 <template>
   <section>
-    <h1>Rechercher par ville ?</h1>
+    <h1>Recherche par ville :</h1>
     <div id="grid-job">
       <ImageCard
         :text="'Paris'"
         image-url="src/ui/assets/images/paris-card.jpg"
-        :redirect="'/offers'"
+        :redirect="'/offers?codezone=75056'"
       />
       <ImageCard
         :text="'Nantes'"
         image-url="src/ui/assets/images/nantes-card.jpg"
-        :redirect="'/offers'"
+        :redirect="'/offers?codezone=44109'"
       />
       <ImageCard
-        :text="'La Creuse'"
-        image-url="src/ui/assets/images/lacreuse-card.jpg"
-        :redirect="'/offers'"
+        :text="'Rennes'"
+        image-url="src/ui/assets/images/rennes-card.jpg"
+        :redirect="'/offers?codezone=35238'"
       />
     </div>
   </section>

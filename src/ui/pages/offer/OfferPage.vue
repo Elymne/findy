@@ -10,9 +10,6 @@ const router = useRoute()
 
 onBeforeMount(async () => {
   await OfferPageState.fetch(router.params.id as string)
-
-  console.log(OfferPageState.data)
-  console.log(OfferPageState.status)
 })
 </script>
 

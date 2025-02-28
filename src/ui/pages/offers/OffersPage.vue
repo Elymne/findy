@@ -21,8 +21,6 @@ onBeforeMount(async () => {
   distance = route.query.distance?.toString()
   page = route.query.page?.toString()
 
-  console.log(codeJob)
-
   await OffersPageState.fetch({
     keywords: keywords,
     codejob: codeJob,

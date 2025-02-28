@@ -42,7 +42,6 @@ onBeforeMount(async () => {
       :onClick="
         () => {
           // TODO page à faire.
-          console.log('MERDE ALORS')
         }
       "
     />

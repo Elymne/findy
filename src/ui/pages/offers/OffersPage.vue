@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { onBeforeMount, watch } from 'vue'
+import { onBeforeMount, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { Status } from '@/core/Status'
 import OffersPageState from './states/OffersPage.state'
 import ListCard from '@/ui/components/ListCard.vue'
 import SearchBar from '@/ui/components/searchBar/SearchBar.vue'
 import Pager from '@/ui/pages/offers/CustomPager.vue'
+import router from '@/router'
 
 const route = useRoute()
 
@@ -14,6 +15,8 @@ let codeZone!: string | undefined
 let codeJob!: string | undefined
 let distance!: string | undefined
 let page!: string | undefined
+
+const isPageLoaded = ref<boolean>(false)
 
 onBeforeMount(async () => {
   keywords = route.query.keywords?.toString()
@@ -30,10 +33,14 @@ onBeforeMount(async () => {
     page: page,
   })
 
+  isPageLoaded.value = true
+
   console.log(OffersPageState)
 })
 
 watch(route, async () => {
+  isPageLoaded.value = false
+
   keywords = route.query.keywords?.toString()
   codeZone = route.query.codezone?.toString()
   codeJob = route.query.codejob?.toString()
@@ -47,6 +54,8 @@ watch(route, async () => {
     distance: distance,
     page: page,
   })
+
+  isPageLoaded.value = true
 })
 </script>
 
@@ -62,6 +71,7 @@ watch(route, async () => {
   <section v-if="OffersPageState.status == Status.SUCCESS">
     <SearchBar :keywords-prop="keywords" :zone-prop="OffersPageState.zone as string" />
     <h1>Les offres</h1>
+
     <ListCard
       v-for="offer in OffersPageState.data?.jobs"
       :key="offer.id"
@@ -71,10 +81,25 @@ watch(route, async () => {
       :zone="offer.zone"
       :date="offer.createdAt"
     />
+
     <Pager
+      v-if="isPageLoaded"
       :current-page="OffersPageState.data?.currentPage"
       :max-page="OffersPageState.data?.maxPage"
-      :onClick="(index) => {}"
+      :onClick="
+        (index) => {
+          router.push({
+            path: 'offers',
+            query: {
+              keywords: keywords,
+              codejob: codeJob,
+              codezone: codeZone,
+              distance: distance,
+              page: index,
+            },
+          })
+        }
+      "
     />
   </section>
 </template>

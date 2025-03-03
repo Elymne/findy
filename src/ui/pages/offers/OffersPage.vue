@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { onBeforeMount, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import OffersPageState from './states/OffersPage.state'
 import { Status } from '@/core/Status'
+import OffersPageState from './states/OffersPage.state'
 import ListCard from '@/ui/components/ListCard.vue'
 import SearchBar from '@/ui/components/searchBar/SearchBar.vue'
+import Pager from '@/ui/pages/offers/CustomPager.vue'
 
 const route = useRoute()
 
@@ -28,6 +29,8 @@ onBeforeMount(async () => {
     distance: distance,
     page: page,
   })
+
+  console.log(OffersPageState)
 })
 
 watch(route, async () => {
@@ -68,6 +71,11 @@ watch(route, async () => {
       :zone="offer.zone"
       :date="offer.createdAt"
     />
+    <Pager
+      :current-page="OffersPageState.data?.currentPage"
+      :max-page="OffersPageState.data?.maxPage"
+      :onClick="(index) => {}"
+    />
   </section>
 </template>
 
@@ -79,6 +87,10 @@ section {
 
 section > a {
   margin: 4px 0;
+}
+
+#pager {
+  margin: 20px auto;
 }
 
 @media (min-width: 1280px) {
